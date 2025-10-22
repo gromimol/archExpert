@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Arch Expert</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="img/favicon/favicon.ico">
+
+    <!-- Preload критичных шрифтов -->
+    <link rel="preload" href="font/geologica-v5-latin/geologica-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="font/geologica-v5-latin/geologica-v5-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- DNS prefetch для CDN -->
+    <link rel="dns-prefetch" href="//code.jquery.com">
+	<link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+	<div class="wrapper">
+		<header class="header">
+            <div class="container">
+                <a href="#" class="logo">
+                    <img src="img/logo.svg" alt="arch expert">
+                </a>
+                <div class="header__right">
+                    <div class="header__nav">
+
+                        <div class="header__nav__top">
+                            <a href="#" class="menu-logo">
+                                <img src="img/logo.svg" alt="arch expert">
+                            </a>
+                            <div class="close">
+                                <svg class="close-icon" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="1.71582" y1="28.728" x2="28.5859" y2="1.85794" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="2.13003" y1="1.85791" x2="29.0001" y2="28.728" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <!--  меню  -->
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li>
+                                <a href="#">services</a>
+                                <ul>
+                                    <li><a href="#">founders</a></li>
+                                    <li><a href="#">investors</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">case studies</a></li>
+                            <li><a href="#">about us</a></li>
+                            <li>
+                                <a href="#">resources</a>
+                                <ul>
+                                    <li><a href="#">BOOK</a></li>
+                                    <li><a href="#">PODCAST</a></li>
+                                    <li><a href="#">BLOG</a></li>
+                                    <li><a href="#">FREE Tool & Checklist</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">contacts</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">Book a Call</a>
+                    <div class="burger">
+                        <svg class="burger-icon" width="44" height="26" viewBox="0 0 44 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="1" y1="1" x2="43" y2="1" stroke="#F6F6F6" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="1" y1="13" x2="43" y2="13" stroke="#F6F6F6" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="1" y1="25" x2="43" y2="25" stroke="#F6F6F6" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+		</header>
+        <!--   end header     -->
+		<main class="main">
+            <div class="first-screen">
+                <div class="container">
+                    <div class="first-screen__content">
+                        <div class="h1">
+                            Scale without risks.<br />
+                            Grow with security.
+                        </div>
+                        <div class="first-screen__subtitle">
+                            We help founders scale products faster by building secure architecture that earns trust from both investors and users.
+                        </div>
+                        <ul class="first-screen__list">
+                            <li>Increase due diligence success rate by strengthening security posture and clarifying architecture</li>
+                            <li>Detect and eliminate critical vulnerabilities before they trigger reputational or financial loss</li>
+                            <li>Cut incident response time from days to hours with proven security playbooks and Disaster Recovery Plans</li>
+                            <li>Boost revenue growth by turning technical excellence into business advantage</li>
+                        </ul>
+                        <div class="cta-block">
+                            <div class="cta-block__btn">
+                                <a href="#" class="btn">Book a 30-min call</a>
+                                <div class="notice">*Secure Growth Call</div>
+                            </div>
+                            <a href="#" class="link text-uppercase font-secondary">
+                                Download the Technical <br />Debt Checklist
+                            </a>
+                        </div>
+                    </div>
+                    <div class="first-screen__globe">
+                        <picture class="first-screen__globe">
+                            <!-- WebP для современных браузеров -->
+                            <source
+                                    media="(max-width: 767px)"
+                                    srcset="img/webp/globe_mobile.webp"
+                                    type="image/webp">
+
+                            <source
+                                    media="(min-width: 768px)"
+                                    srcset="img/webp/globe_desctop.webp"
+                                    type="image/webp">
+
+                            <!-- JPG fallback -->
+                            <source
+                                    media="(max-width: 767px)"
+                                    srcset="img/globe_mobile.png">
+
+                            <img
+                                    src="img/globe_mobile.png"
+                                    alt="Архитектурный глобус"
+                                    width="375"
+                                    height="380"
+                                    loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="first-screen__notice">
+                        <p>
+                            Trusted by founders and investors in FinTech, SaaS, and LegalTech to pass due diligence, prevent data breaches, and scale without disruption
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- /.first-screen -->
+
+            <section class="who-we-work">
+                <div class="container">
+                    <h2 class="h2">Who We Work With</h2>
+
+                    <div class="tabs">
+                        <div class="tabs__header">
+                            <button class="tabs__btn h4 tabs__btn--active" data-tab="founders">Founders</button>
+                            <button class="tabs__btn h4" data-tab="investors">Investors</button>
+                        </div>
+
+                        <div class="tabs__content">
+                            <!-- Tab: Founders -->
+                            <div class="tabs__panel tabs__panel--active" data-panel="founders">
+                                <div class="tabs__card">
+                                    <div class="h4">Your model is proven, clients are paying, and you have raised capital to scale. But in:</div>
+                                    <ul class="tabs__list tabs__list--inline">
+                                        <li>Fintech</li>
+                                        <li>SaaS</li>
+                                        <li>Marketplaces</li>
+                                        <li>B2B products</li>
+                                    </ul>
+
+                                    <div class="h4">The following risks are unacceptable:</div>
+                                    <ul class="tabs__list">
+                                        <li>Outages and downtimes especially during sale peaks or presentations</li>
+                                        <li>Security breaches that destroy user trust overnight and ruin reputation</li>
+                                        <li>Release cycles dragging for weeks</li>
+                                        <li>Engineering teams stuck in firefighting mode</li>
+                                    </ul>
+
+                                    <div class="tabs__outcomes">
+                                        <div class="h4">Typical outcomes:</div>
+                                        <p>Critical vulnerabilities neutralised before launch, incident response reduced from days to hours with DRPs, and an investor-ready roadmap that proves your growth is sustainable and safe.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Investors -->
+                            <div class="tabs__panel" data-panel="investors">
+                                <div class="tabs__card">
+                                    <div class="h4">Pitch decks do not show the risks that decide valuation:</div>
+                                    <ul class="tabs__list">
+                                        <li>Hidden technical debt that can add months to scaling and bring no result</li>
+                                        <li>Architectures that collapse under even x2 load</li>
+                                        <li>Security posture so weak one breach could bring reputational risk and damage valuation</li>
+                                        <li>Dependency on key developers that threatens continuity</li>
+                                    </ul>
+
+                                    <div class="tabs__outcomes">
+                                        <div class="h4">Typical outcomes:</div>
+                                        <p>Faster due diligence, clear evidence of security posture, and deals closed with confidence. We provide a transparent risk map, cost-of-change model, and secure architecture clarity.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs__cta">
+                            <div class="h3">Book a 30-min Secure Growth Call</div>
+                            <a href="#" class="btn btn--green">Book a call</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.who-we-work -->
+
+            <section class="de-risk">
+                <div class="container">
+                    <div class="h2">We De-risk Scaling <br />Where It Matters Most</div>
+
+                    <div class="de-risk__grid">
+                        <!-- Block 1 -->
+                        <div class="de-risk__item">
+                            <img src="img/De-risk_icon_1.png" alt="Robust Systems" class="de-risk__icon" loading="lazy">
+                            <div class="h4">Robust Systems That Do Not Degrade Under Peak Loads</div>
+                            <ul class="de-risk__list">
+                                <li>Critical incidents reduced after baseline and target architecture hardening</li>
+                                <li>Uptime and SLAs improved to enterprise-grade levels</li>
+                                <li>Predictable performance even under x10+ load</li>
+                            </ul>
+                        </div>
+
+                        <!-- Block 2 -->
+                        <div class="de-risk__item">
+                            <img src="img/De-risk_icon_2-1.png" alt="Speed That Stays Safe" class="de-risk__icon" loading="lazy">
+                            <div class="h4">Speed That Stays Safe</div>
+                            <ul class="de-risk__list">
+                                <li>Security embedded into CI/CD to catch vulnerabilities before release</li>
+                                <li>Monitoring and checks prevent regressions and outages</li>
+                                <li>Faster feature delivery without security trade-offs</li>
+                            </ul>
+                        </div>
+
+                        <!-- Block 3 -->
+                        <div class="de-risk__item">
+                            <img src="img/De-risk_icon_4.png" alt="Investor Confidence" class="de-risk__icon" loading="lazy">
+                            <div class="h4">Investor Confidence and Deal Speed</div>
+                            <ul class="de-risk__list">
+                                <li>Transparent risk map and cost-of-change model</li>
+                                <li>Faster investor decisions with clear architecture and security posture</li>
+                                <li>Stronger valuation through provable architecture maturity</li>
+                            </ul>
+                        </div>
+
+                        <!-- Block 4 -->
+                        <div class="de-risk__item">
+                            <img src="img/De-risk_icon_3.png" alt="Teams That Scale" class="de-risk__icon" loading="lazy">
+                            <div class="h4">Teams and Decisions That Scale</div>
+                            <ul class="de-risk__list">
+                                <li>Knowledge and decision-making spread across roles, avoiding dependency on single developers</li>
+                                <li>Leadership and engineering alignment on security and scaling priorities</li>
+                                <li>Engineering discipline that sustains predictable growth faster delivery of features that drive revenue</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Animated background circles will be added here via jQuery -->
+                <div class="de-risk__stars"></div>
+            </section>
+            <!-- /.de-risk -->
+		</main>
+		<footer class="footer"></footer>
+	</div><!-- end wrapper -->
+
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+            defer>
+    </script>
+<script src="js/common.js" defer></script>
+</body>
+</html>
