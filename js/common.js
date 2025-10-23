@@ -166,4 +166,90 @@ $(document).ready(function() {
     // Создаем звезды при загрузке
     createStars();
 
+    // ===== FLIP CARDS =====
+
+    $('.case-card__toggle').on('click', function(e) {
+        e.preventDefault();
+        const $card = $(this).closest('.case-card');
+
+        // Закрываем все остальные карточки
+        $('.case-card').not($card).removeClass('flipped');
+
+        // Переворачиваем текущую
+        $card.toggleClass('flipped');
+    });
+
+    // Также можно кликать на всю карточку для переворота (опционально)
+    $('.case-card').on('click', function(e) {
+        // Игнорируем клики на кнопки и ссылки
+        if ($(e.target).closest('.btn, a').length) {
+            return;
+        }
+
+        const $card = $(this);
+
+        // Закрываем все остальные карточки
+        $('.case-card').not($card).removeClass('flipped');
+
+        // Переворачиваем текущую
+        $card.toggleClass('flipped');
+    });
+
+    // Клик на кнопку "Read More" - переворачиваем карточку обратно
+    $('.case-card__back .btn').on('click', function(e) {
+        const $card = $(this).closest('.case-card');
+        $card.removeClass('flipped');
+    });
+
+    // ===== ПЕРЕКЛЮЧЕНИЕ ТАБОВ SERVICES =====
+
+    $('.services-tabs__btn').on('click', function() {
+        const tabName = $(this).data('tab');
+
+        // Убираем активный класс со всех кнопок
+        $('.services-tabs__btn').removeClass('services-tabs__btn--active');
+
+        // Добавляем активный класс на текущую кнопку
+        $(this).addClass('services-tabs__btn--active');
+
+        // Скрываем все панели
+        $('.services-tabs__panel').removeClass('services-tabs__panel--active');
+
+        // Показываем нужную панель
+        $(`.services-tabs__panel[data-panel="${tabName}"]`).addClass('services-tabs__panel--active');
+    });
+
+    // ===== ACCORDION =====
+
+    // Применяем фоны из data-bg при загрузке для всех аккордеонов
+    $('.accordion__item').each(function() {
+        const $item = $(this);
+        const bgColor = $item.data('bg');
+        if (bgColor) {
+            $item.css('background-color', bgColor);
+        }
+    });
+
+    $('.accordion__header').on('click', function() {
+        const $item = $(this).closest('.accordion__item');
+        const isActive = $item.hasClass('accordion__item--active');
+
+        // Закрываем все аккордеоны (но не сбрасываем фон!)
+        $('.accordion__item').removeClass('accordion__item--active');
+
+        // Если кликнутый аккордеон не был активным, открываем его
+        if (!isActive) {
+            $item.addClass('accordion__item--active');
+        }
+    });
+
+    // ===== SCROLL TO TOP =====
+
+    $('.footer__scroll-top').on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, 800);
+    });
+
 });
