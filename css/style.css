@@ -125,6 +125,9 @@ h4, .h4 {
 .text-sm {
     font-size: 1.4rem;
 }
+.for-desctop {
+    display: none;
+}
 /*header*/
 .header {
     position: fixed;
@@ -201,8 +204,12 @@ body {
     color: var(--white-01);
     padding: 0 20px;
     z-index: 100;
-    /*временно*/
-    display: none;
+
+    /* Анимация появления */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0.4s;
 
     &::before {
         content: '';
@@ -227,28 +234,25 @@ body {
 
             /* ===== АНИМАЦИЯ ПОДМЕНЮ ===== */
             & ul {
-                gap: 0.7142em;
-                margin-top: 0.7142em;
-
-                /* Скрываем подменю по умолчанию */
+                gap: 2rem;
                 max-height: 0;
                 overflow: hidden;
                 opacity: 0;
-
-                /* Плавная анимация */
                 transition: max-height 0.5s ease-in-out,
                 opacity 0.5s ease-in-out,
                 margin-top 0.5s ease-in-out;
-
-                /* Убираем отступ когда закрыто */
                 margin-top: 0;
+
+                & a {
+                    font-size: 2rem;
+                }
             }
 
             /* Открытое состояние подменю */
             &.submenu-open ul {
                 max-height: 500px; /* Достаточно большое значение */
                 opacity: 1;
-                margin-top: 0.7142em;
+                margin-top: 2rem;
             }
 
             & li {
@@ -307,6 +311,19 @@ body {
             width: 100%;
         }
     }
+}
+
+/* Открытое состояние меню */
+.header__nav.nav-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0s;
+}
+
+/* Блокировка скролла body при открытом меню */
+body.menu-open {
+    overflow: hidden;
 }
 
 /* ===== ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ ===== */

@@ -23,14 +23,20 @@ $(document).ready(function() {
         }
     });
     
-    // ===== МОБИЛЬНОЕ МЕНЮ (если будет гамбургер) =====
-    
-    // Открытие/закрытие мобильного меню
-    $('.menu-toggle').on('click', function() {
-        $('.header__nav').toggleClass('nav-open');
-        $('body').toggleClass('menu-open');
+    // ===== МОБИЛЬНОЕ МЕНЮ =====
+
+    // Открытие мобильного меню по клику на бургер
+    $('.burger').on('click', function() {
+        $('.header__nav').addClass('nav-open');
+        $('body').addClass('menu-open');
     });
-    
+
+    // Закрытие мобильного меню по клику на крестик
+    $('.close').on('click', function() {
+        $('.header__nav').removeClass('nav-open');
+        $('body').removeClass('menu-open');
+    });
+
     // Закрытие мобильного меню при клике на ссылку
     $('.header__nav a').on('click', function() {
         // Только если это не ссылка с подменю
@@ -250,6 +256,191 @@ $(document).ready(function() {
         $('html, body').animate({
             scrollTop: 0
         }, 800);
+    });
+
+    // ===== GSAP АНИМАЦИЯ ПУТИ И ШАРИКА (DE-RISK) =====
+
+    function initDeRiskAnimation() {
+        // Проверяем, что GSAP загружен
+        if (typeof gsap === 'undefined') {
+            console.warn('GSAP не загружен');
+            return;
+        }
+
+        // Проверяем ширину экрана (только для десктопа)
+        if ($(window).width() < 1200) {
+            return;
+        }
+
+        const $items = $('.de-risk__item');
+        const $svg = $('.de-risk__path-svg');
+        const $path = $('#risk-path');
+        const $ball = $('.de-risk__ball');
+        const $progressElements = $('.de-risk__progress');
+
+        if ($items.length < 4 || !$svg.length || !$ball.length) {
+            return;
+        }
+
+        // Регистрируем MotionPath плагин
+        gsap.registerPlugin(MotionPathPlugin);
+
+        // Получаем размеры контейнера и заголовок секции
+        const containerOffset = $('.de-risk .container').offset();
+        const containerWidth = $('.de-risk .container').width();
+        const containerHeight = $('.de-risk .container').height();
+
+        // Находим высоту заголовка H2, чтобы начать линию ниже него
+        const $h2 = $('.de-risk .h2');
+        const h2Bottom = $h2.length ? ($h2.offset().top + $h2.outerHeight() - containerOffset.top + 40) : 0;
+
+        // Устанавливаем размеры SVG
+        $svg.attr({
+            viewBox: `0 0 ${containerWidth} ${containerHeight}`,
+            width: containerWidth,
+            height: containerHeight
+        });
+
+        // Получаем точки НАД блоками (огибая их)
+        const points = [];
+        const offsetAbove = 80; // Отступ над блоком
+
+        $items.each(function(index) {
+            const $item = $(this);
+            const offset = $item.offset();
+            const width = $item.outerWidth();
+
+            let x, y;
+            let itemY = offset.top - containerOffset.top - offsetAbove;
+
+            // Убеждаемся, что линия начинается НИЖЕ заголовка H2
+            if (itemY < h2Bottom) {
+                itemY = h2Bottom;
+            }
+
+            if (index === 0) {
+                // Первый блок - верхний ЛЕВЫЙ угол
+                x = offset.left - containerOffset.left;
+                y = itemY;
+            } else if (index === $items.length - 1) {
+                // Последний блок - верхний ПРАВЫЙ угол
+                x = offset.left - containerOffset.left + width;
+                y = itemY;
+            } else {
+                // Промежуточные блоки - центр
+                x = offset.left - containerOffset.left + width / 2;
+                y = itemY;
+            }
+
+            points.push({ x, y, index });
+        });
+
+        // Строим SVG путь через кривые Безье (первоначальная версия - самая плавная)
+        let pathD = `M ${points[0].x} ${points[0].y}`;
+
+        for (let i = 1; i < points.length; i++) {
+            const prev = points[i - 1];
+            const curr = points[i];
+
+            // Контрольные точки для плавной S-кривой
+            const dx = curr.x - prev.x;
+            const dy = curr.y - prev.y;
+
+            const cp1x = prev.x + dx * 0.5;
+            const cp1y = prev.y;
+
+            const cp2x = prev.x + dx * 0.5;
+            const cp2y = curr.y;
+
+            pathD += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${curr.x} ${curr.y}`;
+        }
+
+        // Применяем путь
+        $path.attr('d', pathD);
+
+        // Плашки позиционируются через CSS grid, здесь ничего не делаем
+
+        // Создаем GSAP анимацию
+        const tl = gsap.timeline({
+            repeat: -1, // Бесконечный повтор
+            repeatDelay: 2 // Задержка перед повтором
+        });
+
+        // Показываем шарик
+        tl.to($ball[0], {
+            opacity: 1,
+            duration: 0.3
+        });
+
+        // Анимация шарика по пути
+        tl.to($ball[0], {
+            motionPath: {
+                path: $path[0],
+                align: $path[0],
+                alignOrigin: [0.5, 0.5]
+            },
+            duration: 12, // 12 секунд на весь путь
+            ease: 'none'
+        }, 0);
+
+        // Анимация появления меток - ТОЛЬКО ОДНА за раз (3 плашки)
+        const progressCount = 3; // Только 3 плашки
+        const segmentDuration = 12 / progressCount; // Время на каждый сегмент
+
+        $progressElements.each(function(index) {
+            if (index > 2) return; // Только 3 плашки
+
+            const startTime = index * segmentDuration;
+            const showDuration = 0.7; // Время появления
+            const hideDuration = 0.5; // Время исчезновения
+            const visibleTime = segmentDuration - showDuration - hideDuration; // Время показа
+
+            // Появление метки
+            tl.to(this, {
+                opacity: 1,
+                y: 0,
+                duration: showDuration,
+                ease: 'back.out(1.7)'
+            }, startTime);
+
+            // Скрытие метки перед следующей
+            if (index < progressCount - 1) {
+                tl.to(this, {
+                    opacity: 0,
+                    y: -20,
+                    duration: hideDuration,
+                    ease: 'power2.in'
+                }, startTime + showDuration + visibleTime);
+            }
+        });
+
+        // Скрываем последнюю (3-ю) метку и шарик в конце
+        tl.to($progressElements.eq(2)[0], {
+            opacity: 0,
+            y: -20,
+            duration: 0.5
+        }, 11.5);
+
+        tl.to($ball[0], {
+            opacity: 0,
+            duration: 0.3
+        }, 11.7);
+    }
+
+    // Инициализация при загрузке
+    initDeRiskAnimation();
+
+    // Пересоздаем анимацию при изменении размера окна (с debounce)
+    let resizeTimer;
+    $(window).on('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // Останавливаем все анимации GSAP на элементах
+            if (typeof gsap !== 'undefined') {
+                gsap.killTweensOf('.de-risk__ball, .de-risk__progress');
+            }
+            initDeRiskAnimation();
+        }, 250);
     });
 
 });

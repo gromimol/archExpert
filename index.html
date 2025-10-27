@@ -14,6 +14,8 @@
     <!-- DNS prefetch для CDN -->
     <link rel="dns-prefetch" href="//code.jquery.com">
 	<link rel="stylesheet" href="css/style.css">
+    <!--  только для Декстопа.   -->
+    <link rel="stylesheet" href="css/media.css">
 
 
 </head>
@@ -53,10 +55,10 @@
                             <li>
                                 <a href="#">resources</a>
                                 <ul>
-                                    <li><a href="#">BOOK</a></li>
-                                    <li><a href="#">PODCAST</a></li>
-                                    <li><a href="#">BLOG</a></li>
-                                    <li><a href="#">FREE Tool & Checklist</a></li>
+                                    <li><a href="#">Book</a></li>
+                                    <li><a href="#">Podcast</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Free Tools</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">contacts</a></li>
@@ -142,8 +144,14 @@
 
                     <div class="tabs">
                         <div class="tabs__header">
-                            <button class="tabs__btn h4 tabs__btn--active" data-tab="founders">Founders</button>
-                            <button class="tabs__btn h4" data-tab="investors">Investors</button>
+                            <button class="tabs__btn h4 tabs__btn--active" data-tab="founders">
+                                Founders
+                                <span class="for-desctop">(post-Seed, preparing for Pre-A/A)</span>
+                            </button>
+                            <button class="tabs__btn h4" data-tab="investors">
+                                Investors
+                                <span class="for-desctop">(preparing for a deal)</span>
+                            </button>
                         </div>
 
                         <div class="tabs__content">
@@ -205,6 +213,14 @@
                 <div class="container">
                     <div class="h2">We De-risk Scaling <br />Where It Matters Most</div>
 
+                    <!-- SVG путь для анимации (только десктоп) -->
+                    <svg class="de-risk__path-svg for-desktop" xmlns="http://www.w3.org/2000/svg">
+                        <path id="risk-path" d="" stroke="#07BC8A" stroke-width="2" fill="none" opacity="0.8"/>
+                    </svg>
+
+                    <!-- Анимированный шарик (только десктоп) -->
+                    <div class="de-risk__ball for-desktop"></div>
+
                     <div class="de-risk__grid">
                         <!-- Block 1 -->
                         <div class="de-risk__item">
@@ -215,6 +231,14 @@
                                 <li>Uptime and SLAs improved to enterprise-grade levels</li>
                                 <li>Predictable performance even under x10+ load</li>
                             </ul>
+                            <!-- Метка с процентом (для десктопа) -->
+                            <div class="de-risk__progress for-desktop">
+                                <span class="de-risk__dot"></span>
+                                <div class="de-risk__progress-text">
+                                    <span class="de-risk__label">Total volume</span>
+                                    <span class="de-risk__percent">100%</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Block 2 -->
@@ -226,6 +250,14 @@
                                 <li>Monitoring and checks prevent regressions and outages</li>
                                 <li>Faster feature delivery without security trade-offs</li>
                             </ul>
+                            <!-- Метка с процентом (для десктопа) -->
+                            <div class="de-risk__progress for-desktop">
+                                <span class="de-risk__dot"></span>
+                                <div class="de-risk__progress-text">
+                                    <span class="de-risk__label">Total volume</span>
+                                    <span class="de-risk__percent">100%</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Block 3 -->
@@ -237,6 +269,14 @@
                                 <li>Faster investor decisions with clear architecture and security posture</li>
                                 <li>Stronger valuation through provable architecture maturity</li>
                             </ul>
+                            <!-- Метка с процентом (для десктопа) -->
+                            <div class="de-risk__progress for-desktop">
+                                <span class="de-risk__dot"></span>
+                                <div class="de-risk__progress-text">
+                                    <span class="de-risk__label">Total volume</span>
+                                    <span class="de-risk__percent">100%</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Block 4 -->
@@ -248,6 +288,7 @@
                                 <li>Leadership and engineering alignment on security and scaling priorities</li>
                                 <li>Engineering discipline that sustains predictable growth faster delivery of features that drive revenue</li>
                             </ul>
+                            <!-- НЕТ плашки для 4-го блока -->
                         </div>
                     </div>
                 </div>
@@ -728,6 +769,11 @@
             crossorigin="anonymous"
             defer>
     </script>
-<script src="js/common.js" defer></script>
+
+    <!-- GSAP библиотеки для анимаций -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js" defer></script>
+
+    <script src="js/common.js" defer></script>
 </body>
 </html>

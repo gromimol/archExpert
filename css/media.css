@@ -1,0 +1,351 @@
+@media(width > 1200px) {
+    body {
+        padding-top: 11rem;
+        font-size: 2.2rem;
+    }
+    .for-desctop {
+        display: block;
+    }
+    .header {
+        padding: 2rem 0;
+
+        & .logo {
+            width: 20vw;
+            max-width: 284px;
+        }
+
+        & .btn {
+            height: 7.2rem;
+            min-width: 20rem;
+            font-size: 1.6rem;
+        }
+
+        & .burger {
+            display: none;
+        }
+    }
+    .header__nav {
+        position: static;
+        height: auto;
+        opacity: 1;
+        transform: translateX(0);
+        background: transparent;
+        visibility: visible;
+        overflow: visible;
+
+        & ul {
+            flex-direction: row;
+            gap: 3rem;
+
+            & > li {
+                font-size: 1.6rem;
+                position: relative;
+                padding: 1rem 0;
+
+                & ul {
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: var(--white-01);
+                    gap: 0;
+                    padding: .8rem;
+                    border-radius: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    max-height: unset;
+                    overflow: visible;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+                }
+
+                & li {
+                    font-size: 1em;
+                    color: var(--primary-dark);
+                    transform: translateY(0);
+                    padding: 0 1rem;
+                    height: 3.4rem;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-transform: capitalize;
+                    white-space: nowrap;
+                    & a {
+                        font-size: 1em;
+                    }
+                }
+            }
+        }
+    }
+    .header__nav ul li:hover ul {
+        opacity: 1;
+        visibility: visible;
+    }
+    .header__nav ul li ul::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-bottom-color: var(--white-01);
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .header__nav__top,
+    .header__nav::before {
+        display: none;
+    }
+
+    .btn {
+        font-size: 1.6rem;
+        height: 7.2rem;
+        transition: all .3s;
+    }
+    .btn:hover {
+        background: var(--accent-mint-green);
+    }
+    h1, .h1 {
+        font-size: 6.4rem;
+    }
+    h2, .h2 {
+        font-size: 5.2rem;
+    }
+    h3, .h3 {
+        font-size: 4.4rem;
+    }
+    h4, .h4 {
+        font-size: 2.8rem;
+    }
+    .text-sm {
+        font-size: 1.6rem;
+    }
+    ul, ol, li {
+        font-size: 1em;
+    }
+    .first-screen {
+        padding: 10rem 0 4rem;
+        background: #091E1E;
+    }
+    .first-screen .container {
+        display: grid;
+        grid-template-columns: 63fr 37fr;
+    }
+
+    .first-screen__content {
+        grid-column: 1 / 2; /* первая колонка */
+    }
+
+    .first-screen__globe {
+        grid-column: 2 / 3; /* вторая колонка */
+    }
+
+    .first-screen__notice {
+        grid-column: 1 / 3;
+        max-width: 65%;
+        margin-top: 11rem;
+    }
+    .first-screen__subtitle {
+        max-width: 57.7rem;
+    }
+    .first-screen__list {
+        max-width: 64rem;
+    }
+    .first-screen__list li {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding-left: 0;
+    }
+    .first-screen__list li::before {
+        position: relative;
+        top: 0;
+        left: 0;
+        flex: none;
+    }
+
+    .cta-block {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 2rem;
+
+        & .link {
+            margin-top: .3em;
+        }
+    }
+    .cta-block__btn {
+        & .notice {
+            font-size: 1.6rem;
+        }
+    }
+    .link:hover {
+        text-decoration: none;
+    }
+
+    section {
+        padding: 10rem 0;
+    }
+
+    .who-we-work {
+        .h2 {
+            margin-bottom: 4rem;
+        }
+    }
+    .tabs__btn {
+        padding: 2.7rem 2rem;
+
+        & span {
+            font-size: 2.2rem;
+            font-weight: 400;
+            text-transform: none;
+        }
+
+        &:first-child,
+        &:last-child{
+            border-radius: 3.2rem 3.2rem 0 0;
+        }
+    }
+    .tabs__btn.h4 {
+        font-size: 4.4rem;
+    }
+    .tabs__header {
+        border-radius: 3.2rem 3.2rem 0 0;
+    }
+    .tabs__card {
+        display: grid;
+        grid-template-columns: 50fr 50fr;
+        padding: 6rem 5rem;
+
+        & .h4 {
+            padding-right: 2rem;
+        }
+
+        & .tabs__outcomes {
+            grid-column: 1 / 3;
+            max-width: 68%;
+        }
+    }
+    .tabs__cta {
+        margin-top: 4rem;
+        gap: 2.4rem
+    }
+
+    /* ===== DE-RISK АНИМАЦИЯ ПУТИ И ШАРИКА (GSAP) ===== */
+
+    /* Grid раскладка: 4 колонки, зигзаг */
+    .de-risk__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem 3rem;
+        margin-top: 8rem;
+    }
+
+    /* Блок 1: строка 1, колонка 1 */
+    .de-risk__item:nth-child(1) {
+        grid-column: 1 / 2;
+        grid-row: 1;
+    }
+
+    /* Блок 2: строка 2, колонка 2 */
+    .de-risk__item:nth-child(2) {
+        grid-column: 2 / 3;
+        grid-row: 2;
+    }
+
+    /* Блок 3: строка 3, колонка 3 */
+    .de-risk__item:nth-child(3) {
+        grid-column: 3 / 4;
+        grid-row: 3;
+    }
+
+    /* Блок 4: строка 4, колонка 4 */
+    .de-risk__item:nth-child(4) {
+        grid-column: 4 / 5;
+        grid-row: 4;
+    }
+
+    /* Позиционирование для grid раскладки */
+    .de-risk__item {
+        position: relative;
+    }
+
+    /* SVG путь */
+    .de-risk__path-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* Анимированный шарик */
+    .de-risk__ball {
+        position: absolute;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        background: var(--gradient-light);
+        box-shadow: 0 0 10px rgba(120, 255, 129, 0.6),
+                    0 0 20px rgba(120, 255, 129, 0.3);
+        z-index: 2;
+        opacity: 0;
+        will-change: transform;
+    }
+    .de-risk__item {
+        position: relative;
+    }
+    /* Метка с процентом */
+    .de-risk__progress {
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        gap: 1rem;
+        will-change: opacity, transform;
+        align-self: center; /* Центрируем по вертикали в ячейке */
+        position: absolute;
+        left: calc(100% + 50px);
+        top: 7rem;
+        background: #1C1E20;
+        border-radius: 2rem;
+        border: 1px solid #323435;
+        padding: .7rem 1rem;
+    }
+
+    /* Точка на линии */
+    .de-risk__dot {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        background: var(--accent-mint-green);
+        flex: none;
+        align-self: flex-start;
+        margin-top: 1rem;
+    }
+
+    /* Текст метки */
+    .de-risk__label {
+        font-size: 1.4rem;
+        color: var(--accent-mint-green);
+        white-space: nowrap;
+    }
+
+    .de-risk__percent {
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: var(--white-01);
+    }
+    .de-risk__item {
+        & .h4 {
+            font-size: 2.4rem;
+        }
+    }
+    .de-risk__list {
+        font-size: 1.6rem;
+    }
+}
+/*1200*/
