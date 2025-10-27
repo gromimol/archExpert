@@ -173,19 +173,7 @@ $(document).ready(function() {
     createStars();
 
     // ===== FLIP CARDS =====
-
-    $('.case-card__toggle').on('click', function(e) {
-        e.preventDefault();
-        const $card = $(this).closest('.case-card');
-
-        // Закрываем все остальные карточки
-        $('.case-card').not($card).removeClass('flipped');
-
-        // Переворачиваем текущую
-        $card.toggleClass('flipped');
-    });
-
-    // Также можно кликать на всю карточку для переворота (опционально)
+    
     $('.case-card').on('click', function(e) {
         // Игнорируем клики на кнопки и ссылки
         if ($(e.target).closest('.btn, a').length) {

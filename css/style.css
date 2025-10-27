@@ -128,6 +128,9 @@ h4, .h4 {
 .for-desctop {
     display: none;
 }
+.for-mobile {
+    display: block;
+}
 /*header*/
 .header {
     position: fixed;
@@ -187,6 +190,9 @@ body {
 }
 .btn--outline {
     border: 1px solid currentcolor;
+}
+.btn--outline:hover {
+    border-color: transparent;
 }
 .header__right {
     display: flex;
@@ -1146,6 +1152,12 @@ section {
         margin-top: 0.5rem;
         max-width: 23rem;
     }
+}
+.final-cta__btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem
 }
 
 /*end final cta*/
