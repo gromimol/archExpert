@@ -574,7 +574,9 @@ section {
         margin-bottom: 3rem;
     }
 }
-
+.wave-circles-container {
+    display: none !important;
+}
 .de-risk__grid {
     display: flex;
     flex-direction: column;

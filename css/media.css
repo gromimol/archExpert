@@ -345,11 +345,17 @@
     }
     .de-risk__item {
         & .h4 {
-            font-size: 2.4rem;
+            font-size: 2rem;
+            max-width: 80%;
         }
     }
     .de-risk__list {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        gap: .7rem;
+
+        & li {
+            line-height: 1.2;
+        }
     }
     .case-studies__grid {
         grid-template-columns: repeat(2, 1fr);
@@ -529,6 +535,257 @@
         a:hover  {
             color: var(--accent-mint-green);
         }
+    }
+
+    /* ===== RESOURCES SECTION (DESKTOP) ===== */
+    .resources {
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        min-height: 70rem;
+
+        & .container {
+            display: flex;
+            gap: 3rem;
+            align-items: stretch;
+        }
+    }
+
+    /* Левая колонка - резиновый белый блок */
+    .resources .h2 {
+        margin-bottom: 20rem;
+    }
+    .resources__left {
+        max-width: 54rem;
+        padding: 10rem 0;
+    }
+    /* CTA блок */
+    .resources__cta {
+        margin-top: auto;
+        padding: 4rem;
+        align-items: flex-start;
+        text-align: left;
+
+        & .h4 {
+            max-width: 100%;
+            text-align: left;
+        }
+
+        & .btn {
+            align-self: flex-start;
+        }
+    }
+
+    /* Правая колонка - аккордеон (горизонтальная колода карт) */
+    .accordion {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        flex-shrink: 0;
+        width: 72rem;
+    }
+
+    /* Карточка аккордеона */
+    .accordion__item {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 10rem; /* Закрытое состояние: 420px */
+        height: 100%;
+        cursor: pointer;
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                    right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        border-radius: 0;
+    }
+
+    /* Позиционирование карточек как колода (каждая выглядывает на 100px) */
+    .accordion__item:nth-child(1) {
+        right: 30rem; /* 300px справа, видна на 100px */
+        z-index: 1;
+    }
+
+    .accordion__item:nth-child(2) {
+        right: 20rem; /* 200px справа, видна на 100px */
+        z-index: 2;
+    }
+
+    .accordion__item:nth-child(3) {
+        right: 10rem; /* 100px справа, видна на 100px */
+        z-index: 3;
+    }
+
+    .accordion__item:nth-child(4) {
+        right: 0; /* Прижата к правому краю, видна полностью */
+        z-index: 4;
+    }
+
+    /* Активная карточка расширяется и выдвигается вперед */
+    .accordion__item--active {
+        width: 67rem; /* Открытое состояние: 670px */
+        z-index: 10 !important;
+    }
+
+    /* Вертикальный заголовок карточки */
+    .accordion__header {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 8rem;
+        height: 100%;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        padding: 3rem 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        background: transparent;
+        cursor: pointer;
+
+        & .h3 {
+            white-space: nowrap;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 3.2rem;
+        }
+    }
+
+    .accordion__icon {
+        transform: rotate(90deg);
+        width: 4.8rem;
+        height: 4.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .accordion__item--active .accordion__icon {
+        transform: rotate(90deg);
+    }
+
+    /* Контент карточки */
+    .accordion__content {
+        position: absolute;
+        left: 8rem;
+        top: 0;
+        width: calc(100% - 8rem);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6rem 4rem;
+        max-height: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease 0.3s, visibility 0.5s ease 0.3s;
+        pointer-events: none;
+
+        & .h3 {
+            font-size: 3.6rem;
+            margin-bottom: 2rem;
+        }
+
+        & p {
+            font-size: 1.8rem;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+        }
+
+        & ul {
+            margin-bottom: 3rem;
+            font-size: 1.8rem;
+
+            & li {
+                margin-bottom: 1rem;
+            }
+        }
+
+        & .btn {
+            align-self: flex-start;
+        }
+    }
+
+    .accordion__item--active .accordion__content {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Картинка в карточке */
+    .accordion__image {
+        position: absolute;
+        right: 4rem;
+        bottom: 6rem;
+        width: auto;
+        max-width: 45%;
+        max-height: 45%;
+        object-fit: contain;
+        margin: 0;
+    }
+
+    /* Podcast links */
+    .podcast-links {
+        display: flex;
+        gap: 1.6rem;
+        margin-bottom: 3rem;
+
+        & img {
+            height: 5rem;
+            width: auto;
+        }
+    }
+
+
+    .wave-circles-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
+        perspective: 1200px;
+    }
+
+    .wave-circles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotateX(65deg) rotate(45deg);
+        transform-style: preserve-3d;
+        width: 800px;
+        height: 800px;
+    }
+
+    .circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transform-style: preserve-3d;
+    }
+
+    .dot {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform-style: preserve-3d;
+        transition: all 0.3s ease;
+    }
+    .wave-circles-container {
+        display: block !important;
     }
 }
 /*1200*/

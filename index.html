@@ -214,12 +214,12 @@
                     <div class="h2">We De-risk Scaling <br />Where It Matters Most</div>
 
                     <!-- SVG путь для анимации (только десктоп) -->
-                    <svg class="de-risk__path-svg for-desktop" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="de-risk__path-svg for-desctop" xmlns="http://www.w3.org/2000/svg">
                         <path id="risk-path" d="" stroke="#07BC8A" stroke-width="2" fill="none" opacity="0.8"/>
                     </svg>
 
                     <!-- Анимированный шарик (только десктоп) -->
-                    <div class="de-risk__ball for-desktop"></div>
+                    <div class="de-risk__ball for-desctop"></div>
 
                     <div class="de-risk__grid">
                         <!-- Block 1 -->
@@ -294,6 +294,9 @@
                 </div>
                 <!-- Animated background circles will be added here via jQuery -->
                 <div class="de-risk__stars"></div>
+                <div class="wave-circles-container">
+                    <div class="wave-circles"></div>
+                </div>
             </section>
             <!-- /.de-risk -->
 
@@ -623,9 +626,15 @@
 
             <section class="resources">
                 <div class="container">
-                    <div class="h2">Insights & Resources</div>
-                </div>
-                <div class="accordion">
+                    <div class="resources__left">
+                        <div class="h2">Insights & Resources</div>
+                        <!-- CTA Block перенесен внутрь левой колонки -->
+                        <div class="resources__cta">
+                            <div class="h4">Ready to apply these insights to your product?</div>
+                            <a href="#" class="btn btn--green">Book a 30-min call</a>
+                        </div>
+                    </div>
+                    <div class="accordion">
                     <!-- Accordion Item 1: BOOK -->
                     <div class="accordion__item" data-bg="#040608">
                         <button class="accordion__header">
@@ -691,13 +700,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- CTA Block -->
-                <div class="container">
-                    <div class="resources__cta">
-                        <div class="h4">Ready to apply these insights to your product?</div>
-                        <a href="#" class="btn btn--green">Book a 30-min call</a>
-                    </div>
                 </div>
             </section>
             <!-- /.resources -->

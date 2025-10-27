@@ -224,16 +224,83 @@ $(document).ready(function() {
         }
     });
 
-    $('.accordion__header').on('click', function() {
-        const $item = $(this).closest('.accordion__item');
+    // Анимация сдвига аккордеонов на десктопе
+    function animateAccordionDesktop($activeItem) {
+        const $allItems = $('.accordion__item');
+        const activeIndex = $allItems.index($activeItem);
+        
+        // Анимация для всех элементов
+        $allItems.each(function(index) {
+            const $item = $(this);
+            const basePosition = (3 - index) * 10; // Базовая позиция
+            
+            if (index < activeIndex) {
+                // Элементы слева от активного - сдвигаем влево
+                gsap.to($item, {
+                    duration: 0.01,
+                    ease: "power3.out",
+                    right: (basePosition + 57) + 'rem'
+                });
+            } else {
+                // Активный и правые элементы - остаются на базовых позициях
+                gsap.to($item, {
+                    duration: 0.01,
+                    ease: "power3.out",
+                    right: basePosition + 'rem'
+                });
+            }
+        });
+    }
+    
+    // Сброс позиций аккордеонов к базовым значениям
+    function resetAccordionDesktop() {
+        const $allItems = $('.accordion__item');
+        
+        $allItems.each(function(index) {
+            const basePosition = (3 - index) * 10;
+            gsap.to($(this), {
+                duration: 0.01,
+                ease: "power3.out",
+                right: basePosition + 'rem'
+            });
+        });
+    }
+    
+    // Функция переключения аккордеона
+    function toggleAccordion($item) {
         const isActive = $item.hasClass('accordion__item--active');
-
-        // Закрываем все аккордеоны (но не сбрасываем фон!)
+        
+        // Закрываем все аккордеоны
         $('.accordion__item').removeClass('accordion__item--active');
-
+        
         // Если кликнутый аккордеон не был активным, открываем его
         if (!isActive) {
             $item.addClass('accordion__item--active');
+            
+            // Анимация сдвига для десктопа
+            if ($(window).width() > 1200) {
+                animateAccordionDesktop($item);
+            }
+        } else {
+            // Если закрываем аккордеон, возвращаем все на место
+            if ($(window).width() > 1200) {
+                resetAccordionDesktop();
+            }
+        }
+    }
+
+    // Обработчик клика по заголовку (для мобильной версии)
+    $('.accordion__header').on('click', function(e) {
+        e.stopPropagation();
+        const $item = $(this).closest('.accordion__item');
+        toggleAccordion($item);
+    });
+
+    // Обработчик клика по всей карточке (для десктопной версии)
+    $('.accordion__item').on('click', function() {
+        // Проверяем ширину экрана
+        if ($(window).width() > 1200) {
+            toggleAccordion($(this));
         }
     });
 
@@ -430,5 +497,153 @@ $(document).ready(function() {
             initDeRiskAnimation();
         }, 250);
     });
-
+    
+    function create3DWaveCircles() {
+        console.log('🎯 Создаем 3D волновые круги...');
+        
+        const container = document.querySelector('.wave-circles');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        container.style.cssText = `
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform:
+               rotateX(70deg)
+               rotateY(25deg)
+               rotateZ(35deg) !important;
+        transform-style: preserve-3d !important;
+        width: 800px !important;
+        height: 800px !important;
+        perspective: 400px !important;
+        z-index: 10000 !important;
+    `;
+        
+        // Создаем 10 круга
+        for (let i = 0; i < 10; i++) {
+            const circle = document.createElement('div');
+            const radius = 60 + (i * 30);
+            const dotsCount = 35 + (i * 15);
+            
+            circle.style.cssText = `
+            width: ${radius * 2}px !important;
+            height: ${radius * 2}px !important;
+            border-radius: 50% !important;
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            transform-style: preserve-3d !important;
+        `;
+            
+            
+            // Создаем точки
+            for (let j = 0; j < dotsCount; j++) {
+                const dot = document.createElement('div');
+                const angle = (j / dotsCount) * 2 * Math.PI;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                dot.style.cssText = `
+                width: 2px !important;
+                height: 2px !important;
+                background: #75D7B5 !important;
+                border-radius: 50% !important;
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate3d(${x}px, ${y}px, 0px) !important;
+                opacity: 0.8 !important;
+                transform-style: preserve-3d !important;
+                z-index: 10001 !important;
+            `;
+                
+                // Добавляем класс для легкого поиска
+                dot.classList.add('wave-dot');
+                
+                // Сохраняем данные для 3D волны
+                dot._baseX = x;
+                dot._baseY = y;
+                dot._angle = angle;
+                dot._radius = radius;
+                dot._circleIndex = i;
+                
+                circle.appendChild(dot);
+            }
+            
+            container.appendChild(circle);
+        }
+        
+        console.log('✅ 3D круги созданы, запускаем МЕДЛЕННУЮ волну...');
+        startAdvanced3DWave();
+    }
+    
+    function startAdvanced3DWave() {
+        // Ищем точки по классу вместо стиля
+        const dots = document.querySelectorAll('.wave-dot');
+        console.log(`🎯 Найдено точек для анимации: ${dots.length}`);
+        
+        function advancedWave3D() {
+            const time = Date.now() * 0.0006; // Уменьшили скорость в 2 раза
+            
+            dots.forEach(dot => {
+                const angle = dot._angle;
+                const circleIndex = dot._circleIndex;
+                
+                // УМЕНЬШЕННАЯ высота волны
+                const mainWave = Math.sin(time * 1.2 + angle * 3) * (8 + circleIndex * 2); // Было 15
+                const secondaryWave = Math.cos(time * 1.5 + angle * 4 + circleIndex) * (4 + circleIndex); // Было 8
+                const slowWave = Math.sin(time * 0.5 + angle * 1.5) * (3 + circleIndex); // Было 5
+                
+                // Комбинируем волны (основная волна + второстепенные)
+                const z = mainWave + secondaryWave * 0.3 + slowWave * 0.1;
+                
+                // Очень легкое движение по X,Y для естественности
+                const xWobble = Math.cos(time * 0.8 + angle * 2) * 0.5; // Уменьшили
+                const yWobble = Math.sin(time * 0.6 + angle * 2) * 0.5; // Уменьшили
+                
+                const finalX = dot._baseX + xWobble;
+                const finalY = dot._baseY + yWobble;
+                
+                // 3D трансформация
+                dot.style.transform = `translate3d(${finalX}px, ${finalY}px, ${z}px)`;
+                
+                // УМЕНЬШЕННЫЙ эффект глубины и размера
+                const depth = (z + 12) / 24; // Нормализуем от -12 до +12 (было от -25 до +25)
+                dot.style.opacity = 0.5 + depth * 0.4; // Меньше изменения прозрачности
+                dot.style.width = (3 + depth * 1) + 'px'; // Меньше изменения размера
+                dot.style.height = (3 + depth * 1) + 'px';
+            });
+            
+            requestAnimationFrame(advancedWave3D);
+        }
+        
+        advancedWave3D();
+        
+        // Более медленное вращение кругов
+        const circles = document.querySelectorAll('.wave-circles > div');
+        circles.forEach((circle, index) => {
+            gsap.to(circle, {
+                rotationZ: index % 2 === 0 ? 360 : -360,
+                duration: 60 + (index * 20), // Увеличили длительность
+                repeat: -1,
+                ease: "none"
+            });
+        });
+        
+        // Более медленное покачивание всей сцены
+        gsap.to('.wave-circles', {
+            rotationX: '+=2',
+            rotationY: '+=1',
+            duration: 12, // Увеличили длительность
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+    
+    // Запускаем
+    create3DWaveCircles();
+    
 });
