@@ -103,9 +103,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="first-screen__globe">
-                        <picture class="first-screen__globe">
-                            <!-- WebP для современных браузеров -->
+                    <div id="globe-svg-container" class="first-screen__globe">
+                        <picture class="first-screen__globe-img">
                             <source
                                     media="(max-width: 767px)"
                                     srcset="img/webp/globe_mobile.webp"
@@ -116,7 +115,6 @@
                                     srcset="img/webp/globe_desctop.webp"
                                     type="image/webp">
 
-                            <!-- JPG fallback -->
                             <source
                                     media="(max-width: 767px)"
                                     srcset="img/globe_mobile.png">
@@ -489,13 +487,13 @@
                         <div class="services-tabs__header">
                             <button class="services-tabs__btn h4 services-tabs__btn--active" data-tab="founders">
                                 Founders
-                                <span class="for-desktop ">
+                                <span class="for-desctop ">
                                     (post-Seed, preparing for Pre-A/A)
                                 </span>
                             </button>
                             <button class="services-tabs__btn h4" data-tab="investors">
                                 Investors
-                                <span class="for-desktop ">
+                                <span class="for-desctop ">
                                     (preparing for a deal)
                                 </span>
                             </button>
@@ -629,82 +627,94 @@
                     <div class="resources__left">
                         <div class="h2">Insights & Resources</div>
                         <!-- CTA Block перенесен внутрь левой колонки -->
-                        <div class="resources__cta">
+                        <div class="resources__cta resources__cta--desctop">
                             <div class="h4">Ready to apply these insights to your product?</div>
                             <a href="#" class="btn btn--green">Book a 30-min call</a>
                         </div>
                     </div>
                     <div class="accordion">
                     <!-- Accordion Item 1: BOOK -->
-                    <div class="accordion__item" data-bg="#040608">
-                        <button class="accordion__header">
-                            <span class="h3">Book</span>
-                            <span class="accordion__icon icon-arrow-down"></span>
-                        </button>
-                        <div class="accordion__content">
-                            <p>Our upcoming book on scaling architecture and removing technical risk. Join the waitlist and be the first to get a sample chapter.</p>
-                            <a href="#" class="btn">Join the Waitlist</a>
-                            <img src="img/slides/book.png" alt="Book Cover" class="accordion__image" loading="lazy">
-                        </div>
-                    </div>
-
-                    <!-- Accordion Item 2: PODCAST -->
-                    <div class="accordion__item" data-bg="#092327">
-                        <button class="accordion__header">
-                            <span class="h3">Podcast</span>
-                            <span class="accordion__icon icon-arrow-down"></span>
-                        </button>
-                        <div class="accordion__content">
-                            <div class="h3">"Technical Debt: Design, Risk and Beyond"</div>
-                            <p>Conversations with founders, CTOs, and investors on the costly reality behind fast-growth products.</p>
-                            <div class="podcast-links">
-                                <a href="#" class="podcast-link">
-                                    <img src="img/slides/Apple.svg" alt="Apple Podcasts">
-                                </a>
-                                <a href="#" class="podcast-link">
-                                    <img src="img/slides/Spotify.svg" alt="Spotify">
-                                </a>
+                        <div class="accordion__item" data-bg="#040608">
+                            <button class="accordion__header">
+                                <span class="h3">Book</span>
+                                <span class="accordion__icon icon-arrow-down"></span>
+                            </button>
+                            <div class="accordion__content">
+                                <p>Our upcoming book on scaling architecture and removing technical risk. Join the waitlist and be the first to get a sample chapter.</p>
+                                <a href="#" class="btn">Join the Waitlist</a>
+                                <img    class="accordion__image"
+                                        src="img/slides/book_desctop.png"
+                                        alt="Book Cover"
+                                        width="375"
+                                        height="380"
+                                        loading="lazy">
                             </div>
-                            <img src="img/slides/debt.png" alt="Podcast Cover" class="accordion__image" loading="lazy">
+                        </div>
+
+                        <!-- Accordion Item 2: PODCAST -->
+                        <div class="accordion__item" data-bg="#092327">
+                            <button class="accordion__header">
+                                <span class="h3">Podcast</span>
+                                <span class="accordion__icon icon-arrow-down"></span>
+                            </button>
+                            <div class="accordion__content">
+                                <div class="h3">"Technical Debt: Design, Risk and Beyond"</div>
+                                <p>Conversations with founders, CTOs, and investors on the costly reality behind fast-growth products.</p>
+                                <div class="podcast-links">
+                                    <a href="#" class="podcast-link">
+                                        <img src="img/slides/Apple.svg" alt="Apple Podcasts">
+                                    </a>
+                                    <a href="#" class="podcast-link">
+                                        <img src="img/slides/Spotify.svg" alt="Spotify">
+                                    </a>
+                                </div>
+                                <img src="img/slides/debt.png" alt="Podcast Cover" class="accordion__image" loading="lazy">
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 3: BLOG -->
+                        <div class="accordion__item" data-bg="#0D3837">
+                            <button class="accordion__header">
+                                <span class="h3">Blog</span>
+                                <span class="accordion__icon icon-arrow-down"></span>
+                            </button>
+                            <div class="accordion__content">
+                                <p>In-depth guides on architecture, scalability, investor readiness, and low-latency engineering.</p>
+                                <a href="#" class="btn">Read the Blog</a>
+                                <img src="img/slides/blog.png" alt="Blog" class="accordion__image" loading="lazy">
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 4: FREE TOOL & CHECKLIST -->
+                        <div class="accordion__item" data-bg="#0C5350">
+                            <button class="accordion__header">
+                                <span class="h3">Free Tool & Checklist</span>
+                                <span class="accordion__icon icon-arrow-down"></span>
+                            </button>
+                            <div class="accordion__content">
+                                <p>Download practical resources we use in projects:</p>
+                                <ul>
+                                    <li>Technical Debt Checklist (PDF)</li>
+                                    <li>Pre-Funding Security Audit Template</li>
+                                    <li>Disaster Recovery Playbook (DRP)</li>
+                                </ul>
+                                <a href="#" class="btn">Download Now</a>
+                                <img src="img/slides/free_tool.png" alt="Free Tools" class="accordion__image" loading="lazy">
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Accordion Item 3: BLOG -->
-                    <div class="accordion__item" data-bg="#0D3837">
-                        <button class="accordion__header">
-                            <span class="h3">Blog</span>
-                            <span class="accordion__icon icon-arrow-down"></span>
-                        </button>
-                        <div class="accordion__content">
-                            <p>In-depth guides on architecture, scalability, investor readiness, and low-latency engineering.</p>
-                            <a href="#" class="btn">Read the Blog</a>
-                            <img src="img/slides/blog.png" alt="Blog" class="accordion__image" loading="lazy">
-                        </div>
+                    <div class="resources__cta resources__cta--mobile">
+                        <div class="h4">Ready to apply these insights to your product?</div>
+                        <a href="#" class="btn btn--green">Book a 30-min call</a>
                     </div>
-
-                    <!-- Accordion Item 4: FREE TOOL & CHECKLIST -->
-                    <div class="accordion__item" data-bg="#0C5350">
-                        <button class="accordion__header">
-                            <span class="h3">Free Tool & Checklist</span>
-                            <span class="accordion__icon icon-arrow-down"></span>
-                        </button>
-                        <div class="accordion__content">
-                            <p>Download practical resources we use in projects:</p>
-                            <ul>
-                                <li>Technical Debt Checklist (PDF)</li>
-                                <li>Pre-Funding Security Audit Template</li>
-                                <li>Disaster Recovery Playbook (DRP)</li>
-                            </ul>
-                            <a href="#" class="btn">Download Now</a>
-                            <img src="img/slides/free_tool.png" alt="Free Tools" class="accordion__image" loading="lazy">
-                        </div>
-                    </div>
-                </div>
                 </div>
             </section>
             <!-- /.resources -->
 
             <section class="final-cta">
+                <!-- Animated light beam -->
+                <div class="final-cta__light"></div>
                 <div class="container">
                     <div class="h2">De-Risk Your Growth Before It<br class="for-desctop" /> Costs Millions</div>
                     <p>In just 30 minutes, we will map your biggest risks and show you<br class="for-desctop" /> how to scale x10 without incidents, delays, or investor red flags.</p>

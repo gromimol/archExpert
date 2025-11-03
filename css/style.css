@@ -432,6 +432,9 @@ body.menu-open {
     background: var(--gradient-light);
     flex: none;
 }
+.first-screen__globe-img img {
+    object-fit: contain;
+}
 /*end first screen*/
 
 /* ===== WHO WE WORK WITH ===== */
@@ -981,6 +984,15 @@ section {
         color: var(--primary-green-dark);
         margin-bottom: 3rem;
     }
+
+    & .container {
+        padding: 0;
+    }
+
+    & .resources__left {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 .accordion {
@@ -1109,13 +1121,16 @@ section {
     align-items: center;
     gap: 1.2rem;
     background: var(--white-01);
-    padding-top: 3rem;
+    padding: 3rem 20px 0;
     border-radius: 2.4rem;
 
     & .h4 {
         color: var(--primary-green-dark);
         max-width: 35rem;
     }
+}
+.resources__cta--desctop {
+    display: none;
 }
 
 /*end resources*/
@@ -1125,12 +1140,16 @@ section {
     background: var(--gradient-dark);
     color: var(--white-02);
     text-align: center;
+    position: relative;
+    overflow: hidden;
 
     & .container {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
+        position: relative;
+        z-index: 2;
     }
 
     & .h2 {
@@ -1155,6 +1174,31 @@ section {
         max-width: 23rem;
     }
 }
+
+/* Анимированный световой луч */
+.final-cta__light {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60rem;
+    height: 60rem;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.9;
+    will-change: transform, opacity, filter;
+    background: radial-gradient(
+        circle at center,
+        rgba(7, 188, 138, 0.8) 0%,
+        rgba(151, 246, 157, 0.6) 25%,
+        rgba(12, 83, 80, 0.4) 50%,
+        rgba(151, 246, 157, 0.2) 70%,
+        transparent 85%
+    );
+    filter: blur(40px);
+    mix-blend-mode: screen;
+}
+
 .final-cta__btns {
     display: flex;
     flex-direction: column;

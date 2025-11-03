@@ -645,5 +645,100 @@ $(document).ready(function() {
     
     // Запускаем
     create3DWaveCircles();
-    
+
+    // ===== FINAL CTA ANIMATED LIGHT BEAM =====
+    const $lightBeam = $('.final-cta__light');
+
+    if ($lightBeam.length) {
+        // Цвета для анимации градиента (07BC8A, 97F69D, 0C5350)
+        const gradients = [
+            'radial-gradient(circle at center, rgba(7, 188, 138, 0.8) 0%, rgba(151, 246, 157, 0.6) 25%, rgba(12, 83, 80, 0.4) 50%, rgba(151, 246, 157, 0.2) 70%, transparent 85%)',
+            'radial-gradient(circle at center, rgba(151, 246, 157, 0.8) 0%, rgba(12, 83, 80, 0.6) 25%, rgba(7, 188, 138, 0.4) 50%, rgba(12, 83, 80, 0.2) 70%, transparent 85%)',
+            'radial-gradient(circle at center, rgba(12, 83, 80, 0.8) 0%, rgba(7, 188, 138, 0.6) 25%, rgba(151, 246, 157, 0.4) 50%, rgba(7, 188, 138, 0.2) 70%, transparent 85%)',
+            'radial-gradient(circle at center, rgba(151, 246, 157, 0.9) 0%, rgba(7, 188, 138, 0.6) 25%, rgba(12, 83, 80, 0.35) 50%, rgba(151, 246, 157, 0.15) 70%, transparent 85%)'
+        ];
+
+        // Устанавливаем начальное состояние
+        gsap.set($lightBeam, {
+            opacity: 0,
+            x: 0,
+            y: 0,
+            scale: 1
+        });
+
+        // Функция создания рандомной анимации
+        function createLightAnimation() {
+            const tl = gsap.timeline();
+
+            // Шаг 1: Плавное появление луча (рандомные значения)
+            tl.to($lightBeam, {
+                x: gsap.utils.random(-300, 300),
+                y: gsap.utils.random(-200, 200),
+                scale: gsap.utils.random(0.9, 1.3),
+                opacity: gsap.utils.random(0.6, 0.8),
+                background: gradients[0],
+                duration: 3,
+                ease: "sine.inOut"
+            })
+            // Шаг 2: Активное движение
+            .to($lightBeam, {
+                x: gsap.utils.random(-450, 450),
+                y: gsap.utils.random(-250, 250),
+                scale: gsap.utils.random(1.0, 1.6),
+                opacity: gsap.utils.random(0.7, 0.9),
+                background: gradients[1],
+                duration: 3.5,
+                ease: "sine.inOut"
+            })
+            // Шаг 3: Продолжение движения
+            .to($lightBeam, {
+                x: gsap.utils.random(-400, 400),
+                y: gsap.utils.random(-280, 280),
+                scale: gsap.utils.random(0.85, 1.4),
+                opacity: gsap.utils.random(0.65, 0.85),
+                background: gradients[2],
+                duration: 4,
+                ease: "sine.inOut"
+            })
+            // Шаг 4: Еще одно движение
+            .to($lightBeam, {
+                x: gsap.utils.random(-420, 420),
+                y: gsap.utils.random(-260, 260),
+                scale: gsap.utils.random(0.95, 1.4),
+                opacity: gsap.utils.random(0.6, 0.8),
+                background: gradients[3],
+                duration: 3.5,
+                ease: "sine.inOut"
+            })
+            // Шаг 5: Возврат к центру
+            .to($lightBeam, {
+                x: gsap.utils.random(-150, 150),
+                y: gsap.utils.random(-100, 100),
+                scale: gsap.utils.random(0.9, 1.1),
+                opacity: gsap.utils.random(0.4, 0.6),
+                background: gradients[0],
+                duration: 2.5,
+                ease: "sine.inOut"
+            })
+            // Шаг 6: Плавное исчезновение
+            .to($lightBeam, {
+                x: 0,
+                y: 0,
+                scale: 1,
+                opacity: 0,
+                background: gradients[0],
+                duration: 2,
+                ease: "sine.inOut",
+                onComplete: () => {
+                    // После завершения - создаем новую рандомную анимацию
+                    createLightAnimation();
+                }
+            });
+
+            return tl;
+        }
+
+        // Запускаем первую анимацию
+        createLightAnimation();
+    }
 });
