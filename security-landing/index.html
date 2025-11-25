@@ -70,8 +70,10 @@
                         <div class="first-screen__cta">
                             <div class="first-screen__buttons">
                                 <div class="first-screen__buttons__item">
-                                    <a href="#" class="btn">Book a 30-min call</a>
-                                    <div class="first-screen__notice">30 minutes | Free of charge</div>
+                                    <div class="cta">
+                                        <a href="#" class="btn">Book a meeting</a>
+                                        <div class="cta__notice">30 minutes | Free of charge</div>
+                                    </div>
                                 </div>
                                 <a href="#" class="first-screen__link">Get the Cybersecurity<br /> Checklist</a>
                             </div>
@@ -95,51 +97,61 @@
                         <span>OVERVIEW</span>
                     </div>
 
-                    <div class="h1 overview__title">What is<br>a cybersecurity audit?</div>
+                    <div class="h2 overview__title">What is<br>a cybersecurity audit?</div>
 
                     <div class="h4 overview__subtitle">
-                        A cybersecurity audit is a <span>comprehensive assessment</span> of <span>your company's</span> IT infrastructure and processes.
+                        A cybersecurity audit is a <span class="text-green">comprehensive assessment of your company's</span> <span class="text-gray">IT infrastructure and processes.</span>
                     </div>
 
-                    <div class="h5 overview__text">
+                    <div class="h4 overview__text text-gray">
                         Its goal is to identify vulnerabilities, evaluate risks, and ensure compliance with regulatory requirements.
                     </div>
                 </div>
             </section>
 
             <section class="objectives" id="objectives">
+                <!-- Animated stars background (canvas warp speed effect) -->
+                <canvas id="objectives-space"></canvas>
                 <div class="container">
-                    <div class="section-label">
+                    <div class="section-label section-label--white">
                         <span>OBJECTIVES</span>
                     </div>
 
-                    <div class="h1 objectives__title">Objectives of<br>a cybersecurity audit</div>
+                    <div class="h2 objectives__title">Objectives of<br>a cybersecurity audit</div>
 
                     <div class="objectives__grid">
                         <div class="objectives__item">
                             <img src="img/1.webp" alt="" class="objectives__number">
-                            <div class="h4 objectives__item-title">Increase business resilience and control</div>
-                            <div class="objectives__item-text">Identify weak points to prevent critical failures, data leaks, and business interruptions.</div>
+                            <div class="objectives__item__content">
+                                <div class="h4 objectives__item-title">Increase business resilience and control</div>
+                                <div class="objectives__item-text">Identify weak points to prevent critical failures, data leaks, and business interruptions.</div>
+                            </div>
                         </div>
 
                         <div class="objectives__item">
                             <img src="img/2.webp" alt="" class="objectives__number">
-                            <div class="h4 objectives__item-title">Turn security into a business asset</div>
-                            <div class="objectives__item-text">Make protection part of your growth strategy and a driver of customer and investor trust.</div>
+                            <div class="objectives__item__content">
+                                <div class="h4 objectives__item-title">Turn security into a business asset</div>
+                                <div class="objectives__item-text">Make protection part of your growth strategy and a driver of customer and investor trust.</div>
+                            </div>
                         </div>
 
                         <div class="objectives__item">
                             <img src="img/3.webp" alt="" class="objectives__number">
-                            <div class="h4 objectives__item-title">Gain a competitive advantage</div>
-                            <div class="objectives__item-text">Get an objective view of your security risks and minimize them before incidents occur.</div>
+                            <div class="objectives__item__content">
+                                <div class="h4 objectives__item-title">Gain a competitive advantage</div>
+                                <div class="objectives__item-text">Get an objective view of your security risks and minimize them before incidents occur.</div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="objectives__cta">
-                        <div class="h4 objectives__cta-title">Want to find out if your company needs a cybersecurity audit?</div>
+                        <div class="h3 objectives__cta-title">Want to find out if your company<br /> needs a cybersecurity audit?</div>
                         <div class="objectives__cta-text">Let's discuss it in a free 30-minute session.</div>
-                        <a href="#" class="btn">Book a meeting</a>
-                        <div class="objectives__cta-notice text-sm">30 minutes | Free of charge</div>
+                        <div class="cta">
+                            <a href="#" class="btn">Book a meeting</a>
+                            <div class="cta__notice">30 minutes | Free of charge</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -150,7 +162,7 @@
                         <span>BENEFITS</span>
                     </div>
 
-                    <div class="h1 benefits__title">Discover vulnerabilities before they become a problem!</div>
+                    <div class="h2 benefits__title">Discover vulnerabilities before they become a problem!</div>
 
                     <div class="benefits__cards">
                         <div class="benefits__card benefits__card--1">
@@ -191,12 +203,14 @@
             </section>
 
             <section class="risks" id="risks">
+                <!-- Animated starfield with ripples -->
+                <canvas id="risks-space"></canvas>
                 <div class="container">
                     <div class="section-label section-label--white">
                         <span>RISKS</span>
                     </div>
 
-                    <div class="h1 risks__title">What your business risks without a security audit</div>
+                    <div class="h2 risks__title">What your business risks without a security audit</div>
 
                     <div class="risks__grid">
                         <div class="risks__card">
@@ -204,7 +218,7 @@
                                 <img src="img/shield.webp" alt="">
                                 <span>1</span>
                             </div>
-                            <div class="h4 risks__card-title">Data leaks and customer information exposure</div>
+                            <div class="h5 risks__card-title">Data leaks and customer information exposure</div>
                         </div>
 
                         <div class="risks__card">
@@ -212,7 +226,7 @@
                                 <img src="img/shield.webp" alt="">
                                 <span>2</span>
                             </div>
-                            <div class="h4 risks__card-title">Service disruptions and downtime</div>
+                            <div class="h5 risks__card-title">Service disruptions and downtime</div>
                         </div>
 
                         <div class="risks__card">
@@ -220,7 +234,7 @@
                                 <img src="img/shield.webp" alt="">
                                 <span>3</span>
                             </div>
-                            <div class="h4 risks__card-title">Fines and lost contracts</div>
+                            <div class="h5 risks__card-title">Fines and lost contracts</div>
                         </div>
 
                         <div class="risks__card">
@@ -228,7 +242,7 @@
                                 <img src="img/shield.webp" alt="">
                                 <span>4</span>
                             </div>
-                            <div class="h4 risks__card-title">Reputational damage and loss of trust</div>
+                            <div class="h5 risks__card-title">Reputational damage and loss of trust</div>
                         </div>
 
                         <div class="risks__card">
@@ -236,7 +250,7 @@
                                 <img src="img/shield.webp" alt="">
                                 <span>5</span>
                             </div>
-                            <div class="h4 risks__card-title">Overspending on ineffective security measures</div>
+                            <div class="h5 risks__card-title">Overspending on ineffective security measures</div>
                         </div>
 
                         <div class="risks__card">
@@ -244,36 +258,40 @@
                                 <img src="img/shield.webp" alt="">
                                 <span>6</span>
                             </div>
-                            <div class="h4 risks__card-title">Managing blindly without understanding real risk levels</div>
+                            <div class="h5 risks__card-title">Managing blindly without understanding real risk levels</div>
                         </div>
                     </div>
 
                     <div class="risks__footer">
-                        <div class="h4 risks__footer-title">
-                            A cybersecurity audit <span class="text-green">helps prevent all of this:</span>
+                        <div class="h3 risks__footer-title">
+                            A cybersecurity audit <span class="text-green">helps prevent all of this:</span><br />
+                            <span class="text-gray font-400">It reveals vulnerabilities, reduces risks, saves money, and builds trust</span>
                         </div>
-                        <div class="h4 risks__footer-subtitle text-gray">
-                            It reveals vulnerabilities, reduces risks, saves money, and builds trust
+
+                        <div class="risks__footer__cta">
+                            <div class="cta">
+                                <a href="#" class="btn btn--green">Book a meeting</a>
+                                <div class="cta__notice">30 minutes | Free of charge</div>
+                            </div>
                         </div>
-                        <a href="#" class="btn">Book a meeting</a>
-                        <div class="text-sm risks__footer-notice">30 minutes | Free of charge</div>
                     </div>
                 </div>
             </section>
 
             <section class="process" id="process">
+                <!-- Animated starfield with ripples -->
+                <canvas id="process-space"></canvas>
                 <div class="container">
+                    <div class="section-label section-label--white">
+                        <span>PROCESS</span>
+                    </div>
                     <div class="process__content">
                         <div class="process__left">
-                            <div class="section-label section-label--white">
-                                <span>PROCESS</span>
-                            </div>
+                            <div class="h2 process__title">How a cybersecurity audit works</div>
 
-                            <div class="h1 process__title">How a cybersecurity audit works</div>
-
-                            <div class="h5 process__subtitle">
+                            <p class="process__subtitle">
                                 We identify vulnerabilities and help you understand how to eliminate them in ways that strengthen your business.
-                            </div>
+                            </p>
                         </div>
 
                         <div class="process__right">
@@ -284,9 +302,9 @@
                                     </div>
                                     <div class="process__card-content">
                                         <div class="h4 process__card-title">Preparation</div>
-                                        <div class="process__card-text">
+                                        <p class="process__card-text">
                                             We clarify the audit goals and expected outcomes. This ensures the audit meets your expectations and covers every critical detail. You will receive a clear list of objectives, criteria, and deliverables.
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
 
@@ -296,9 +314,9 @@
                                     </div>
                                     <div class="process__card-content">
                                         <div class="h4 process__card-title">Analysis and audit</div>
-                                        <div class="process__card-text">
+                                        <p class="process__card-text">
                                             At this stage, we assess risks, architecture, and infrastructure. If needed, we test system resilience and vulnerabilities. You'll receive an interim report highlighting problem areas and gaps.
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
 
@@ -308,9 +326,9 @@
                                     </div>
                                     <div class="process__card-content">
                                         <div class="h4 process__card-title">Final report</div>
-                                        <div class="process__card-text">
+                                        <p class="process__card-text">
                                             We deliver a clear report detailing what's critical, why it matters, and what can be improved, along with actionable recommendations to address the findings.
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
 
@@ -320,9 +338,9 @@
                                     </div>
                                     <div class="process__card-content">
                                         <div class="h4 process__card-title">Implementation support</div>
-                                        <div class="process__card-text">
+                                        <p class="process__card-text">
                                             We understand that change can take effort. If needed, we guide you through implementing improvements so the audit leads to real business growth, not just a report.
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -330,10 +348,12 @@
                     </div>
 
                     <div class="process__footer">
-                        <div class="h2 process__footer-title">Want to gain a competitive advantage and prevent reputational damage?</div>
+                        <div class="h3 process__footer-title">Want to gain a competitive advantage and prevent reputational damage?</div>
                         <div class="process__footer-text">Book a meeting today.</div>
-                        <a href="#" class="btn">Book a meeting</a>
-                        <div class="text-sm process__footer-notice">30 minutes | Free of charge</div>
+                        <div class="cta">
+                            <a href="#" class="btn">Book a meeting</a>
+                            <div class="cta__notice">30 minutes | Free of charge</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -346,7 +366,7 @@
                                 <span>ADVANTAGE</span>
                             </div>
 
-                            <div class="h1 advantages__title">Turn security into your competitive advantage</div>
+                            <div class="h2 advantages__title">Turn security into your competitive advantage</div>
 
                             <div class="h5 advantages__subtitle">
                                 Here is what you will gain after the cybersecurity audit:
@@ -355,44 +375,46 @@
 
                         <div class="advantages__grid">
                             <div class="advantages__card advantages__card--1">
-                                <div class="h4 advantages__card-title">Action plan</div>
-                                <div class="advantages__card-text">
+                                <div class="h5 advantages__card-title">Action plan</div>
+                                <p class="advantages__card-text">
                                     with the option of our support throughout the implementation process.
-                                </div>
+                                </p>
                             </div>
 
                             <div class="advantages__card advantages__card--2">
-                                <div class="h4 advantages__card-title">Clear understanding of risks and vulnerabilities</div>
-                                <div class="advantages__card-text">
+                                <div class="h5 advantages__card-title">Clear understanding of risks and vulnerabilities</div>
+                                <p class="advantages__card-text">
                                     You will know exactly where your system may fail.
-                                </div>
+                                </p>
                             </div>
 
                             <div class="advantages__card advantages__card--3">
-                                <div class="h4 advantages__card-title">Compliance overview</div>
-                                <div class="advantages__card-text">
+                                <div class="h5 advantages__card-title">Compliance overview</div>
+                                <p class="advantages__card-text">
                                     Which components meet modern security and architecture standards, and which need improvement.
-                                </div>
+                                </p>
                             </div>
 
                             <div class="advantages__card advantages__card--4">
-                                <div class="h4 advantages__card-title">Optimization recommendations</div>
-                                <div class="advantages__card-text">
+                                <div class="h5 advantages__card-title">Optimization recommendations</div>
+                                <p class="advantages__card-text">
                                     Practical ways to strengthen control, simplify processes, and reduce costs.
-                                </div>
+                                </p>
                             </div>
 
                             <div class="advantages__card advantages__card--5">
-                                <div class="h4 advantages__card-title">Security development strategy</div>
-                                <div class="advantages__card-text">
+                                <div class="h5 advantages__card-title">Security development strategy</div>
+                                <p class="advantages__card-text">
                                     A clear roadmap with required time and resources for long-term growth.
-                                </div>
+                                </p>
                             </div>
                         </div>
 
                         <div class="advantages__footer">
-                            <a href="#" class="btn">Book a meeting</a>
-                            <div class="text-sm advantages__footer-notice">30 minutes | Free of charge</div>
+                            <div class="cta">
+                                <a href="#" class="btn">Book a meeting</a>
+                                <div class="cta__notice">30 minutes | Free of charge</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -401,55 +423,54 @@
             <section class="why-us" id="why-us">
                 <div class="container">
                     <div class="why-us__wrapper">
+                        <div class="section-label">
+                            <span>WHY US</span>
+                        </div>
                         <div class="why-us__content">
                             <div class="why-us__left">
-                                <div class="section-label">
-                                    <span>WHY US</span>
-                                </div>
-
-                                <div class="h1 why-us__title">Why you can rely on us</div>
+                                <div class="h2 why-us__title">Why you can<br /> rely on us</div>
 
                                 <div class="why-us__list">
                                     <div class="why-us__item">
                                         <div class="h4 why-us__item-title">22 years in IT and security</div>
-                                        <div class="why-us__item-text">
+                                        <p class="why-us__item-text">
                                             Deep expertise in architecture, infrastructure, and technology-driven risk management.
-                                        </div>
+                                        </p>
                                     </div>
 
                                     <div class="why-us__item">
                                         <div class="h4 why-us__item-title">100+ security audits for IT companies</div>
-                                        <div class="why-us__item-text">
+                                        <p class="why-us__item-text">
                                             We've worked with startups and large enterprises across SaaS, fintech, telecom, and mobile.
-                                        </div>
+                                        </p>
                                     </div>
 
                                     <div class="why-us__item">
                                         <div class="h4 why-us__item-title">No jargon</div>
-                                        <div class="why-us__item-text">
+                                        <p class="why-us__item-text">
                                             We explain everything in plain language, even if you're not deep into technical details.
-                                        </div>
+                                        </p>
                                     </div>
 
                                     <div class="why-us__item">
                                         <div class="h4 why-us__item-title">Strict confidentiality</div>
-                                        <div class="why-us__item-text">
+                                        <p class="why-us__item-text">
                                             All projects are under NDA with no exceptions.
-                                        </div>
+                                        </p>
                                     </div>
 
                                     <div class="why-us__item">
                                         <div class="h4 why-us__item-title">Experienced and dedicated team</div>
-                                        <div class="why-us__item-text">
+                                        <p class="why-us__item-text">
                                             Technical and product backgrounds, certifications, and a fresh perspective.
-                                        </div>
+                                        </p>
                                     </div>
 
                                     <div class="why-us__item">
                                         <div class="h4 why-us__item-title">Flexible approach</div>
-                                        <div class="why-us__item-text">
+                                        <p class="why-us__item-text">
                                             No templates: we tailor the process to your business specifics and goals.
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -460,9 +481,11 @@
                         </div>
 
                         <div class="why-us__footer">
-                            <div class="h2 why-us__footer-title">Let's discuss how a cybersecurity audit can benefit your company</div>
-                            <a href="#" class="btn">Book a meeting</a>
-                            <div class="text-sm why-us__footer-notice">30 minutes | Free of charge</div>
+                            <div class="h3 why-us__footer-title">Let's discuss how a cybersecurity audit can benefit your company</div>
+                            <div class="cta">
+                                <a href="#" class="btn btn--green">Book a meeting</a>
+                                <div class="cta__notice">30 minutes | Free of charge</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -474,14 +497,14 @@
                         <span>CASES</span>
                     </div>
 
-                    <div class="h1 cases__title">Case studies</div>
+                    <div class="h2 cases__title">Case studies</div>
 
                     <div class="h3 cases__subtitle">Security strategy development</div>
 
                     <div class="cases__list">
                         <div class="cases__card">
                             <div class="cases__card-left">
-                                <div class="h4 cases__card-title">Security strategy development for a fintech platform</div>
+                                <div class="h3 cases__card-title">Security strategy development for a fintech platform</div>
                                 <div class="cases__card-tag">Security strategy development</div>
                             </div>
 
@@ -526,7 +549,7 @@
 
                         <div class="cases__card">
                             <div class="cases__card-left">
-                                <div class="h4 cases__card-title">SOC and monitoring setup</div>
+                                <div class="h3 cases__card-title">SOC and monitoring setup</div>
                                 <div class="cases__card-tag">Audits & incident prevention</div>
                             </div>
 
@@ -571,7 +594,7 @@
 
                         <div class="cases__card">
                             <div class="cases__card-left">
-                                <div class="h4 cases__card-title">Personal data leak prevention for a financial app</div>
+                                <div class="h3 cases__card-title">Personal data leak prevention for a financial app</div>
                                 <div class="cases__card-tag">Data protection & leak prevention</div>
                             </div>
 
@@ -616,17 +639,136 @@
                     </div>
                 </div>
             </section>
-        </main>
-        <div class="footer">
 
-        </div>
+            <section class="faq" id="faq">
+                <div class="container">
+                    <div class="section-label">
+                        <span>FAQ</span>
+                    </div>
+
+                    <div class="h2 faq__title">Frequently asked questions</div>
+
+                    <div class="faq__list">
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">How long does the audit take?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Usually between 2 and 8 weeks, depending on the size and complexity of your infrastructure. We agree on the plan and timeline in advance.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">Will our team need to be involved?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Yes, minimal involvement is required: at the start to provide inputs and access, and at the end to discuss the report and recommendations.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">What do we get as a result?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Beyond minimizing reputational, financial, and operational risks, you will receive a full report on your current state, a vulnerability map, a corrective action plan, and strategic recommendations.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">Does this apply if everything is outsourced?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Yes. We assess both internal processes and external contractors to identify weak points and ways to fix them.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">How confidential is the process?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>All work is done strictly under NDA. Your security and our reputation are equally important: we follow the highest confidentiality standards.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">Do you provide specific recommendations?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Yes. We explain what to do, why it matters, and in what order: tailored to your business context and available resources.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="final-cta">
+                <!-- Animated light beam -->
+                <div class="final-cta__light"></div>
+                <div class="container">
+                    <div class="h2">Want to find out where your system is vulnerable and how to strengthen security to benefit your business?</div>
+                    <p>Book a meeting, where we will discuss your case, show how a cybersecurity audit can help, and suggest where to start.</p>
+                    <div class="cta">
+                        <a href="#" class="btn">Book a Meeting</a>
+                        <a href="#" class="cta__notice">30 minutes | Free of charge</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="container">
+                <nav class="footer__nav">
+                    <a href="#overview">Overview</a>
+                    <a href="#objectives">Objectives</a>
+                    <a href="#benefits">Benefits</a>
+                    <a href="#risks">Risks</a>
+                    <a href="#process">Process</a>
+                    <a href="#advantages">Advantage</a>
+                    <a href="#why-us">Why Us</a>
+                    <a href="#cases">Cases</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#request-audit">Request Audit</a>
+                </nav>
+
+                <div class="footer__logo">
+                    <img src="img/logo.svg" alt="Arch Expert">
+                </div>
+
+                <div class="footer__copyright">
+                    © 2025 Arch Expert Consulting. All rights reserved.
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- GSAP библиотеки для анимаций -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js" defer></script>
 
     <!-- Water Ripple Effect -->
-    <script src="js/water-ripple.js"></script>
+    <script src="js/water-ripple.js" defer></script>
+    <script src="js/common.js" defer></script>
 </body>
 </html>
