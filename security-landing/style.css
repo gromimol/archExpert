@@ -357,6 +357,7 @@ body.menu-open {
     display: flex;
     align-items: center;
     padding: 12rem 0 4rem;
+    overflow: hidden;
 }
 
 .first-screen .container {
