@@ -183,7 +183,8 @@ body,
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 0;
+    padding: 20px 0;
+    border-bottom: 1px solid #4D4E4F;
     z-index: 1000;
 }
 
@@ -196,6 +197,7 @@ body,
 
 .header .logo {
     width: 11.4rem;
+    min-width: 150px;
     z-index: 101;
 }
 
@@ -234,9 +236,19 @@ body,
     opacity: 0;
     visibility: hidden;
     transform: translateX(100%);
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0.4s;
+    transition: opacity 0.4s ease, transform 0.4s ease;
     display: flex;
     flex-direction: column;
+}
+
+.menu-open {
+    overflow: hidden;
+}
+.menu-open .header__nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    z-index: 1000;
 }
 
 .header__nav.nav-open {
@@ -250,12 +262,14 @@ body,
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 0;
+    padding: 20px 0;
+    height: 71px;
     margin-bottom: 8rem;
 }
 
 .header__nav__top .menu-logo {
     width: 11.4rem;
+    min-width: 150px;
 }
 
 .header__nav__top .menu-logo img {
@@ -264,8 +278,8 @@ body,
 
 .close {
     cursor: pointer;
-    width: 3rem;
-    height: 3rem;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,13 +294,13 @@ body,
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: max(25px, 3rem);
     flex: 1;
     justify-content: center;
 }
 
 .header__nav ul li {
-    font-size: 2.8rem;
+    font-size: 28px;
     font-weight: 800;
     text-transform: uppercase;
     font-family: var(--font-family-second);
@@ -313,7 +327,7 @@ body.menu-open {
     align-items: center;
     justify-content: center;
     background: var(--white-01);
-    height: 6.4rem;
+    height: max(60px, 6.4rem);
     min-width: 20rem;
     border-radius: 7rem;
     font-size: max(1.4rem, 16px);
@@ -356,7 +370,7 @@ body.menu-open {
     background: linear-gradient(135deg, #050608 0%, #0D3837 100%);
     display: flex;
     align-items: center;
-    padding: 12rem 0 4rem;
+    padding: 120px 0 4rem;
     overflow: hidden;
 }
 
@@ -434,7 +448,6 @@ body.menu-open {
 }
 
 .first-screen__bottom {
-    position: relative;
     margin-top: 6rem;
     text-align: center;
 }
@@ -446,12 +459,14 @@ body.menu-open {
 
 .first-screen__bg {
     position: absolute;
-    bottom: -4rem;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    bottom: auto;
     width: 100%;
-    max-width: 80rem;
+    max-width: none;
     z-index: 0;
+    margin: 0;
     pointer-events: none;
 }
 
@@ -476,7 +491,7 @@ body.menu-open {
 
 /* ===== SECTION DEFAULTS ===== */
 section {
-    padding: 10rem 0;
+    padding: max(60px, 10rem) 0;
 }
 /* ===== END SECTION DEFAULTS ===== */
 
@@ -552,17 +567,17 @@ section {
 .objectives__grid {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 40px;
     width: 100%;
     margin-bottom: 6rem;
 }
 
 .objectives__item {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.6rem;
-    text-align: center;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    text-align: left;
 }
 
 .objectives__number {
@@ -579,6 +594,11 @@ section {
     font-size: max(16px, 2rem);
     font-weight: 400;
     max-width: 32rem;
+
+    @media(width <= 1200px) {
+        max-width: 400px;
+        margin-top: 10px;
+    }
 }
 
 .objectives__cta {
@@ -636,30 +656,42 @@ section {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    text-align: left;
+    min-height: 150px;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .benefits__card p {
     font-size: max(18px, 2.4rem);
     line-height: 1.3;
+    text-wrap: balance;
 }
 
 .benefits__card--1 {
     background: var(--primary-dark);
     color: var(--white-01);
-    transform: rotate(-17deg);
+
+    @media(width >= 1200px) {
+        transform: rotate(-17deg);
+    }
 }
 
 .benefits__card--2 {
     background: var(--primary-green-medium);
     color: var(--white-01);
-    transform: rotate(10deg) translateY(5rem);
+
+    @media(width >= 1200px) {
+        transform: rotate(10deg) translateY(5rem);
+    }
 }
 
 .benefits__card--3 {
     background: var(--white-01);
     color: var(--primary-dark);
-    transform: rotate(-15deg) translateY(-5rem);
+
+    @media(width >= 1200px) {
+        transform: rotate(-15deg) translateY(-5rem);
+    }
 
     & .benefits__card-dots {
         & span {
@@ -671,7 +703,10 @@ section {
 .benefits__card--4 {
     background: #0C5350;
     color: var(--white-01);
-    transform: rotate(20deg);
+
+    @media(width >= 1200px) {
+        transform: rotate(20deg);
+    }
 }
 
 .benefits__card-dots {
@@ -746,6 +781,11 @@ section {
     align-items: center;
     gap: 2rem;
     box-shadow: 2px 2px 12px rgba(12, 83, 80, 0.5);
+
+    @media(width >= 1200px) {
+        justify-content: space-around;
+        min-height: 150px;
+    }
 }
 
 .risks__icon {
@@ -809,6 +849,12 @@ section {
     background: transparent;
     color: var(--white-01);
     position: relative;
+
+    @media(width <= 1200px) {
+        & .section-label {
+            justify-content: center;
+        }
+    }
 }
 
 .process .container {
@@ -830,6 +876,10 @@ section {
     flex-direction: column;
     gap: 2.4rem;
     text-align: center;
+
+    @media(width <= 1200px) {
+        align-items: center;
+    }
 }
 
 .process__title {
@@ -851,15 +901,16 @@ section {
     background: rgba(12, 83, 80, 0.1);
     border: 1px solid rgba(12, 83, 80, 0.3);
     border-radius: 2.4rem;
-    padding: 2.4rem;
+    padding: max(20px, 2.4rem);
     display: flex;
-    gap: 2rem;
+    gap: 20px;
 }
 
 .process__card-icon {
-    width: 6.4rem;
-    height: 6.4rem;
+    width: max(52px, 6.4rem);
+    height:  max(52px, 6.4rem);
     flex-shrink: 0;
+
 }
 
 .process__card-icon img {
@@ -915,6 +966,10 @@ section {
     color: var(--white-01);
 }
 
+#advantages-particles {
+    display: none;
+}
+
 .advantages__wrapper {
     display: flex;
     flex-direction: column;
@@ -948,7 +1003,7 @@ section {
     background: rgba(12, 83, 80, 0.3);
     border: 1px solid rgba(12, 83, 80, 0.5);
     border-radius: 32px;
-    padding: 3.2rem 2.4rem;
+    padding: max(24px, 3.2rem) max(20px, 2.4rem);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -964,6 +1019,7 @@ section {
     line-height: 1.2;
     text-transform: uppercase;
     font-weight: 800;
+    font-size: max(20px, 2.4rem);
 }
 
 .advantages__card-text {
@@ -1023,7 +1079,7 @@ section {
 .why-us__item-title {
     line-height: 1.2;
     position: relative;
-    padding-left: 5rem;
+    padding-left: max(40px, 5rem);
     margin-bottom: .5rem;
 }
 .why-us__item-title::before {
@@ -1031,8 +1087,8 @@ section {
     position: absolute;
     left: 0;
     top: 0;
-    width: 3.6rem;
-    height: 3.2rem;
+    width: max(28px, 3.6rem);
+    height: max(25px, 3.2rem);
     background-image: url('img/decor_arrow_right.webp');
     background-size: contain;
     background-repeat: no-repeat;
@@ -1105,11 +1161,11 @@ section {
 
 .cases__card {
     background: #F6F6F6;
-    border-radius: 3.2rem;
-    padding: 3.2rem 2.4rem;
+    border-radius: max(28px, 3.2rem);
+    padding: max(28px, 3.2rem) max(20px, 2.4rem);
     display: flex;
     flex-direction: column;
-    gap: 3.2rem;
+    gap: max(24px, 3.2rem);
     border: 1px solid #A9A9AA;
 }
 
@@ -1127,7 +1183,8 @@ section {
 .cases__card-tag {
     display: inline-flex;
     align-items: center;
-    padding: 1.2rem 1.6rem;
+    padding: 1.2rem max(12px, 1.6rem);
+    min-height: 35px;
     background: var(--accent-lime-green);
     border-radius: 5rem;
     font-size: max(12px, 1.4rem);
@@ -1144,7 +1201,9 @@ section {
 
 .cases__card-item {
     display: flex;
-    gap: 1.6rem;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: max(15px, 2rem);
 }
 
 .cases__card-icon {
@@ -1406,7 +1465,7 @@ section {
     }
 
     .header__nav ul li {
-        font-size: 1.6rem;
+        font-size: max(14px, 1.6rem);
         font-weight: 400;
     }
 
@@ -1422,16 +1481,6 @@ section {
     .first-screen__bottom {
         margin-top: 8rem;
         position: static;
-    }
-
-    .first-screen__bg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        bottom: auto;
-        width: 100%;
-        max-width: none;
     }
 
     .first-screen__buttons {
@@ -1548,6 +1597,7 @@ section {
     }
 
     #advantages-particles {
+        display: block;
         position: absolute;
         top: 0;
         left: 0;
@@ -1652,5 +1702,11 @@ section {
 @media(width < 1460px) {
     html {
         font-size: .55vw;
+    }
+}
+
+@media(width < 1024px) {
+    html {
+        font-size: .7vw;
     }
 }

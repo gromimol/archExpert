@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const burger = document.querySelector('.burger');
+    const closeBtn = document.querySelector('.close');
+    const body = document.body;
+    
+    function isMobile() {
+        return window.innerWidth <= 1200;
+    }
+    
+    // Открытие меню
+    if (burger) {
+        burger.addEventListener('click', function() {
+            if (isMobile()) {
+                body.classList.add('menu-open');
+            }
+        });
+    }
+    
+    // Закрытие меню
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            body.classList.remove('menu-open');
+        });
+    }
+    
+    // Закрытие при ресайзе больше 1200px
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1200) {
+            body.classList.remove('menu-open');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     const faqItems = document.querySelectorAll('.faq__item');
 
     faqItems.forEach(item => {
@@ -98,6 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             e.preventDefault();
+            
+            document.body.classList.remove('menu-open');
 
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
