@@ -1,20 +1,80 @@
 document.addEventListener('DOMContentLoaded', function() {
     const faqItems = document.querySelectorAll('.faq__item');
-    
+
     faqItems.forEach(item => {
         const question = item.querySelector('.faq__question');
-        
+        const answer = item.querySelector('.faq__answer');
+        const toggle = item.querySelector('.faq__toggle');
+
+        // Устанавливаем начальное состояние для GSAP
+        if (!item.classList.contains('active')) {
+            gsap.set(answer, { height: 0, opacity: 0, overflow: 'hidden' });
+        }
+
         question.addEventListener('click', function() {
             const isActive = item.classList.contains('active');
-            
-            // Close all other items
+
+            // Закрываем все другие элементы с анимацией
             faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    const otherAnswer = otherItem.querySelector('.faq__answer');
+                    const otherToggle = otherItem.querySelector('.faq__toggle');
+
+                    gsap.to(otherAnswer, {
+                        height: 0,
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+
+                    gsap.to(otherToggle, {
+                        rotation: 0,
+                        duration: 0.3,
+                        ease: "power2.inOut"
+                    });
+                }
             });
-            
-            // Toggle current item
+
+            // Переключаем текущий элемент с анимацией
             if (!isActive) {
+                // Открываем
                 item.classList.add('active');
+
+                // Получаем реальную высоту контента
+                const contentHeight = answer.scrollHeight;
+
+                gsap.to(answer, {
+                    height: contentHeight,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: "power2.inOut"
+                });
+
+                gsap.to(toggle, {
+                    rotation: 45,
+                    duration: 0.3,
+                    ease: "power2.inOut"
+                });
+            } else {
+                // Закрываем
+                gsap.to(answer, {
+                    height: 0,
+                    opacity: 0,
+                    duration: 0.4,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        item.classList.remove('active');
+                    }
+                });
+
+                gsap.to(toggle, {
+                    rotation: 0,
+                    duration: 0.3,
+                    ease: "power2.inOut"
+                });
             }
         });
     });
@@ -84,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let i;
 
     let animationId;
-    let rotation = 0; // Угол вращения
+    let rotation = 0.04; // Угол вращения
 
     function initializeStars() {
         centerX = canvas.width / 2;
@@ -96,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 z: Math.random() * canvas.width,
-                o: '0.' + Math.floor(Math.random() * 6) + 1
+                o: '0.3'
             };
             stars.push(star);
         }
@@ -105,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function moveStars() {
         for (i = 0; i < numStars; i++) {
             star = stars[i];
-            star.z -= 3; // Увеличена скорость с 1 до 3
+            star.z -= 2; // Увеличена скорость с 1 до 3
 
             if (star.z <= 0) {
                 star.z = canvas.width;
@@ -129,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
         c.fillRect(0, 0, canvas.width, canvas.height);
 
         // Увеличиваем угол вращения (медленное вращение)
-        rotation += 0.0015;
+        rotation += 0.0001;
 
         // Draw stars as circles with mint green color
         for (i = 0; i < numStars; i++) {
@@ -152,9 +212,9 @@ document.addEventListener('DOMContentLoaded', function() {
             pixelRadius = (focalLength / star.z);
 
             // Рисуем круглые точки вместо квадратных
-            c.fillStyle = "rgba(7, 180, 138, " + star.o + ")";
+            c.fillStyle = "rgba(7, 180, 138, 0.2)";
             c.beginPath();
-            c.arc(pixelX, pixelY, pixelRadius / 2, 0, Math.PI * 2);
+            c.arc(pixelX, pixelY, pixelRadius / 2, 0, Math.PI);
             c.fill();
         }
     }
@@ -295,10 +355,10 @@ document.addEventListener('DOMContentLoaded', function() {
             initializeStars();
         }
 
-        c.fillStyle = "rgba(8, 6, 8, 0.25)";
+        c.fillStyle = "rgba(8, 6, 8, 0.8)";
         c.fillRect(0, 0, canvas.width, canvas.height);
 
-        rotation += 0.0015;
+        rotation += 0.0005;
 
         for (i = 0; i < numStars; i++) {
             star = stars[i];
@@ -610,3 +670,48 @@ if (document.readyState === 'loading') {
     // DOM уже загружен
     setTimeout(initThreeJsParticles, 100);
 }
+
+// ===== STACKING CARDS ANIMATION FOR CASES SECTION =====
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        console.warn('GSAP or ScrollTrigger not loaded');
+        return;
+    }
+
+    // Регистрируем ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    const cards = gsap.utils.toArray(".cases__card");
+    const spacer = 20;
+    const minScale = 0.8;
+
+    const distributor = gsap.utils.distribute({ base: minScale, amount: 0.2 });
+
+    cards.forEach((card, index) => {
+        const scaleVal = distributor(index, cards[index], cards);
+
+        // Анимация scale при скролле
+        gsap.to(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: `top top`,
+                scrub: true,
+                invalidateOnRefresh: true
+            },
+            ease: "none",
+            scale: scaleVal
+        });
+
+        // Pin анимация
+        ScrollTrigger.create({
+            trigger: card,
+            start: `top-=${index * spacer} top`,
+            endTrigger: '.cases__list',
+            end: `bottom top+=${200 + (cards.length * spacer)}`,
+            pin: true,
+            pinSpacing: false,
+            id: 'pin',
+            invalidateOnRefresh: true,
+        });
+    });
+});

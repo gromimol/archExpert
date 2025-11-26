@@ -1075,6 +1075,7 @@ section {
 .cases {
     background: #fff;
     color: var(--primary-dark);
+    padding-bottom: 18rem;
 }
 
 .cases .container {
@@ -1228,21 +1229,10 @@ section {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    transition: transform 0.3s ease;
-}
-
-.faq__item.active .faq__toggle {
-    transform: rotate(45deg);
 }
 
 .faq__answer {
-    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.faq__item.active .faq__answer {
-    max-height: 50rem;
 }
 
 .faq__answer-content {
@@ -1487,6 +1477,10 @@ section {
         position: relative;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+
+        &:hover .benefits__card{
+            transform: translate(0, 0) rotate(0deg);
+        }
     }
 
     .benefits__card {
@@ -1495,12 +1489,16 @@ section {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        transition: all .5s;
+        transform-origin: center;
+        will-change: transform;
 
         & p {
             font-size: max(18px, 2.2rem);
             line-height: 1.2;
             font-weight: 400;
         }
+
     }
 
     /* Risks desktop */
