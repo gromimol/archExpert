@@ -202,10 +202,12 @@
                 </div>
             </section>
 
-            <section class="risks" id="risks">
-                <!-- Animated starfield with ripples -->
-                <canvas id="risks-space"></canvas>
-                <div class="container">
+            <div class="risks-process-wrapper">
+                <!-- Animated starfield with ripples for both sections -->
+                <canvas id="risks-process-space"></canvas>
+
+                <section class="risks" id="risks">
+                    <div class="container">
                     <div class="section-label section-label--white">
                         <span>RISKS</span>
                     </div>
@@ -278,10 +280,8 @@
                 </div>
             </section>
 
-            <section class="process" id="process">
-                <!-- Animated starfield with ripples -->
-                <canvas id="process-space"></canvas>
-                <div class="container">
+                <section class="process" id="process">
+                    <div class="container">
                     <div class="section-label section-label--white">
                         <span>PROCESS</span>
                     </div>
@@ -357,8 +357,11 @@
                     </div>
                 </div>
             </section>
+            </div>
 
             <section class="advantages" id="advantages">
+                <!-- Three.js 3D particle sphere -->
+                <canvas id="advantages-particles"></canvas>
                 <div class="container">
                     <div class="advantages__wrapper">
                         <div class="advantages__header">
@@ -761,6 +764,9 @@
             </div>
         </footer>
     </div>
+
+    <!-- Three.js для 3D анимаций -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
     <!-- GSAP библиотеки для анимаций -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
