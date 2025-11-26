@@ -329,7 +329,7 @@ body.menu-open {
     background: var(--white-01);
     height: max(60px, 6.4rem);
     min-width: 20rem;
-    border-radius: 7rem;
+    border-radius: 70px;
     font-size: max(1.4rem, 16px);
     text-transform: uppercase;
     font-family: var(--font-family-second);
@@ -405,7 +405,7 @@ body.menu-open {
     max-width: 65rem;
     line-height: 1.4;
     text-transform: uppercase;
-    margin-top: 8rem;
+    margin-top: max(40px, 8rem);
 }
 .first-screen__text + .first-screen__text {
     margin-top: 2rem;
@@ -416,7 +416,7 @@ body.menu-open {
     flex-direction: column;
     align-items: center;
     gap: 1.6rem;
-    margin-top: 4rem;
+    margin-top: max(40px, 4rem);
 }
 
 .first-screen__buttons {
@@ -561,7 +561,7 @@ section {
 }
 
 .objectives__title {
-    margin-bottom: 6rem;
+    margin-bottom: max(30px, 6rem);
 }
 
 .objectives__grid {
@@ -902,6 +902,7 @@ section {
     border: 1px solid rgba(12, 83, 80, 0.3);
     border-radius: 2.4rem;
     padding: max(20px, 2.4rem);
+    background: #0E1012;
     display: flex;
     gap: 20px;
 }
@@ -1708,5 +1709,182 @@ section {
 @media(width < 1024px) {
     html {
         font-size: .7vw;
+    }
+}
+@media(width < 767px) {
+    .first-screen__title {
+        font-size: 28px;
+    }
+    div[class], p[class] {
+        max-width: unset;
+        text-wrap: balance;
+    }
+    .first-screen__link {
+        text-align: center;
+        padding-top: 0;
+        margin-top: 20px;
+    }
+    .first-screen {
+        padding-bottom: 40px;
+    }
+    .overview__title {
+        font-size: 28px;
+    }
+    .objectives__number {
+        flex: none;
+        width: 70px;
+        height: 70px;
+    }
+    .objectives__grid {
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+    .objectives__cta-text {
+        margin-bottom: 40px;
+    }
+    .benefits__card {
+        border-radius: 18px;
+        min-height: 240px;
+        justify-content: space-around;
+        padding: 30px;
+
+        &:nth-child(odd) {
+            transform: rotate(-5deg);
+        }
+        &:nth-child(even) {
+            transform: rotate(5deg);
+        }
+    }
+    .risks__grid {
+        margin-bottom: 60px;
+    }
+    .risks__card {
+        min-height: 190px;
+        justify-content: center;
+        gap: 15px
+    }
+    .risks__icon img {
+        width: 50px;
+        height: 50px;
+    }
+    .risks__footer {
+        gap: 60px
+    }
+    .risks__footer-title {
+        font-size: 20px;
+    }
+    .process__card {
+        border-radius: 28px;
+    }
+    .process::after {
+        content: '';
+        width: 100%;
+        height: 40%;
+        background: linear-gradient(to top, #19484B 0%, #0A1319 80%, rgba(255,255,255,0));
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .process__footer {
+        margin-top: 0;
+        padding-top: 60px;
+        gap: 15px;
+
+        & .cta {
+            margin-top: 40px;
+        }
+    }
+    .advantages__header {
+        gap: 0
+    }
+    .advantages__subtitle {
+        margin-top: 20px;
+    }
+    .advantages__grid {
+        margin-top: 20px;
+        gap:15px
+    }
+    .advantages__card {
+        border-right: 28px;
+        padding: 24px 20px;
+        gap:15px
+    }
+    .advantages__card--1 {
+        background: #0D3837;
+    }
+    .advantages__card--2 {
+        background: #092327;
+    }
+    .advantages__card--3 {
+        background: #121212;
+    }
+    .advantages__card--4 {
+        background: #0C5350;
+    }
+    .advantages__card--5 {
+        background: #121212;
+    }
+    .advantages__footer {
+        margin-top: 60px;
+    }
+    .why-us__item-title {
+        text-wrap: auto !important;
+        margin-bottom: 7px;
+    }
+    .why-us__item-title::before {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .why-us__footer {
+        margin-top: 40px;
+        gap: 40px
+    }
+    .cases__card-right {
+        gap: 16px;
+    }
+    .cases__card-icon {
+        width: 40px;
+        height: 40px;
+        flex: none;
+    }
+    .faq__toggle {
+        width: 32px;
+        height: 32px;
+    }
+    .faq__question {
+        min-height: 80px;
+    }
+    .faq__question-title {
+        font-size: 16px;
+    }
+    .final-cta {
+        & .h2 {
+            max-width: unset;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        & p {
+            max-width: unset;
+        }
+
+        & .cta {
+            margin-top: 40px;
+        }
+    }
+    .footer {
+        padding: 60px 0;
+    }
+    .footer__nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: flex-start;
+        text-align: left;
+        width: 100%;
+        gap: 12px;
+        margin-bottom: 40px;
+    }
+    .footer__logo {
+        max-width: 255px !important;
+        margin-bottom: 10px;
     }
 }
