@@ -160,9 +160,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ===== CANVAS STARFIELD FOR OBJECTIVES SECTION =====
-(function() {
-    const canvas = document.getElementById("objectives-space");
+// ===== УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ЗВЕЗДНОГО НЕБА =====
+function createStarfield(config) {
+    const canvas = document.getElementById(config.canvasId);
 
     if (!canvas) {
         return;
@@ -170,8 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const c = canvas.getContext("2d");
 
-    const numStars = 1500;
-    const radius = '0.' + Math.floor(Math.random() * 9) + 1;
+    const numStars = config.numStars || 1500;
     let focalLength = canvas.width * 2;
     let centerX, centerY;
 
@@ -179,118 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let i;
 
     let animationId;
-    let rotation = 0.04; // Угол вращения
-
-    function initializeStars() {
-        centerX = canvas.width / 2;
-        centerY = canvas.height / 2;
-
-        stars = [];
-        for (i = 0; i < numStars; i++) {
-            star = {
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                z: Math.random() * canvas.width,
-                o: '0.3'
-            };
-            stars.push(star);
-        }
-    }
-
-    function moveStars() {
-        for (i = 0; i < numStars; i++) {
-            star = stars[i];
-            star.z -= 2; // Увеличена скорость с 1 до 3
-
-            if (star.z <= 0) {
-                star.z = canvas.width;
-            }
-        }
-    }
-
-    function drawStars() {
-        let pixelX, pixelY, pixelRadius;
-
-        // Resize to the screen
-        if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            focalLength = canvas.width * 2;
-            initializeStars();
-        }
-
-        // Clear with dark background
-        c.fillStyle = "rgba(8, 6, 8, 0.25)";
-        c.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Увеличиваем угол вращения (медленное вращение)
-        rotation += 0.0001;
-
-        // Draw stars as circles with mint green color
-        for (i = 0; i < numStars; i++) {
-            star = stars[i];
-
-            // Применяем вращение к координатам звезды
-            let rotatedX = star.x - centerX;
-            let rotatedY = star.y - centerY;
-
-            let tempX = rotatedX * Math.cos(rotation) - rotatedY * Math.sin(rotation);
-            let tempY = rotatedX * Math.sin(rotation) + rotatedY * Math.cos(rotation);
-
-            rotatedX = tempX + centerX;
-            rotatedY = tempY + centerY;
-
-            pixelX = (rotatedX - centerX) * (focalLength / star.z);
-            pixelX += centerX;
-            pixelY = (rotatedY - centerY) * (focalLength / star.z);
-            pixelY += centerY;
-            pixelRadius = (focalLength / star.z);
-
-            // Рисуем круглые точки вместо квадратных
-            c.fillStyle = "rgba(7, 180, 138, 0.2)";
-            c.beginPath();
-            c.arc(pixelX, pixelY, pixelRadius / 2, 0, Math.PI);
-            c.fill();
-        }
-    }
-
-    function executeFrame() {
-        moveStars();
-        drawStars();
-        animationId = requestAnimationFrame(executeFrame);
-    }
-
-    // Initialize and start animation
-    initializeStars();
-    executeFrame();
-
-    // Cleanup on window unload
-    window.addEventListener('beforeunload', function() {
-        if (animationId) {
-            cancelAnimationFrame(animationId);
-        }
-    });
-})();
-
-// ===== CANVAS STARFIELD FOR RISKS-PROCESS WRAPPER WITH RIPPLE EFFECT =====
-(function() {
-    const canvas = document.getElementById("risks-process-space");
-
-    if (!canvas) {
-        return;
-    }
-
-    const c = canvas.getContext("2d");
-
-    const numStars = 1500;
-    let focalLength = canvas.width * 2;
-    let centerX, centerY;
-
-    let stars = [], star;
-    let i;
-
-    let animationId;
-    let rotation = 0;
+    let rotation = config.initialRotation || 0;
 
     // Массив для хранения активных волн (ripples)
     let ripples = [];
@@ -305,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 z: Math.random() * canvas.width,
-                o: '0.' + Math.floor(Math.random() * 6) + 1
+                o: config.starOpacity || ('0.' + Math.floor(Math.random() * 6) + 1)
             };
             stars.push(star);
         }
@@ -314,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function moveStars() {
         for (i = 0; i < numStars; i++) {
             star = stars[i];
-            star.z -= 3;
+            star.z -= config.starSpeed || 2;
 
             if (star.z <= 0) {
                 star.z = canvas.width;
@@ -323,16 +211,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function createRipple() {
-        // Волна расходится от низа по центру
-        // Вычисляем максимальный радиус - диагональ экрана с запасом
         const diagonal = Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height, 2));
 
         const ripple = {
-            x: canvas.width / 2,      // По центру экрана по горизонтали
-            y: canvas.height,         // От низа экрана
+            x: canvas.width / 2,
+            y: canvas.height,
             radius: 0,
-            maxRadius: diagonal * 1.5, // С запасом, чтобы точно покрыть весь экран
-            speed: 2                   // Уменьшена скорость с 5 до 2
+            maxRadius: diagonal * 1.5,
+            speed: 2
         };
         ripples.push(ripple);
     }
@@ -342,7 +228,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const ripple = ripples[j];
             ripple.radius += ripple.speed;
 
-            // Удаляем волну когда она ушла далеко за границы
             if (ripple.radius > ripple.maxRadius) {
                 ripples.splice(j, 1);
             }
@@ -351,22 +236,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function drawRipples() {
         ripples.forEach(ripple => {
-            // ===== НАСТРОЙКА ЦВЕТА ВОЛНЫ =====
-            // Здесь можно изменить цвета градиента волны:
-            // rgba(R, G, B, прозрачность)
-            // Пример: rgba(7, 188, 138, ...) - мятно-зеленый
-            //         rgba(151, 246, 157, ...) - салатовый
-            //         rgba(12, 83, 80, ...) - темно-зеленый
-
-            // Внутренний радиус для эффекта кольца (не может быть отрицательным)
             const innerRadius = Math.max(0, ripple.radius - 150);
 
             const gradient = c.createRadialGradient(
-                ripple.x, ripple.y, innerRadius,  // Внутренний радиус (начало кольца)
-                ripple.x, ripple.y, ripple.radius  // Внешний радиус (конец кольца)
+                ripple.x, ripple.y, innerRadius,
+                ripple.x, ripple.y, ripple.radius
             );
 
-            // Кольцо волны с плавным градиентом (без изменения прозрачности)
             gradient.addColorStop(0, `rgba(7, 188, 138, 0)`);
             gradient.addColorStop(0.5, `rgba(7, 188, 138, 0.002)`);
             gradient.addColorStop(0.1, `rgba(151, 246, 157, 0.005)`);
@@ -390,10 +266,10 @@ document.addEventListener('DOMContentLoaded', function() {
             initializeStars();
         }
 
-        c.fillStyle = "rgba(8, 6, 8, 0.8)";
+        c.fillStyle = config.backgroundColor || "rgba(8, 6, 8, 0.25)";
         c.fillRect(0, 0, canvas.width, canvas.height);
 
-        rotation += 0.0005;
+        rotation += config.rotationSpeed || 0.0001;
 
         for (i = 0; i < numStars; i++) {
             star = stars[i];
@@ -413,24 +289,33 @@ document.addEventListener('DOMContentLoaded', function() {
             pixelY += centerY;
             pixelRadius = (focalLength / star.z);
 
-            c.fillStyle = "rgba(7, 180, 138, " + star.o + ")";
+            // Используем starColor с переменной прозрачностью если не задан фиксированный цвет
+            if (config.starColor) {
+                c.fillStyle = config.starColor;
+            } else {
+                c.fillStyle = "rgba(7, 180, 138, " + star.o + ")";
+            }
             c.beginPath();
-            c.arc(pixelX, pixelY, pixelRadius / 2, 0, Math.PI * 2);
+            // Размер точки: pixelRadius делится на starSizeRatio (по умолчанию 2)
+            const starSize = pixelRadius / (config.starSizeRatio || 2);
+            c.arc(pixelX, pixelY, starSize, 0, Math.PI * 2);
             c.fill();
         }
 
-        // Рисуем волны поверх звезд
-        drawRipples();
+        if (config.enableRipples) {
+            drawRipples();
+        }
     }
 
     function executeFrame() {
         moveStars();
-        updateRipples();
+        if (config.enableRipples) {
+            updateRipples();
+        }
         drawStars();
         animationId = requestAnimationFrame(executeFrame);
     }
 
-    // Создаем волны через случайные интервалы (от 8 до 15 секунд)
     function scheduleNextRipple() {
         const delay = 8000 + Math.random() * 7000;
         setTimeout(() => {
@@ -441,14 +326,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initializeStars();
     executeFrame();
-    scheduleNextRipple();
+
+    if (config.enableRipples) {
+        scheduleNextRipple();
+    }
 
     window.addEventListener('beforeunload', function() {
         if (animationId) {
             cancelAnimationFrame(animationId);
         }
     });
-})();
+}
+
+// ===== ИНИЦИАЛИЗАЦИЯ ЗВЕЗДНОГО НЕБА ДЛЯ OBJECTIVES =====
+createStarfield({
+    canvasId: 'objectives-space',
+    numStars: 1500,
+    starSpeed: 2,
+    starOpacity: '0.3',
+    backgroundColor: 'rgba(8, 6, 8, 1)', // Полная непрозрачность - убирает хвост
+    rotationSpeed: 0.0001,
+    initialRotation: 0.04,
+    starSizeRatio: 3, // Чем больше значение, тем меньше точки (по умолчанию 2)
+    enableRipples: false
+});
+
+// ===== ИНИЦИАЛИЗАЦИЯ ЗВЕЗДНОГО НЕБА ДЛЯ RISKS-PROCESS С ЭФФЕКТОМ ВОЛН =====
+createStarfield({
+    canvasId: 'risks-process-space',
+    numStars: 1500,
+    starSpeed: 3,
+    backgroundColor: 'rgba(8, 6, 8, 0.8)',
+    rotationSpeed: 0.0005,
+    initialRotation: 0,
+    starSizeRatio: 2, // Стандартный размер
+    enableRipples: true
+});
 
 // ===== FINAL CTA ANIMATED LIGHT BEAM =====
 const lightBeam = document.querySelector('.final-cta__light');
@@ -713,6 +626,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    // Отключаем анимацию для экранов 1200px и меньше
+    if (window.innerWidth <= 1200) {
+        return;
+    }
+
     // Регистрируем ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
@@ -748,5 +666,45 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'pin',
             invalidateOnRefresh: true,
         });
+    });
+});
+
+// ===== SCROLL COLOR REVEAL EFFECT =====
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        console.warn('GSAP or ScrollTrigger not loaded for scroll color reveal');
+        return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Находим все элементы с классом scroll-color-reveal
+    const revealElements = document.querySelectorAll('.scroll-color-reveal');
+
+    revealElements.forEach((target) => {
+        // Проверяем, находится ли элемент внутри first-screen
+        const isInFirstScreen = target.closest('.first-screen');
+
+        if (isInFirstScreen) {
+            // Для first-screen: автоматическая анимация через 2 секунды после загрузки
+            gsap.to(target, {
+                backgroundPositionX: 0,
+                ease: "power2.out",
+                duration: 1.5,
+                delay: 2
+            });
+        } else {
+            // Для остальных секций: анимация при скролле
+            gsap.to(target, {
+                backgroundPositionX: 0,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: target,
+                    scrub: 1,
+                    start: "top 90%",
+                    end: "top 50%"
+                }
+            });
+        }
     });
 });

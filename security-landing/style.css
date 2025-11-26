@@ -137,6 +137,21 @@ p {
 .text-gray {
     color: #A9A9AA;
 }
+
+/* Универсальный класс для эффекта изменения цвета при скролле */
+.scroll-color-reveal {
+    background: linear-gradient(
+        to right,
+        var(--accent-mint-green) 50%,
+        #A9A9AA 50%
+    );
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    display: inline;
+}
 .font-400 {
     font-weight: 400;
 }
@@ -393,6 +408,7 @@ body.menu-open {
 
 .first-screen__subtitle {
     line-height: 1.3;
+    color: var(--white-01);
     max-width: 80rem;
     text-transform: uppercase;
 }
@@ -523,6 +539,7 @@ section {
     max-width: 90rem;
     line-height: 1.3;
     margin-bottom: 20px;
+    color: var(--primary-dark);
 }
 
 
