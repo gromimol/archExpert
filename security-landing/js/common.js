@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const burger = document.querySelector('.burger');
     const closeBtn = document.querySelector('.close');
     const body = document.body;
-    
+
     function isMobile() {
         return window.innerWidth <= 1200;
     }
-    
+
     // Открытие меню
     if (burger) {
         burger.addEventListener('click', function() {
@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Закрытие меню
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             body.classList.remove('menu-open');
         });
     }
-    
+
     // Закрытие при ресайзе больше 1200px
     window.addEventListener('resize', function() {
         if (window.innerWidth > 1200) {
@@ -30,6 +30,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// ===== СКРЫТИЕ/ПОКАЗ ШАПКИ ПРИ СКРОЛЛЕ НА МОБИЛЬНЫХ =====
+(function() {
+    // Работает только на мобильных (≤767px)
+    if (window.innerWidth > 767) return;
+
+    const header = document.querySelector('.header');
+    if (!header) return;
+
+    let lastScrollTop = 0;
+    let isScrolling = false;
+    const scrollThreshold = 5; // Минимальное расстояние скролла для срабатывания
+
+    function handleScroll() {
+        if (isScrolling) return;
+
+        isScrolling = true;
+        requestAnimationFrame(() => {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Показываем шапку, если мы в самом верху страницы
+            if (currentScroll <= 100) {
+                header.classList.remove('header-hidden');
+            }
+            // Скрываем при скролле вниз
+            else if (currentScroll > lastScrollTop + scrollThreshold) {
+                header.classList.add('header-hidden');
+            }
+            // Показываем при скролле вверх
+            else if (currentScroll < lastScrollTop - scrollThreshold) {
+                header.classList.remove('header-hidden');
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            isScrolling = false;
+        });
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+})();
 
 document.addEventListener('DOMContentLoaded', function() {
     const faqItems = document.querySelectorAll('.faq__item');
@@ -352,15 +392,17 @@ createStarfield({
 });
 
 // ===== ИНИЦИАЛИЗАЦИЯ ЗВЕЗДНОГО НЕБА ДЛЯ RISKS-PROCESS С ЭФФЕКТОМ ВОЛН =====
+// Определяем параметры в зависимости от размера экрана
+const isMobileRisks = window.innerWidth <= 1200;
 createStarfield({
     canvasId: 'risks-process-space',
-    numStars: 1500,
-    starSpeed: 3,
+    numStars: isMobileRisks ? 800 : 1500, // Меньше звезд на мобильных
+    starSpeed: isMobileRisks ? 1 : 3, // Медленнее движение на мобильных
     backgroundColor: 'rgba(8, 6, 8, 0.8)',
-    rotationSpeed: 0.0005,
+    rotationSpeed: isMobileRisks ? 0.0002 : 0.0005, // Медленнее вращение на мобильных
     initialRotation: 0,
     starSizeRatio: 2, // Стандартный размер
-    enableRipples: true
+    enableRipples: !isMobileRisks // Отключаем волны на мобильных для производительности
 });
 
 // ===== FINAL CTA ANIMATED LIGHT BEAM =====
@@ -690,7 +732,7 @@ document.addEventListener('DOMContentLoaded', function() {
             gsap.to(target, {
                 backgroundPositionX: 0,
                 ease: "power2.out",
-                duration: 1.5,
+                duration: 3.5,
                 delay: 2
             });
         } else {
@@ -701,8 +743,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollTrigger: {
                     trigger: target,
                     scrub: 1,
-                    start: "top 90%",
-                    end: "top 50%"
+                    start: "top 80%",
+                    end: "top 30%"
                 }
             });
         }

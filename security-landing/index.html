@@ -765,14 +765,20 @@
         </footer>
     </div>
 
-    <!-- Three.js для 3D анимаций -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
     <!-- GSAP библиотеки для анимаций -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js" defer></script>
+
+    <!-- Условная загрузка Three.js только для десктопа (>1200px) -->
+    <script>
+        if (window.innerWidth > 1200) {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }
+    </script>
 
     <!-- Water Ripple Effect -->
     <script src="js/water-ripple.js" defer></script>

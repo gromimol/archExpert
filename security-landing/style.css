@@ -201,6 +201,19 @@ body,
     padding: 20px 0;
     border-bottom: 1px solid #4D4E4F;
     z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+/* Скрытие шапки при скролле вниз на мобильных */
+@media(width <= 767px) {
+    .header {
+        position: fixed;
+        background: linear-gradient(135deg, #050608 0%, #0D3837 100%);
+    }
+
+    .header.header-hidden {
+        transform: translateY(-100%);
+    }
 }
 
 .header .container {
@@ -755,6 +768,10 @@ section {
     width: 100%;
     height: 100%;
     z-index: 0;
+
+    @media(width < 767px) {
+        height: 50%;
+    }
 }
 /* ===== END RISKS-PROCESS WRAPPER ===== */
 
@@ -1449,6 +1466,7 @@ section {
     /* Header desktop */
     .header {
         padding: 3rem 0;
+        border-bottom: none;
     }
 
     .header .logo {
