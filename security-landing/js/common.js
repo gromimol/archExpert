@@ -306,8 +306,13 @@ function createStarfield(config) {
             initializeStars();
         }
 
-        c.fillStyle = config.backgroundColor || "rgba(8, 6, 8, 0.25)";
-        c.fillRect(0, 0, canvas.width, canvas.height);
+        // Если фон прозрачный, полностью очищаем canvas
+        if (config.backgroundColor === 'rgba(8, 6, 8, 0)') {
+            c.clearRect(0, 0, canvas.width, canvas.height);
+        } else {
+            c.fillStyle = config.backgroundColor || "rgba(8, 6, 8, 0.25)";
+            c.fillRect(0, 0, canvas.width, canvas.height);
+        }
 
         rotation += config.rotationSpeed || 0.0001;
 
@@ -384,122 +389,26 @@ createStarfield({
     numStars: 1500,
     starSpeed: 2,
     starOpacity: '0.3',
-    backgroundColor: 'rgba(8, 6, 8, 1)', // Полная непрозрачность - убирает хвост
+    backgroundColor: 'rgba(8, 6, 8, 0)', // Прозрачный фон - показывает фоновую картинку
     rotationSpeed: 0.0001,
     initialRotation: 0.04,
     starSizeRatio: 3, // Чем больше значение, тем меньше точки (по умолчанию 2)
     enableRipples: false
 });
 
-// ===== ИНИЦИАЛИЗАЦИЯ ЗВЕЗДНОГО НЕБА ДЛЯ RISKS-PROCESS С ЭФФЕКТОМ ВОЛН =====
+// ===== ИНИЦИАЛИЗАЦИЯ ЗВЕЗДНОГО НЕБА ДЛЯ RISKS-PROCESS =====
 // Определяем параметры в зависимости от размера экрана
 const isMobileRisks = window.innerWidth <= 1200;
 createStarfield({
     canvasId: 'risks-process-space',
     numStars: isMobileRisks ? 800 : 1500, // Меньше звезд на мобильных
     starSpeed: isMobileRisks ? 1 : 3, // Медленнее движение на мобильных
-    backgroundColor: 'rgba(8, 6, 8, 0.8)',
+    backgroundColor: 'rgba(8, 6, 8, 0)', // Прозрачный фон - показывает фоновую картинку
     rotationSpeed: isMobileRisks ? 0.0002 : 0.0005, // Медленнее вращение на мобильных
     initialRotation: 0,
     starSizeRatio: 2, // Стандартный размер
-    enableRipples: !isMobileRisks // Отключаем волны на мобильных для производительности
+    enableRipples: false // Волны отключены
 });
-
-// ===== FINAL CTA ANIMATED LIGHT BEAM =====
-const lightBeam = document.querySelector('.final-cta__light');
-
-if (lightBeam) {
-    // Цвета для анимации градиента (07BC8A, 97F69D, 0C5350)
-    const gradients = [
-        'radial-gradient(circle at center, rgba(7, 188, 138, 0.8) 0%, rgba(151, 246, 157, 0.6) 25%, rgba(12, 83, 80, 0.4) 50%, rgba(151, 246, 157, 0.2) 70%, transparent 85%)',
-        'radial-gradient(circle at center, rgba(151, 246, 157, 0.8) 0%, rgba(12, 83, 80, 0.6) 25%, rgba(7, 188, 138, 0.4) 50%, rgba(12, 83, 80, 0.2) 70%, transparent 85%)',
-        'radial-gradient(circle at center, rgba(12, 83, 80, 0.8) 0%, rgba(7, 188, 138, 0.6) 25%, rgba(151, 246, 157, 0.4) 50%, rgba(7, 188, 138, 0.2) 70%, transparent 85%)',
-        'radial-gradient(circle at center, rgba(151, 246, 157, 0.9) 0%, rgba(7, 188, 138, 0.6) 25%, rgba(12, 83, 80, 0.35) 50%, rgba(151, 246, 157, 0.15) 70%, transparent 85%)'
-    ];
-
-    // Устанавливаем начальное состояние
-    gsap.set(lightBeam, {
-        opacity: 0,
-        x: 0,
-        y: 0,
-        scale: 1
-    });
-
-    // Функция создания рандомной анимации
-    function createLightAnimation() {
-        const tl = gsap.timeline();
-
-        // Шаг 1: Плавное появление луча (рандомные значения)
-        tl.to(lightBeam, {
-            x: gsap.utils.random(-300, 300),
-            y: gsap.utils.random(-200, 200),
-            scale: gsap.utils.random(0.9, 1.3),
-            opacity: gsap.utils.random(0.6, 0.8),
-            background: gradients[0],
-            duration: 3,
-            ease: "sine.inOut"
-        })
-        // Шаг 2: Активное движение
-        .to(lightBeam, {
-            x: gsap.utils.random(-450, 450),
-            y: gsap.utils.random(-250, 250),
-            scale: gsap.utils.random(1.0, 1.6),
-            opacity: gsap.utils.random(0.7, 0.9),
-            background: gradients[1],
-            duration: 3.5,
-            ease: "sine.inOut"
-        })
-        // Шаг 3: Продолжение движения
-        .to(lightBeam, {
-            x: gsap.utils.random(-400, 400),
-            y: gsap.utils.random(-280, 280),
-            scale: gsap.utils.random(0.85, 1.4),
-            opacity: gsap.utils.random(0.65, 0.85),
-            background: gradients[2],
-            duration: 4,
-            ease: "sine.inOut"
-        })
-        // Шаг 4: Еще одно движение
-        .to(lightBeam, {
-            x: gsap.utils.random(-420, 420),
-            y: gsap.utils.random(-260, 260),
-            scale: gsap.utils.random(0.95, 1.4),
-            opacity: gsap.utils.random(0.6, 0.8),
-            background: gradients[3],
-            duration: 3.5,
-            ease: "sine.inOut"
-        })
-        // Шаг 5: Возврат к центру
-        .to(lightBeam, {
-            x: gsap.utils.random(-150, 150),
-            y: gsap.utils.random(-100, 100),
-            scale: gsap.utils.random(0.9, 1.1),
-            opacity: gsap.utils.random(0.4, 0.6),
-            background: gradients[0],
-            duration: 2.5,
-            ease: "sine.inOut"
-        })
-        // Шаг 6: Плавное исчезновение
-        .to(lightBeam, {
-            x: 0,
-            y: 0,
-            scale: 1,
-            opacity: 0,
-            background: gradients[0],
-            duration: 2,
-            ease: "sine.inOut",
-            onComplete: () => {
-                // После завершения - создаем новую рандомную анимацию
-                createLightAnimation();
-            }
-        });
-
-        return tl;
-    }
-
-    // Запускаем первую анимацию
-    createLightAnimation();
-}
 
 // ===== THREE.JS PARTICLE SPHERE FOR ADVANTAGES SECTION =====
 function initThreeJsParticles() {
@@ -553,13 +462,13 @@ function initThreeJsParticles() {
 
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
 
-    // Материал с круглыми точками цветом #0D3837
+    // Материал с круглыми точками цветом #063032
     const material = new THREE.PointsMaterial({
-        color: 0x0D3837,
+        color: 0x063032,
         size: 4,
         sizeAttenuation: true,
         transparent: true,
-        opacity: 0.8,
+        opacity: 1,
         map: createCircleTexture(), // Делаем точки круглыми
         alphaTest: 0.5
     });
@@ -659,6 +568,229 @@ if (document.readyState === 'loading') {
 } else {
     // DOM уже загружен
     setTimeout(initThreeJsParticles, 100);
+}
+
+// ===== FINAL CTA WEBGL BACKGROUND FOR `.final-cta__bg` =====
+function initFinalCtaWebGL() {
+    if (typeof THREE === 'undefined') {
+        console.warn('Three.js not loaded — final-cta WebGL background skipped');
+        return;
+    }
+
+    const img = document.querySelector('.final-cta__bg');
+    if (!img) return;
+
+    const parent = img.closest('.final-cta') || img.parentElement;
+    if (!parent) return;
+
+    // Create container for renderer
+    const webglContainer = document.createElement('div');
+    webglContainer.className = 'final-cta__webgl';
+    webglContainer.style.position = 'absolute';
+    webglContainer.style.inset = '0';
+    webglContainer.style.pointerEvents = 'none';
+    webglContainer.style.zIndex = '1';
+    parent.style.position = parent.style.position || 'relative';
+    parent.insertBefore(webglContainer, parent.firstChild);
+
+    // hide original image visually but keep for accessibility
+    img.style.opacity = 0;
+    img.style.visibility = 'hidden';
+
+    const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+    webglContainer.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    // Fullscreen quad
+    const geometry = new THREE.PlaneGeometry(2, 2);
+
+    const loader = new THREE.TextureLoader();
+    const textureSrc = img.currentSrc || img.src;
+
+    const uniforms = {
+        uTime: { value: 0 },
+        uTexture: { value: null },
+        uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        uMouse: { value: new THREE.Vector2(0.0, 0.0) },
+        uGlitch: { value: 0.0 },
+        uSeed: { value: 0.0 }
+    };
+
+    const vertexShader = `
+        varying vec2 vUv;
+        void main(){
+            vUv = uv;
+            gl_Position = vec4(position, 1.0);
+        }
+    `;
+
+    const fragmentShader = `
+        uniform float uTime;
+        uniform float uGlitch;
+        uniform float uSeed;
+        uniform sampler2D uTexture;
+        uniform vec2 uResolution;
+        uniform vec2 uMouse;
+        varying vec2 vUv;
+
+        // basic hash / noise
+        float hash(float n) { return fract(sin(n) * 43758.5453123); }
+        float noise(vec2 x){
+            vec2 p = floor(x);
+            vec2 f = fract(x);
+            f = f*f*(3.0-2.0*f);
+            float n = p.x + p.y*57.0;
+            float res = mix(mix(hash(n+0.0), hash(n+1.0), f.x), mix(hash(n+57.0), hash(n+58.0), f.x), f.y);
+            return res;
+        }
+
+        void main(){
+            vec2 uv = vUv;
+
+            // base slight scanline wobble (sped up)
+            float t = uTime * 3.0;
+            float scan = sin(uv.y * 200.0 + t * 3.5) * 0.003;
+
+            // global glitch intensity
+            float g = clamp(uGlitch, 0.0, 1.0);
+
+            // blocky horizontal displacement bands (television glitch)
+            float bands = noise(vec2(uv.y * 60.0 + uSeed, floor(t*1.2))) ;
+            float bandMask = step(0.85, bands) * g; // occasional strong bands
+
+            // color channel offsets depend on bandMask and small noise
+            float maxOffset = 0.03 * g;
+            vec2 offR = vec2(maxOffset * (hash(uSeed+1.0)-0.5), 0.0);
+            vec2 offG = vec2(maxOffset * (hash(uSeed+2.0)-0.5) * 0.6, 0.0);
+            vec2 offB = vec2(maxOffset * (hash(uSeed+3.0)-0.5) * 0.4, 0.0);
+
+            // sample with scanline wobble + band shifts
+            vec2 uvR = uv + vec2(scan * 0.5 + bandMask * (hash(uv.y*100.0+uSeed)-0.5) * 0.02, 0.0) + offR;
+            vec2 uvG = uv + vec2(scan * 0.5 + bandMask * (hash(uv.y*101.0+uSeed)-0.5) * 0.018, 0.0) + offG;
+            vec2 uvB = uv + vec2(scan * 0.5 + bandMask * (hash(uv.y*102.0+uSeed)-0.5) * 0.015, 0.0) + offB;
+
+            vec4 colR = texture2D(uTexture, uvR);
+            vec4 colG = texture2D(uTexture, uvG);
+            vec4 colB = texture2D(uTexture, uvB);
+
+            // mix channels
+            vec3 color = vec3(colR.r, colG.g, colB.b);
+
+            // small noisy speckles when glitching
+            float speck = noise(uv * vec2(800.0, 1200.0) + uSeed) * g * 0.06;
+            color += speck;
+
+            // vignette to make the effect look more TV-like
+            float dist = distance(uv, vec2(0.5));
+            color *= smoothstep(0.95, 0.6, dist);
+
+            gl_FragColor = vec4(color, 1.0);
+        }
+    `;
+
+    const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader,
+        transparent: true
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    let start = performance.now();
+
+    function onTextureLoad(tex) {
+        tex.minFilter = THREE.LinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+        tex.generateMipmaps = false;
+        uniforms.uTexture.value = tex;
+        resize();
+        // start shader render loop
+        animate();
+
+        // schedule randomized glitch pulses
+        let glitchTimeout;
+        function scheduleGlitch(){
+            const delay = 1500 + Math.random() * 2500;
+            glitchTimeout = setTimeout(() => {
+                uniforms.uGlitch.value = 1.0;
+                uniforms.uSeed.value = Math.random() * 1000.0;
+                // schedule next
+                scheduleGlitch();
+            }, delay);
+        }
+        scheduleGlitch();
+
+        // ensure cleanup on unload
+        window.addEventListener('beforeunload', function(){
+            try { clearTimeout(glitchTimeout); } catch(e){}
+        });
+    }
+
+    loader.load(textureSrc, onTextureLoad, undefined, function(err){
+        console.warn('Failed to load final-cta texture', err);
+    });
+
+    function resize(){
+        const rect = parent.getBoundingClientRect();
+        const w = Math.max(1, Math.floor(rect.width));
+        const h = Math.max(1, Math.floor(rect.height));
+        renderer.setSize(w, h);
+        uniforms.uResolution.value.set(w, h);
+        renderer.domElement.style.width = w + 'px';
+        renderer.domElement.style.height = h + 'px';
+    }
+
+    let mouseX = 0, mouseY = 0;
+    function onMouseMove(e){
+        const rect = parent.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        // center to -0.5..0.5
+        mouseX = (x - 0.5);
+        mouseY = (y - 0.5);
+        // smooth update via uniform in render loop
+    }
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('resize', resize);
+
+    let rafId;
+    function animate(){
+        const now = performance.now();
+        uniforms.uTime.value = (now - start) / 1000;
+        // lerp mouse uniform for smoothness
+        uniforms.uMouse.value.x += (mouseX - uniforms.uMouse.value.x) * 0.08;
+        uniforms.uMouse.value.y += (mouseY - uniforms.uMouse.value.y) * 0.08;
+        // decay glitch value so pulses fade out (faster)
+        uniforms.uGlitch.value *= 0.9;
+
+        renderer.render(scene, camera);
+        rafId = requestAnimationFrame(animate);
+    }
+
+    // Cleanup on unload
+    window.addEventListener('beforeunload', function(){
+        if (rafId) cancelAnimationFrame(rafId);
+        try { renderer.dispose(); } catch(e){}
+    });
+}
+
+// Запуск WebGL-анимации после загрузки DOM (немного задерживаем чтобы Three.js успела загрузиться)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initFinalCtaWebGL, 120);
+    });
+} else {
+    setTimeout(initFinalCtaWebGL, 120);
 }
 
 // ===== STACKING CARDS ANIMATION FOR CASES SECTION =====

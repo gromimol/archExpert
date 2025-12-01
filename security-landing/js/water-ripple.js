@@ -91,7 +91,7 @@ class WaterRipple {
     dropAtRandom() {
         const x = Math.floor(Math.random() * this.width);
         const y = Math.floor(Math.random() * this.height);
-        const strength = 512; // Сила капли
+        const strength = 212; // Сила капли
 
         this.disturb(x, y, this.options.dropRadius, strength);
 
@@ -137,7 +137,7 @@ class WaterRipple {
 
                 // Затухание
                 lastMap[index] = average - lastMap[index];
-                lastMap[index] *= 0.99; // Коэффициент затухания
+                lastMap[index] *= 0.95; // Коэффициент затухания
             }
         }
 
@@ -258,7 +258,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 overwrite: false
             });
         }
-
-        console.log('Water ripple effect started (rotation disabled)');
     }
 });

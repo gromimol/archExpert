@@ -400,6 +400,26 @@ body.menu-open {
     align-items: center;
     padding: 120px 0 4rem;
     overflow: hidden;
+
+    & .selected {
+        margin: max(20px, 4rem) 0 0;
+        padding-bottom: max(20px, 4rem);
+        position: relative;
+
+        &::before {
+            content: '';
+            width: 200vw;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform: translateX(-50%);
+            position: absolute;
+            background: linear-gradient(to right, rgba(4, 6, 8, 0.5) 20%, rgba(249, 249, 249, 0.15));
+            pointer-events: none;
+            isolation: isolate;
+            z-index: -1;
+        }
+    }
 }
 
 .first-screen .container {
@@ -411,6 +431,7 @@ body.menu-open {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--white-01);
 }
 
 .first-screen__title {
@@ -434,7 +455,7 @@ body.menu-open {
     max-width: 65rem;
     line-height: 1.4;
     text-transform: uppercase;
-    margin-top: max(40px, 8rem);
+    margin-top: max(20px, 3rem);
 }
 .first-screen__text + .first-screen__text {
     margin-top: 2rem;
@@ -565,7 +586,7 @@ section {
 
 /* ===== OBJECTIVES ===== */
 .objectives {
-    background: var(--primary-dark);
+    background: var(--primary-dark) url("img/objectives_light.jpg") no-repeat center bottom / cover;
     color: var(--white-01);
     position: relative;
     overflow: hidden;
@@ -777,7 +798,7 @@ section {
 
 /* ===== RISKS ===== */
 .risks {
-    background: transparent;
+    background: transparent url("img/risks_light.jpg") no-repeat center bottom / cover;
     color: var(--white-01);
     position: relative;
 }
@@ -1343,7 +1364,7 @@ section {
 
 /* ===== FINAL CTA ===== */
 .final-cta {
-    background: var(--gradient-dark);
+    background: #101819;
     color: var(--white-02);
     text-align: center;
     position: relative;
@@ -1378,30 +1399,15 @@ section {
         margin-top: 0.5rem;
     }
 }
-
-/* Анимированный световой луч */
-.final-cta__light {
+.final-cta__bg {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60rem;
-    height: 60rem;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.9;
-    will-change: transform, opacity, filter;
-    background: radial-gradient(
-        circle at center,
-        rgba(7, 188, 138, 0.8) 0%,
-        rgba(151, 246, 157, 0.6) 25%,
-        rgba(12, 83, 80, 0.4) 50%,
-        rgba(151, 246, 157, 0.2) 70%,
-        transparent 85%
-    );
-    filter: blur(40px);
-    mix-blend-mode: screen;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
 /* ===== END FINAL CTA ===== */
 
 /* ===== FOOTER ===== */
@@ -1515,7 +1521,7 @@ section {
     }
 
     .first-screen__bottom {
-        margin-top: 8rem;
+        margin-top: 4rem;
         position: static;
     }
 
