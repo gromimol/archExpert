@@ -572,6 +572,12 @@ if (document.readyState === 'loading') {
 
 // ===== FINAL CTA WEBGL BACKGROUND FOR `.final-cta__bg` =====
 function initFinalCtaWebGL() {
+    // Disable heavy WebGL animation on small screens to save resources
+    if (window.innerWidth <= 1200) {
+        // Do not initialize WebGL on tablets / mobiles
+        return;
+    }
+
     if (typeof THREE === 'undefined') {
         console.warn('Three.js not loaded — final-cta WebGL background skipped');
         return;
@@ -654,19 +660,21 @@ function initFinalCtaWebGL() {
         void main(){
             vec2 uv = vUv;
 
-            // base slight scanline wobble (sped up)
-            float t = uTime * 3.0;
-            float scan = sin(uv.y * 200.0 + t * 3.5) * 0.003;
+                // base slight scanline wobble (sped up and a bit stronger for visibility)
+                float t = uTime * 3.0;
+                float scan = sin(uv.y * 200.0 + t * 3.5) * 0.005;
 
             // global glitch intensity
             float g = clamp(uGlitch, 0.0, 1.0);
 
             // blocky horizontal displacement bands (television glitch)
             float bands = noise(vec2(uv.y * 60.0 + uSeed, floor(t*1.2))) ;
-            float bandMask = step(0.85, bands) * g; // occasional strong bands
+            // lower threshold so bands appear slightly more often, making glitches more visible
+            float bandMask = step(0.7, bands) * g;
 
             // color channel offsets depend on bandMask and small noise
-            float maxOffset = 0.03 * g;
+            // increase max offset for more visible RGB splits
+            float maxOffset = 0.05 * g;
             vec2 offR = vec2(maxOffset * (hash(uSeed+1.0)-0.5), 0.0);
             vec2 offG = vec2(maxOffset * (hash(uSeed+2.0)-0.5) * 0.6, 0.0);
             vec2 offB = vec2(maxOffset * (hash(uSeed+3.0)-0.5) * 0.4, 0.0);
@@ -683,8 +691,8 @@ function initFinalCtaWebGL() {
             // mix channels
             vec3 color = vec3(colR.r, colG.g, colB.b);
 
-            // small noisy speckles when glitching
-            float speck = noise(uv * vec2(800.0, 1200.0) + uSeed) * g * 0.06;
+            // small noisy speckles when glitching (slightly stronger)
+            float speck = noise(uv * vec2(800.0, 1200.0) + uSeed) * g * 0.09;
             color += speck;
 
             // vignette to make the effect look more TV-like
@@ -784,14 +792,38 @@ function initFinalCtaWebGL() {
     });
 }
 
-// Запуск WebGL-анимации после загрузки DOM (немного задерживаем чтобы Three.js успела загрузиться)
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
+// Запуск WebGL-анимации только на десктопе (>1200px)
+if (window.innerWidth > 1200) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initFinalCtaWebGL, 120);
+        });
+    } else {
         setTimeout(initFinalCtaWebGL, 120);
-    });
-} else {
-    setTimeout(initFinalCtaWebGL, 120);
+    }
 }
+
+// ===== GSAP ANIMATION FOR GRADIENT ELLIPSE =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Respect reduced motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Disable on smaller screens to save resources
+    if (window.innerWidth <= 1200) return;
+
+    const ellipse = document.querySelector('.gradient-ellipse');
+    if (!ellipse) return;
+    if (typeof gsap === 'undefined') return;
+
+    // Only smooth, noticeable left-right motion — keep it simple and visible
+    gsap.to(ellipse, {
+        y: '40rem',
+        duration: 5,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1
+    });
+});
 
 // ===== STACKING CARDS ANIMATION FOR CASES SECTION =====
 document.addEventListener('DOMContentLoaded', function() {

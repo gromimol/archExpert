@@ -911,6 +911,24 @@ section {
         }
     }
 }
+/* Gradient ellipse placed under the process section */
+.gradient-ellipse {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -22.5rem; /* half of 45rem to sink it below the section */
+    width: 96rem; /* as requested */
+    height: 45rem; /* as requested */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    /* circular radial gradient from center to edge */
+    background: radial-gradient(circle at center, rgba(44,208,149,1) 0%, rgba(44,73,130,1) 100%);
+    /* large blur */
+    filter: blur(432.04px);
+    -webkit-filter: blur(432.04px);
+    opacity: 1;
+}
 
 .process .container {
     display: flex;
@@ -1838,6 +1856,7 @@ section {
     .advantages__header {
         gap: 0
     }
+
     .advantages__subtitle {
         margin-top: 20px;
     }
