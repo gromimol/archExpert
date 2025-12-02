@@ -1728,7 +1728,51 @@ body.modal-open {
     }
 }
 /* END MODAL */
+/* SUCCESS PAGE */
+.success-page {
+    background: #040608;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.success-page__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: transparent url('img/success_bg.jpg') no-repeat 100% 100%;
+    background-size: contain;
+}
+.success-page__content__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: max(15px, 2.8rem);
+    max-width: 1000px;
 
+    & .h3 {
+        line-height: 1;
+    }
+
+    & p {
+        max-width: 785px;
+    }
+}
+.success-page__content__cta {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: max(10px, 1.6rem);
+}
+.success-page__footer {
+    padding: 6rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    text-align: center;
+
+    & .copyright {
+        margin-top: max(10px, 1.3rem);
+    }
+}
+/* END SUCCESS PAGE */
 /* ===== DESKTOP MEDIA QUERIES ===== */
 @media(width > 1200px) {
     .for-desctop {
