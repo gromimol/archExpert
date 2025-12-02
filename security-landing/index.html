@@ -70,7 +70,7 @@
                                 <div class="first-screen__buttons">
                                     <div class="first-screen__buttons__item">
                                         <div class="cta">
-                                            <a href="#" class="btn">Book a meeting</a>
+                                            <a href="#" class="btn js--cta">Book a meeting</a>
                                             <div class="cta__notice">30 minutes | Free of charge</div>
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@
                         <div class="h3 objectives__cta-title">Want to find out if your company<br /> needs a cybersecurity audit?</div>
                         <div class="objectives__cta-text">Let's discuss it in a free 30-minute session.</div>
                         <div class="cta">
-                            <a href="#" class="btn">Book a meeting</a>
+                            <a href="#" class="btn js--cta">Book a meeting</a>
                             <div class="cta__notice">30 minutes | Free of charge</div>
                         </div>
                     </div>
@@ -272,7 +272,7 @@
 
                         <div class="risks__footer__cta">
                             <div class="cta">
-                                <a href="#" class="btn btn--green">Book a meeting</a>
+                                <a href="#" class="btn btn--green js--cta">Book a meeting</a>
                                 <div class="cta__notice">30 minutes | Free of charge</div>
                             </div>
                         </div>
@@ -351,14 +351,14 @@
                             <div class="h3 process__footer-title">Want to gain a competitive advantage and prevent reputational damage?</div>
                             <div class="process__footer-text">Book a meeting today.</div>
                             <div class="cta">
-                                <a href="#" class="btn">Book a meeting</a>
+                                <a href="#" class="btn js--cta">Book a meeting</a>
                                 <div class="cta__notice">30 minutes | Free of charge</div>
                             </div>
                         </div>
 
                     </div>
                     <!-- градиентный эллипс -->
-                        <div class="gradient-ellipse" aria-hidden="true"></div>
+                    <div class="gradient-ellipse" aria-hidden="true"></div>
             </section>
             </div>
 
@@ -418,7 +418,7 @@
 
                         <div class="advantages__footer">
                             <div class="cta">
-                                <a href="#" class="btn">Book a meeting</a>
+                                <a href="#" class="btn js--cta">Book a meeting</a>
                                 <div class="cta__notice">30 minutes | Free of charge</div>
                             </div>
                         </div>
@@ -489,7 +489,7 @@
                         <div class="why-us__footer">
                             <div class="h3 why-us__footer-title">Let's discuss how a cybersecurity audit can benefit your company</div>
                             <div class="cta">
-                                <a href="#" class="btn btn--green">Book a meeting</a>
+                                <a href="#" class="btn btn--green js--cta">Book a meeting</a>
                                 <div class="cta__notice">30 minutes | Free of charge</div>
                             </div>
                         </div>
@@ -734,7 +734,7 @@
                     <div class="h2">Want to find out where your system is vulnerable and how to strengthen security to benefit your business?</div>
                     <p>Book a meeting, where we will discuss your case, show how a cybersecurity audit can help, and suggest where to start.</p>
                     <div class="cta">
-                        <a href="#" class="btn">Book a Meeting</a>
+                        <a href="#" class="btn js--cta">Book a Meeting</a>
                         <a href="#" class="cta__notice">30 minutes | Free of charge</a>
                     </div>
                 </div>
@@ -766,6 +766,51 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Модалка -->
+         <div id="overlay"></div>
+         <div class="modal">
+            <div class="modal__content">
+                <div class="modal__close">
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.799 21.9079L11.3137 13.4226L2.82844 21.9079L0.719525 19.799C4.03323 16.4853 5.8911 14.6274 9.20481 11.3137L1.23978e-05 2.10894L2.10893 2.10578e-05L11.3137 9.20482L20.5185 2.10578e-05L22.6274 2.10894L13.4226 11.3137L21.9079 19.799L19.799 21.9079Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="modal__title">
+                    Fill out the form to book<br /> <span class="text-green-dark">a free 30-minute meeting</span>
+                </div>
+                <form action="#">
+                    <div class="input-wrapper">
+                        <label for="name">name</label>
+                        <input type="text" id="name" placeholder="Your name" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="phone">phone</label>
+                        <input type="text" id="phone" placeholder="Your phone" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="Email">Email</label>
+                        <input type="email" id="Email" placeholder="Your Email" required>
+                    </div>
+
+                    <div class="agree">
+                        <div class="checkbox">
+                            <input type="checkbox" id="agree" checked>
+                            <label for="agree">
+                                <span class="agree__text">
+                                    By clicking Book a meeting you agree to <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+                                    You consent to receive emails, phone calls and SMS messages from Arch Expert Consulting provide updates on your order and/or for marketing purposes.
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="btn-wrapper">
+                        <input type="submit" value="Book a Meeting" class="btn btn--green">
+                    </div>
+                </form>
+            </div>
+         </div>
     </div>
 
     <!-- GSAP библиотеки для анимаций -->

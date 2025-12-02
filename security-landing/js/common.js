@@ -31,6 +31,138 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ===== MODAL: open on .js--cta click, close on overlay / close button / ESC =====
+document.addEventListener('DOMContentLoaded', function() {
+    const ctas = document.querySelectorAll('.js--cta');
+    const overlay = document.getElementById('overlay');
+    const modal = document.querySelector('.modal');
+    const modalClose = modal ? modal.querySelector('.modal__close') : null;
+
+    if (!overlay || !modal || !ctas.length) return;
+
+    // Find first focusable inside modal
+    const firstFocusable = modal.querySelector('input, button, textarea, select, a');
+
+    function showModal() {
+        // make elements available for animation
+        overlay.style.display = 'block';
+        modal.style.display = 'block';
+        // Use GSAP if available for a smooth animated entrance
+        if (typeof gsap !== 'undefined') {
+            // reset any inline styles
+            gsap.killTweensOf([overlay, modal]);
+            // overlay fade in
+            gsap.set(overlay, {opacity: 0, visibility: 'visible', pointerEvents: 'auto'});
+            gsap.to(overlay, {duration: 0.35, opacity: 1, onStart: () => overlay.classList.add('open')});
+
+            // modal pop in
+            gsap.set(modal, {opacity: 0, scale: 0.96, visibility: 'visible', pointerEvents: 'auto'});
+            gsap.to(modal, {duration: 0.45, opacity: 1, scale: 1, ease: 'power3.out', onStart: () => modal.classList.add('open')});
+        } else {
+            // graceful fallback
+            requestAnimationFrame(() => {
+                overlay.classList.add('open');
+                modal.classList.add('open');
+            });
+        }
+
+        document.body.classList.add('modal-open');
+        modal.setAttribute('aria-hidden', 'false');
+        if (firstFocusable) firstFocusable.focus();
+    }
+
+    function hideModal() {
+        if (typeof gsap !== 'undefined') {
+            gsap.killTweensOf([overlay, modal]);
+            // animate out
+            gsap.to(modal, {duration: 0.35, opacity: 0, scale: 0.98, ease: 'power2.in', onComplete: () => {
+                modal.classList.remove('open');
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
+            }});
+
+            gsap.to(overlay, {duration: 0.28, opacity: 0, ease: 'power2.in', onComplete: () => {
+                overlay.classList.remove('open');
+                overlay.style.display = 'none';
+            }});
+        } else {
+            overlay.classList.remove('open');
+            modal.classList.remove('open');
+            overlay.style.display = 'none';
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        document.body.classList.remove('modal-open');
+    }
+
+    ctas.forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            showModal();
+        });
+    });
+
+    // Close when clicking overlay (but not when clicking inside modal content)
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) hideModal();
+    });
+
+    if (modalClose) {
+        modalClose.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideModal();
+        });
+    }
+
+    // Close on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+            if (overlay.classList.contains('open') || modal.classList.contains('open')) {
+                hideModal();
+            }
+        }
+    });
+});
+
+// ===== CHECKBOX -> SUBMIT DISABLED TOGGLE =====
+document.addEventListener('DOMContentLoaded', function() {
+    const agreeCheckbox = document.getElementById('agree');
+    if (!agreeCheckbox) return;
+
+    // Scope to the form containing the checkbox (modal form)
+    const form = agreeCheckbox.closest('form');
+    if (!form) return;
+
+    const submitBtn = form.querySelector('input[type="submit"].btn--green');
+    if (!submitBtn) return;
+
+    // Only the checkbox controls whether submit is enabled.
+    function updateSubmitState() {
+        const enabled = agreeCheckbox.checked;
+        if (enabled) {
+            submitBtn.classList.remove('disabled');
+            submitBtn.removeAttribute('disabled');
+        } else {
+            submitBtn.classList.add('disabled');
+            submitBtn.setAttribute('disabled', 'disabled');
+        }
+    }
+
+    // Listen to changes on the checkbox only
+    agreeCheckbox.addEventListener('change', updateSubmitState);
+    // initialize state on load
+    updateSubmitState();
+
+    // Extra safety: prevent form submission when checkbox is not checked
+    form.addEventListener('submit', function(e) {
+        if (!agreeCheckbox.checked) {
+            e.preventDefault();
+            updateSubmitState();
+        }
+    });
+});
+
 // ===== СКРЫТИЕ/ПОКАЗ ШАПКИ ПРИ СКРОЛЛЕ НА МОБИЛЬНЫХ =====
 (function() {
     // Работает только на мобильных (≤767px)
