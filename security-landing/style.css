@@ -1195,9 +1195,6 @@ section {
     gap: 2.2rem;
 }
 
-.why-us__item {
-}
-
 .why-us__item-title {
     line-height: 1.2;
     position: relative;
@@ -1228,6 +1225,7 @@ section {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: max(28px, 3.2rem);
 }
 
 .why-us__footer {
@@ -2004,7 +2002,6 @@ body.modal-open {
     }
 
     /* Why Us desktop */
-    .why-us__wrapper {}
 
     .why-us__content {
         flex-direction: row;
