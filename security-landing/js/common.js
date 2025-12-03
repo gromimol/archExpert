@@ -34,16 +34,42 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== MODAL: open on .js--cta click, close on overlay / close button / ESC =====
 document.addEventListener('DOMContentLoaded', function() {
     const ctas = document.querySelectorAll('.js--cta');
+    const checklistCtas = document.querySelectorAll('.js--cta-checklist');
     const overlay = document.getElementById('overlay');
     const modal = document.querySelector('.modal');
     const modalClose = modal ? modal.querySelector('.modal__close') : null;
+    const modalTitle = modal ? modal.querySelector('.modal__title') : null;
+    const formTypeInput = modal ? modal.querySelector('#formType') : null;
+    const submitBtn = modal ? modal.querySelector('input[type="submit"].btn--green') : null;
 
-    if (!overlay || !modal || !ctas.length) return;
+    if (!overlay || !modal) return;
 
     // Find first focusable inside modal
     const firstFocusable = modal.querySelector('input, button, textarea, select, a');
 
-    function showModal() {
+    // Store original title texts
+    const titles = {
+        meeting: 'Fill out the form to book<br /> <span class="text-green-dark">a free 30-minute meeting</span>',
+        checklist: 'Fill out the form to <span class="text-green-dark">access materials that support your company’s</span> growth and scalability'
+    };
+
+    // Store button text variants
+    const buttonTexts = {
+        meeting: 'Book a Meeting',
+        checklist: 'Get It'
+    };
+
+    function showModal(type = 'meeting') {
+        // Update modal title and form type based on which CTA was clicked
+        if (modalTitle) {
+            modalTitle.innerHTML = titles[type] || titles.meeting;
+        }
+        if (formTypeInput) {
+            formTypeInput.value = type;
+        }
+        if (submitBtn) {
+            submitBtn.value = buttonTexts[type] || buttonTexts.meeting;
+        }
         // make elements available for animation
         overlay.style.display = 'block';
         modal.style.display = 'block';
@@ -99,7 +125,14 @@ document.addEventListener('DOMContentLoaded', function() {
     ctas.forEach(el => {
         el.addEventListener('click', function(e) {
             e.preventDefault();
-            showModal();
+            showModal('meeting');
+        });
+    });
+
+    checklistCtas.forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            showModal('checklist');
         });
     });
 
