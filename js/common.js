@@ -67,7 +67,7 @@ $(document).ready(function() {
 
     let lastScrollTop = 0;
     let scrollThreshold = 5; // Минимальное изменение скролла для срабатывания (в пикселях)
-    let headerHeight = $('.header').outerHeight();
+    let headerHeight = $('.header--fixed').outerHeight();
     let isScrolling;
 
     $(window).on('scroll', function() {

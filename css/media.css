@@ -1,7 +1,9 @@
 @media(width > 1200px) {
     body {
-        padding-top: 11rem;
         font-size: 2.2rem;
+    }
+    body.header-fixed {
+        padding-top: 11rem;
     }
     .for-desctop {
         display: block;
@@ -531,10 +533,10 @@
             background-position: -15% 10%;
         }
         60% {
-            background-position: 15% 0%;
+            background-position: 15% 0;
         }
         70% {
-            background-position: 0% 15%;
+            background-position: 0 15%;
         }
         80% {
             background-position: 3% 35%;
@@ -873,6 +875,147 @@
     .wave-circles-container {
         display: block !important;
     }
+
+    /* Book */
+    .book {
+        background: #040608;
+        padding-top: 16rem;
+    }
+    .book__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+
+        & .description {
+            margin-top: 3rem;
+        }
+
+        .btn {
+            margin-top: 4rem;
+        }
+    }
+    .book__content__body {
+        padding-bottom: 10rem;
+    }
+    .book__name {
+        margin-bottom: 4rem;
+    }
+    .book__content__img {
+        line-height: 0;
+        position: relative;
+
+        & img {
+            position: absolute;
+            width: 130%;
+            right: 0;
+            top: 0;
+            max-width: unset;
+        }
+    }
+    .book-for {
+        background: var(--white-01);
+        color: var(--primary-dark)
+    }
+    .book-for__decription {
+        width: 50%;
+    }
+    .book-for__cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin: max(30px, 4rem) 0;
+    }
+    .book-card {
+        font-size: 2.4rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--white-01);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: max(88px, 10rem);
+        background: var(--gradient-dark);
+        border-radius: 24px;;
+    }
+    .book-features {
+        background: var(--primary-dark) url('../img/book/book_features_bg.jpg') center no-repeat;
+        background-size: cover;
+        border-bottom: 1px solid #363839;
+
+        & .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: max(24px, 6rem);
+        }
+    }
+    .book-features__row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+
+        & .key {
+           max-width: 520px;
+        }
+    }
+    .book-features__row + .book-features__row {
+        margin-top: max(24px, 4rem);
+        padding-top: max(24px, 4rem);
+        border-top: 1px solid #363839;
+    }
+     .book-for {
+        background: var(--white-01);
+        color: var(--primary-dark)
+    }
+    .book-for__decription {
+        width: 50%;
+        max-width: 670px;
+    }
+    .book-for__cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin: max(30px, 4rem) 0;
+    }
+    .book-card {
+        font-size: 2.4rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--white-01);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: max(88px, 10rem);
+        background: var(--gradient-dark);
+        border-radius: 24px;;
+    }
+    .book-features {
+        background: var(--primary-dark) url('../img/book/book_features_bg.jpg') center no-repeat;
+        background-size: cover;
+        border-bottom: 1px solid #363839;
+
+        & .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: max(24px, 6rem);
+        }
+    }
+    .book-features__row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+
+        & .key {
+           max-width: 520px;
+        }
+    }
+    .book-features__row + .book-features__row {
+        margin-top: max(24px, 4rem);
+        padding-top: max(24px, 4rem);
+        border-top: 1px solid #363839;
+    }
+    /* end Book */
 }
 /*1200*/
 @media(width > 1940px) {

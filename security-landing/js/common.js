@@ -187,11 +187,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // initialize state on load
     updateSubmitState();
 
-    // Extra safety: prevent form submission when checkbox is not checked
+    // Handle form submission
     form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
         if (!agreeCheckbox.checked) {
-            e.preventDefault();
             updateSubmitState();
+            return;
+        }
+
+        // Collect form data
+        const formType = form.querySelector('#formType') ? form.querySelector('#formType').value : 'meeting';
+        const name = form.querySelector('#name') ? form.querySelector('#name').value : '';
+        const phone = form.querySelector('#phone') ? form.querySelector('#phone').value : '';
+        const email = form.querySelector('#Email') ? form.querySelector('#Email').value : '';
+
+        // Save to sessionStorage for success page
+        const formData = {
+            type: formType,
+            name: name,
+            phone: phone,
+            email: email
+        };
+        sessionStorage.setItem('formSubmission', JSON.stringify(formData));
+
+        // Redirect based on form type
+        if (formType === 'checklist') {
+            window.location.href = 'page-success-lm.php';
+        } else {
+            window.location.href = 'success-page.html';
         }
     });
 });
