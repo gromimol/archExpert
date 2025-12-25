@@ -741,4 +741,268 @@ $(document).ready(function() {
         // Запускаем первую анимацию
         createLightAnimation();
     }
+
+    // ===== SOUNDTRACK AUDIO BARS ANIMATION =====
+    function initSoundtrackAnimation() {
+        const $bars = $('.soundtrack__bar');
+        
+        if ($bars.length === 0) return;
+
+        // Анимируем каждую полоску изменением scaleY
+        $bars.each(function(index) {
+            const duration = gsap.utils.random(0.5, 1.9); // Скорость (меньше = быстрее)
+            const delay = index * 0.08; // Волновой эффект
+            
+            // Бесконечная анимация scaleY
+            gsap.timeline({ 
+                repeat: -1,
+                delay: delay
+            })
+            .to(this, {
+                scaleY: gsap.utils.random(0.4, 0.7),
+                duration: duration,
+                ease: "power2.inOut"
+            })
+            .to(this, {
+                scaleY: 1,
+                duration: duration,
+                ease: "power2.inOut"
+            });
+        });
+    }
+
+    // Инициализируем анимацию soundtrack
+    initSoundtrackAnimation();
 });
+
+function initFinalCtaWebGL() {
+    // Disable heavy WebGL animation on small screens to save resources
+    if (window.innerWidth <= 1200) {
+        // Do not initialize WebGL on tablets / mobiles
+        return;
+    }
+
+    if (typeof THREE === 'undefined') {
+        console.warn('Three.js not loaded — final-cta WebGL background skipped');
+        return;
+    }
+
+    const img = document.querySelector('.final-cta__bg');
+    if (!img) return;
+
+    const parent = img.closest('.final-cta') || img.parentElement;
+    if (!parent) return;
+
+    // Create container for renderer
+    const webglContainer = document.createElement('div');
+    webglContainer.className = 'final-cta__webgl';
+    webglContainer.style.position = 'absolute';
+    webglContainer.style.inset = '0';
+    webglContainer.style.pointerEvents = 'none';
+    webglContainer.style.zIndex = '1';
+    parent.style.position = parent.style.position || 'relative';
+    parent.insertBefore(webglContainer, parent.firstChild);
+
+    // hide original image visually but keep for accessibility
+    img.style.opacity = 0;
+    img.style.visibility = 'hidden';
+
+    const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+    webglContainer.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    // Fullscreen quad
+    const geometry = new THREE.PlaneGeometry(2, 2);
+
+    const loader = new THREE.TextureLoader();
+    const textureSrc = img.currentSrc || img.src;
+
+    const uniforms = {
+        uTime: { value: 0 },
+        uTexture: { value: null },
+        uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        uMouse: { value: new THREE.Vector2(0.0, 0.0) },
+        uGlitch: { value: 0.0 },
+        uSeed: { value: 0.0 }
+    };
+
+    const vertexShader = `
+        varying vec2 vUv;
+        void main(){
+            vUv = uv;
+            gl_Position = vec4(position, 1.0);
+        }
+    `;
+
+    const fragmentShader = `
+        uniform float uTime;
+        uniform float uGlitch;
+        uniform float uSeed;
+        uniform sampler2D uTexture;
+        uniform vec2 uResolution;
+        uniform vec2 uMouse;
+        varying vec2 vUv;
+
+        // basic hash / noise
+        float hash(float n) { return fract(sin(n) * 43758.5453123); }
+        float noise(vec2 x){
+            vec2 p = floor(x);
+            vec2 f = fract(x);
+            f = f*f*(3.0-2.0*f);
+            float n = p.x + p.y*57.0;
+            float res = mix(mix(hash(n+0.0), hash(n+1.0), f.x), mix(hash(n+57.0), hash(n+58.0), f.x), f.y);
+            return res;
+        }
+
+        void main(){
+            vec2 uv = vUv;
+
+                // base slight scanline wobble (sped up and a bit stronger for visibility)
+                float t = uTime * 3.0;
+                float scan = sin(uv.y * 200.0 + t * 3.5) * 0.005;
+
+            // global glitch intensity
+            float g = clamp(uGlitch, 0.0, 1.0);
+
+            // blocky horizontal displacement bands (television glitch)
+            float bands = noise(vec2(uv.y * 60.0 + uSeed, floor(t*1.2))) ;
+            // lower threshold so bands appear slightly more often, making glitches more visible
+            float bandMask = step(0.7, bands) * g;
+
+            // color channel offsets depend on bandMask and small noise
+            // increase max offset for more visible RGB splits
+            float maxOffset = 0.05 * g;
+            vec2 offR = vec2(maxOffset * (hash(uSeed+1.0)-0.5), 0.0);
+            vec2 offG = vec2(maxOffset * (hash(uSeed+2.0)-0.5) * 0.6, 0.0);
+            vec2 offB = vec2(maxOffset * (hash(uSeed+3.0)-0.5) * 0.4, 0.0);
+
+            // sample with scanline wobble + band shifts
+            vec2 uvR = uv + vec2(scan * 0.5 + bandMask * (hash(uv.y*100.0+uSeed)-0.5) * 0.02, 0.0) + offR;
+            vec2 uvG = uv + vec2(scan * 0.5 + bandMask * (hash(uv.y*101.0+uSeed)-0.5) * 0.018, 0.0) + offG;
+            vec2 uvB = uv + vec2(scan * 0.5 + bandMask * (hash(uv.y*102.0+uSeed)-0.5) * 0.015, 0.0) + offB;
+
+            vec4 colR = texture2D(uTexture, uvR);
+            vec4 colG = texture2D(uTexture, uvG);
+            vec4 colB = texture2D(uTexture, uvB);
+
+            // mix channels
+            vec3 color = vec3(colR.r, colG.g, colB.b);
+
+            // small noisy speckles when glitching (slightly stronger)
+            float speck = noise(uv * vec2(800.0, 1200.0) + uSeed) * g * 0.09;
+            color += speck;
+
+            // vignette to make the effect look more TV-like
+            float dist = distance(uv, vec2(0.5));
+            color *= smoothstep(0.95, 0.6, dist);
+
+            gl_FragColor = vec4(color, 1.0);
+        }
+    `;
+
+    const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader,
+        transparent: true
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    let start = performance.now();
+
+    function onTextureLoad(tex) {
+        tex.minFilter = THREE.LinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+        tex.generateMipmaps = false;
+        uniforms.uTexture.value = tex;
+        resize();
+        // start shader render loop
+        animate();
+
+        // schedule randomized glitch pulses
+        let glitchTimeout;
+        function scheduleGlitch(){
+            const delay = 1500 + Math.random() * 2500;
+            glitchTimeout = setTimeout(() => {
+                uniforms.uGlitch.value = 1.0;
+                uniforms.uSeed.value = Math.random() * 1000.0;
+                // schedule next
+                scheduleGlitch();
+            }, delay);
+        }
+        scheduleGlitch();
+
+        // ensure cleanup on unload
+        window.addEventListener('beforeunload', function(){
+            try { clearTimeout(glitchTimeout); } catch(e){}
+        });
+    }
+
+    loader.load(textureSrc, onTextureLoad, undefined, function(err){
+        console.warn('Failed to load final-cta texture', err);
+    });
+
+    function resize(){
+        const rect = parent.getBoundingClientRect();
+        const w = Math.max(1, Math.floor(rect.width));
+        const h = Math.max(1, Math.floor(rect.height));
+        renderer.setSize(w, h);
+        uniforms.uResolution.value.set(w, h);
+        renderer.domElement.style.width = w + 'px';
+        renderer.domElement.style.height = h + 'px';
+    }
+
+    let mouseX = 0, mouseY = 0;
+    function onMouseMove(e){
+        const rect = parent.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        // center to -0.5..0.5
+        mouseX = (x - 0.5);
+        mouseY = (y - 0.5);
+        // smooth update via uniform in render loop
+    }
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('resize', resize);
+
+    let rafId;
+    function animate(){
+        const now = performance.now();
+        uniforms.uTime.value = (now - start) / 1000;
+        // lerp mouse uniform for smoothness
+        uniforms.uMouse.value.x += (mouseX - uniforms.uMouse.value.x) * 0.08;
+        uniforms.uMouse.value.y += (mouseY - uniforms.uMouse.value.y) * 0.08;
+        // decay glitch value so pulses fade out (faster)
+        uniforms.uGlitch.value *= 0.9;
+
+        renderer.render(scene, camera);
+        rafId = requestAnimationFrame(animate);
+    }
+
+    // Cleanup on unload
+    window.addEventListener('beforeunload', function(){
+        if (rafId) cancelAnimationFrame(rafId);
+        try { renderer.dispose(); } catch(e){}
+    });
+}
+
+// Запуск WebGL-анимации только на десктопе (>1200px)
+if (window.innerWidth > 1200) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initFinalCtaWebGL, 120);
+        });
+    } else {
+        setTimeout(initFinalCtaWebGL, 120);
+    }
+}
