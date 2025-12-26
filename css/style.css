@@ -1337,7 +1337,13 @@ section {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    line-height: 1;
+    line-height: 0;
+    width: 100%;
+
+    & img {
+        width: 100%;
+        max-width: unset;
+    }
 }
 
 .footer__scroll-top {
