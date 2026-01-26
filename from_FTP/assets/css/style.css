@@ -48,21 +48,21 @@
 }
 @font-face {
     font-family: 'Montserrat';
-    src: url('font/Montserrat/Montserrat-Medium.woff2') format('woff2');
+    src: url('../font/Montserrat/Montserrat-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Montserrat';
-    src: url('font/Montserrat/Montserrat-SemiBold.woff2') format('woff2');
+    src: url('../font/Montserrat/Montserrat-SemiBold.woff2') format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Montserrat';
-    src: url('font/Montserrat/Montserrat-Bold.woff2') format('woff2');
+    src: url('../font/Montserrat/Montserrat-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -70,7 +70,7 @@
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('font/Montserrat/Montserrat-ExtraBold.woff2') format('woff2');
+    src: url('../font/Montserrat/Montserrat-ExtraBold.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -205,7 +205,7 @@ p {
     display: block;
     width: 1em;
     height: 1em;
-    background-image: url('img/decor_dot.webp');
+    background-image: url('../images/decor_dot.webp');
     background-size: contain;
     background-repeat: no-repeat;
     flex-shrink: 0;
@@ -214,7 +214,7 @@ p {
     color: #fff;
 }
 .section-label--white::before {
-    background-image: url('img/decor_dot_light.webp');
+    background-image: url('../images/decor_dot_light.webp');
 }
 .for-desctop {
     display: none;
@@ -634,7 +634,7 @@ section {
 
 /* ===== OBJECTIVES ===== */
 .objectives {
-    background: var(--primary-dark) url("../images/landing-scale/objectives_light.jpg") no-repeat center bottom / cover;
+    background: var(--primary-dark) url("../images/objectives_light.jpg") no-repeat center bottom / cover;
     color: var(--white-01);
     position: relative;
     overflow: hidden;
@@ -846,7 +846,7 @@ section {
 
 /* ===== RISKS ===== */
 .risks {
-    background: transparent url("img/risks_light.jpg") no-repeat center bottom / cover;
+    background: transparent url("../images/risks_light.jpg") no-repeat center bottom / cover;
     color: var(--white-01);
     position: relative;
 }
@@ -1208,7 +1208,7 @@ section {
     top: 0;
     width: max(28px, 3.6rem);
     height: max(25px, 3.2rem);
-    background-image: url('img/decor_arrow_right.webp');
+    background-image: url('../images/decor_arrow_right.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -1737,7 +1737,7 @@ body.modal-open {
     flex: 1;
     display: flex;
     align-items: center;
-    background: transparent url('img/success_bg.jpg') no-repeat 100% 100%;
+    background: transparent url('../images/success_bg.jpg') no-repeat 100% 100%;
     background-size: contain;
 }
 .success-page__content__body {

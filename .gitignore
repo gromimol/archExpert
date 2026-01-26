@@ -1,0 +1,8 @@
+# Папки с секретами и конфиденциальной информацией
+archexpert-new/
+from_FTP/MAILCHIMP_SETUP.md
+from_FTP/functions.php
+
+# macOS files
+.DS_Store
+**/.DS_Store
