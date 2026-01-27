@@ -247,11 +247,10 @@
             line-height: 1.1;
             min-height: 3.3em;
         }
-
-        & .detail {
-            &:not(:last-child) {
-                margin-bottom: 4rem;
-            }
+    }
+    .detail {
+        &:not(:last-child) {
+            margin-bottom: 4rem;
         }
     }
     .outcomes-list {
@@ -409,44 +408,21 @@
     .block-cta {
         margin-top: 4rem;
     }
-    .our-services__top {
-        margin-bottom: 4rem;
-    }
-    .services-tabs__header {
-        padding: .8rem;
-    }
-    .services-tabs__btn {
-        padding: 1.4rem 2rem;
+    .our-services__item {
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        & .h3 {
+            min-height: 3.3em;
+        }
 
-        & span {
-            font-weight: 400;
-            white-space: nowrap;
-            font-size: 2.2rem;
-            text-transform: none;
+        & .btn {
+            margin-top: auto;
         }
     }
-    .services-grid {
-        gap: 2rem;
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .services-tabs__header,
-    .service-card{
-        border-radius: 4rem;
-    }
-    .service-card {
-        padding: 4.8rem 2rem;
-        .h2 {
-            font-size: 4.4rem;
-        }
-    }
-    .service-card__cta {
-        & .btn--green {
-            display: none;
-        }
-    }
-    .services-not-sure {
-        margin-top: 4rem;
-        gap: 2rem
+    .our-services__body {
+        grid-template-columns: 1fr 1fr;
     }
     .final-cta {
         & .h2,
@@ -653,7 +629,7 @@
 
         & .h3 {
             white-space: nowrap;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             font-size: 3.2rem;
         }
@@ -698,8 +674,8 @@
 
         & p {
             font-size: 1.8rem;
-            line-height: 1.5;
-            margin-bottom: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
         }
 
         & ul {
@@ -713,6 +689,12 @@
 
         & .btn {
             align-self: flex-start;
+        }
+    }
+    .accordion__content--free {
+        justify-content: flex-end;
+        & .h4 {
+            margin-bottom: 2rem;
         }
     }
 
@@ -730,6 +712,9 @@
         height: 40%;
         margin: 0;
         object-position: left;
+    }
+    .accordion__image--free {
+        height: 200px;
     }
 
     /* Podcast links */

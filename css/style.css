@@ -475,26 +475,25 @@ section {
     & .h3 {
         margin-bottom: 2rem;
     }
+}
+.detail {
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
 
-    & .detail {
-        &:not(:last-child) {
-            margin-bottom: 2rem;
-        }
+    & .h4 {
+        margin-bottom: 1rem;
+    }
 
-        & .h4 {
-            margin-bottom: 1rem;
-        }
-
-        & ul, & li {
-            list-style: inherit;
-        }
-        & ul {
-            padding-left: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: .75rem;
-            line-height: 1.3;
-        }
+    & ul, & li {
+        list-style: inherit;
+    }
+    & ul {
+        padding-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        line-height: 1.3;
     }
 }
 .outcomes {
@@ -766,6 +765,7 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     gap: 2rem;
     margin-top: 2rem;
 
@@ -773,138 +773,26 @@ section {
 /* ===== OUR SERVICES ===== */
 .our-services {
     background: #DBE1DD;
-    color: var(--primary-green-dark);
+    color: var(--primary-dark);
 
-    & .h2 {
-        margin-bottom: 1.6rem;
-    }
-
-    & > .container > p {
+    & .block-title {
         margin-bottom: 3rem;
-        line-height: 1.5;
     }
 }
-.our-services__top {
-    margin-bottom: 3rem;
-    & .h2 {
-        margin-bottom: .8rem;
-    }
-}
-/* Services tabs */
-.services-tabs__header {
-    display: flex;
-    gap: 0;
-    border: 1px solid #0A3033;
+.our-services__body {
     border-radius: 2.4rem;
-    overflow: hidden;
-    margin-bottom: 1.2rem;
-    padding: 2px;
-    background: var(--white-01);
-}
-
-.services-tabs__btn {
-    flex: 1;
-    padding: 1rem 2rem;
-    border: none;
-    background: transparent;
-    color: var(--primary-green-dark);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.8rem;
-    text-align: center;
-    border-radius: 2.8rem;
-}
-
-.services-tabs__btn--active {
-    background: var(--gradient-dark);
-    color: var(--white-01);
-}
-
-.services-tabs__panel {
-    display: none;
-}
-
-.services-tabs__panel--active {
-    display: block;
-}
-
-/* Services grid */
-.services-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.6rem;
+    gap: 1px;
+    overflow: hidden;
+    color: var(--white-01);
 }
-
-/* Service card */
-.service-card {
-    background: var(--white-01);
-    border: 1px solid #0D5959;
-    border-radius: 2.4rem;
-    padding: 2.8rem 2rem;
-    display: flex;
-    flex-direction: column;
-
-    & > .h2 {
-        margin-bottom: 2.8rem;
-    }
-}
-
-.service-card__section {
-    margin-bottom: 2.8rem;
-
-    & .h4 {
-        margin-bottom: .8rem;
-    }
-
-    & p {
-        line-height: 1.2;
-    }
-
-    & ul {
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-
-        & li {
-            line-height: 1.2;
-            position: relative;
-            padding-left: 2rem;
-
-            &::before {
-                content: '•';
-                position: absolute;
-                left: 0.4em;
-                color: currentcolor;
-                font-size: inherit;
-                line-height: 1.5;
-            }
-        }
-    }
-}
-
-.service-card__cta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.2rem;
-    margin-top: auto;
-}
-
-/* Not sure block */
-.services-not-sure {
-    margin-top: 3rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.6rem;
-
-    & .h4 {
-        max-width: 32rem;
-    }
-
-    & .text-sm {
-        margin-top: -0.4rem;
+.our-services__item {
+    background: var(--gradient-dark);
+    padding: 2.4rem;
+    & .h3 {
+        margin-bottom: 2rem;
+        line-height: 1.1;
     }
 }
 
@@ -1089,7 +977,7 @@ section {
 
     & .h2 {
         max-width: 110rem;
-        font-size: max(24px, 4.4rem);
+        font-size: max(24px, 4rem);
         line-height: 1.1;
     }
 
