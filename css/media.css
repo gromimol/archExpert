@@ -156,7 +156,7 @@
         max-width: unset;
         object-fit: contain;
         mask-image: radial-gradient(circle, black 29%, rgba(0, 0, 0, 0) 99%);
-        -webkit-mask-image: radial-gradient(circle, black 29%, rgba(0, 0, 0, 0) 99%);
+        -webkit-mask-image: -webkit-radial-gradient(circle, black 29%, rgba(0, 0, 0, 0) 99%);
         animation: rotateGlobe 90s linear infinite;
     }
 
@@ -537,7 +537,7 @@
     /* CTA блок */
     .resources__cta {
         margin-top: auto;
-        padding: 4rem;
+        padding: 4rem 4rem 0 0;
         align-items: flex-start;
         text-align: left;
 
