@@ -320,34 +320,44 @@
     .de-risk__progress {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 40px;
         opacity: 0;
         gap: 1rem;
         will-change: opacity, transform;
         align-self: center; /* Центрируем по вертикали в ячейке */
         position: absolute;
-        left: calc(100% + 50px);
+        left: calc(100% + 30px);
         top: 7rem;
         background: #1C1E20;
-        border-radius: 2rem;
+        border-radius: 12px;
         border: 1px solid #323435;
         padding: .7rem 1rem;
     }
-
+    .de-risk__progress--second {
+       left: calc(100% + 90px);
+    }
+    .de-risk__progress--third {
+       left: calc(100% + 160px);
+    }
     /* Точка на линии */
     .de-risk__dot {
         width: 1.2rem;
         height: 1.2rem;
         border-radius: 50%;
-        background: var(--accent-mint-green);
+        background: var(--gradient-light);
         flex: none;
-        align-self: flex-start;
-        margin-top: 1rem;
     }
 
     /* Текст метки */
     .de-risk__label {
-        font-size: 1.4rem;
-        color: var(--accent-mint-green);
+        font-size: 1.6rem;
+        color: var(--white-01);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        font-family: var(--font-family-second);
         white-space: nowrap;
     }
 
