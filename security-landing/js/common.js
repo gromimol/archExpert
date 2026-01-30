@@ -983,12 +983,23 @@ function initFinalCtaWebGL() {
 
 // Запуск WebGL-анимации только на десктопе (>1200px)
 if (window.innerWidth > 1200) {
+    // Функция ожидания загрузки Three.js
+    function waitForThreeAndInit() {
+        if (typeof THREE !== 'undefined') {
+            // Three.js загружен, запускаем анимацию
+            initFinalCtaWebGL();
+        } else {
+            // Three.js еще не загружен, проверяем снова через 100ms
+            setTimeout(waitForThreeAndInit, 100);
+        }
+    }
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(initFinalCtaWebGL, 120);
+            setTimeout(waitForThreeAndInit, 100);
         });
     } else {
-        setTimeout(initFinalCtaWebGL, 120);
+        setTimeout(waitForThreeAndInit, 100);
     }
 }
 

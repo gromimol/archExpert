@@ -55,10 +55,11 @@
                     border-radius: 1rem;
                     display: flex;
                     flex-direction: column;
-                    max-height: unset;
+                    width: 140px;
                     overflow: visible;
                     opacity: 0;
                     visibility: hidden;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
                 }
 
@@ -66,14 +67,14 @@
                     font-size: 1em;
                     color: var(--primary-dark);
                     transform: translateY(0);
-                    padding: 0 1rem;
-                    height: 3.4rem;
+                    padding: 0 0 1rem;
+                    max-width: unset;
+                    line-height: 1.3;
                     text-align: center;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     text-transform: capitalize;
-                    white-space: nowrap;
                     & a {
                         font-size: 1em;
                     }
@@ -84,6 +85,7 @@
     .header__nav ul li:hover ul {
         opacity: 1;
         visibility: visible;
+        max-height: none;
     }
     .header__nav ul li ul::before {
         content: '';
@@ -103,7 +105,8 @@
 
     .btn {
         font-size: 1.6rem;
-        height: 7.2rem;
+        height: 6.4rem;
+        min-width: 20rem;
         transition: all .3s;
     }
     .btn:hover {
@@ -676,7 +679,7 @@
         & p {
             font-size: 1.8rem;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         & ul {
@@ -684,18 +687,51 @@
             font-size: 1.8rem;
 
             & li {
-                margin-bottom: 1rem;
+                margin-bottom: .2rem;
             }
         }
 
         & .btn {
             align-self: flex-start;
         }
+
+         & .accordion__content {
+            padding-bottom: 0;
+            justify-content: space-between;
+
+            & p {
+                margin-bottom: 2rem;
+            }
+        }
+
+        & .accordion__image {
+            max-height: 70%;
+            flex-grow: 1;
+        }
+    }
+    .accordion__item--active .accordion__content {
+        padding-top: 10rem;
+    }
+    .accordion__item--book {
+        & .accordion__content {
+            padding-top: 10rem;
+        }
     }
     .accordion__content--free {
-        justify-content: flex-end;
         & .h4 {
             margin-bottom: 2rem;
+        }
+    }
+    .accordion__item--podcast {
+        & .accordion__image  {
+            max-height: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        & .accordion__content {
+            padding-top: 8rem;
+            gap: 3rem;
         }
     }
 

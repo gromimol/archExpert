@@ -179,8 +179,8 @@ h4, .h4 {
     align-items: center;
     justify-content: center;
     background: var(--white-01);
-    height: 6.4rem;
-    min-width: 20rem;
+    height: 5.4rem;
+    min-width: 17rem;
     border-radius: 7rem;
     font-size: 1.4rem;
     text-transform: uppercase;
@@ -252,6 +252,12 @@ h4, .h4 {
                 opacity 0.5s ease-in-out,
                 margin-top 0.5s ease-in-out;
                 margin-top: 0;
+
+                @media(width < 767px) {
+                    & li {
+                        max-width: 80%;
+                    }
+                }
 
                 & a {
                     font-size: 2rem;
@@ -903,12 +909,62 @@ section {
     max-height: 100rem;
     opacity: 1;
     padding: 0 2rem 2rem;
+    position: relative;
+    line-height: 0;
+    z-index: 1;
+
+    & .h4 {
+        & .text {
+            text-transform: capitalize;
+            font-weight: 400;
+            display: block;
+        }
+    }
+}
+.accordion__item--active .accordion__content > * {
+    line-height: 1.2;
 }
 
 .accordion__image {
     width: 100%;
     border-radius: 1.2rem;
-    margin-bottom: 2rem;
+    object-fit: contain;
+}
+.accordion__item--book {
+    position: relative;
+
+    &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: url('../img/slides/gradient_for_book.webp') no-repeat 100% 100%;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .7s;
+
+    }
+
+    & .accordion__content {
+        padding-bottom: 0;
+        justify-content: space-between;
+
+        & p {
+            margin-bottom: 2rem;
+        }
+    }
+
+    & .accordion__image {
+        max-height: 70%;
+        flex-grow: 1;
+        object-position: bottom right;
+    }
+}
+.accordion__item--book.accordion__item--active::before {
+    opacity: 1;
 }
 
 /* Podcast links */

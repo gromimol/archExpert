@@ -48,8 +48,8 @@
                             <li>
                                 <a href="#">services</a>
                                 <ul>
-                                    <li><a href="#">founders</a></li>
-                                    <li><a href="#">investors</a></li>
+                                    <li><a href="#">Technology Consulting for Secure Scaling</a></li>
+                                    <li><a href="#">Cybersecurity Audit</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">case studies</a></li>
@@ -566,14 +566,16 @@
                     </div>
                     <div class="accordion">
                     <!-- Accordion Item 1: BOOK -->
-                        <div class="accordion__item" data-bg="#040608">
+                        <div class="accordion__item accordion__item--book" data-bg="#040608">
                             <button class="accordion__header">
                                 <span class="h3">Book</span>
                                 <span class="accordion__icon icon-arrow-down"></span>
                             </button>
                             <div class="accordion__content">
-                                <p>Our upcoming book on scaling architecture and removing technical risk. Join the waitlist and be the first to get a sample chapter.</p>
-                                <a href="#" class="btn">Join the Waitlist</a>
+                                <div class="accordion__content__body">
+                                    <p>Our upcoming book on scaling architecture and removing technical risk. Join the waitlist and be the first to get a sample chapter.</p>
+                                    <a href="#" class="btn">Learn more</a>
+                                </div>
                                 <img    class="accordion__image"
                                         src="img/slides/book_desctop.png"
                                         alt="Book Cover"
@@ -584,23 +586,18 @@
                         </div>
 
                         <!-- Accordion Item 2: PODCAST -->
-                        <div class="accordion__item" data-bg="#092327">
+                        <div class="accordion__item accordion__item--podcast" data-bg="#092327">
                             <button class="accordion__header">
                                 <span class="h3">Podcast</span>
                                 <span class="accordion__icon icon-arrow-down"></span>
                             </button>
                             <div class="accordion__content">
-                                <div class="h3">"Technical Debt: Design, Risk and Beyond"</div>
-                                <p>Conversations with founders, CTOs, and investors on the costly reality behind fast-growth products.</p>
-                                <div class="podcast-links">
-                                    <a href="#" class="podcast-link">
-                                        <img src="img/slides/Apple.svg" alt="Apple Podcasts">
-                                    </a>
-                                    <a href="#" class="podcast-link">
-                                        <img src="img/slides/Spotify.svg" alt="Spotify">
-                                    </a>
+                                <div class="accordion__content__body">
+                                    <div class="h3">"Technical Debt: Design, Risk and Beyond"</div>
+                                    <p>Conversations with founders, CTOs, and investors on how to scale without collapse. Practical lessons from the field.</p>
+                                    <a href="#" class="btn">Learn more</a>
                                 </div>
-                                <img src="img/slides/debt.png" alt="Podcast Cover" class="accordion__image" loading="lazy">
+                                <img src="img/slides/debt.webp" alt="Podcast Cover" class="accordion__image" loading="lazy">
                             </div>
                         </div>
 
@@ -624,14 +621,13 @@
                                 <span class="accordion__icon icon-arrow-down"></span>
                             </button>
                             <div class="accordion__content accordion__content--free">
-                                <div class="h4"><b>Technical Debt Checklist</b> Is Your Product Ready to Scale x10?</div>
+                                <div class="h4"><b>Technical Debt Checklist</b> <span class="text">Is Your Product Ready to Scale x10?</span></div>
                                 <p>A checklist to assess technical debt, risk, and readiness for growth</p>
                                 <ul>
                                     <li>As a product grows, technical debt begins to directly affect delivery speed, system reliability, security, and overall business economics. This checklist helps you quickly identify where your system is already limiting scale and creating hidden financial and reputational risk.</li>
                                     <li>It provides a clear snapshot of your current state and highlights the priority areas that need attention before growth becomes costly or difficult to control.</li>
                                 </ul>
                                 <a href="#" class="btn">Download Now</a>
-                                <img src="img/slides/free_tool.png" alt="Free Tools" class="accordion__image accordion__image--free" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -656,6 +652,8 @@
                     </div>
                     <p class="text-sm">No commitment. Clear insights you can use right away.</p>
                 </div>
+                <!-- WebGL animated background -->
+                <img src="img/cta_bg.webp" alt="Background" class="final-cta__bg" loading="lazy">
             </section>
             <!-- /.final-cta -->
 		</main>
@@ -715,7 +713,9 @@
                             <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
                         </div>
                         </div>
-                    <div class="footer__logo-big">Arch Expert</div>
+                    <div class="footer__logo-big">
+                        <img src="img/logo.svg" alt="Arch Expert" loading="lazy">
+                    </div>
                 </div>
             </div>
         </footer>
@@ -731,6 +731,16 @@
     <!-- GSAP библиотеки для анимаций -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js" defer></script>
+
+    <!-- Three.js для WebGL анимации фона (загружается для десктопа) -->
+    <script>
+        // Проверяем ширину экрана и загружаем Three.js
+        if (window.innerWidth > 1200) {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+            document.head.appendChild(script);
+        }
+    </script>
 
     <script src="js/common.js" defer></script>
 </body>
