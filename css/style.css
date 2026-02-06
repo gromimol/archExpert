@@ -378,6 +378,7 @@ body.menu-open {
 }
 .first-screen {
     padding-top: 6rem;
+    background: linear-gradient(to bottom, #0D5959, #0A2222 );
 
     & .h1 {
         margin-bottom: 2rem;
@@ -961,6 +962,12 @@ section {
         max-height: 70%;
         flex-grow: 1;
         object-position: bottom right;
+        line-height: 0;
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     }
 }
 .accordion__item--book.accordion__item--active::before {

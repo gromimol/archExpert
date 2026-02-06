@@ -576,12 +576,13 @@
                                     <p>Our upcoming book on scaling architecture and removing technical risk. Join the waitlist and be the first to get a sample chapter.</p>
                                     <a href="#" class="btn">Learn more</a>
                                 </div>
-                                <img    class="accordion__image"
+                                <picture class="accordion__image">
+                                    <source media="(min-width: 768px)" srcset="img/slides/book_desctop.png" type="image/png">
+                                    <source media="(max-width: 767px)" srcset="img/slides/book_mobile.png" type="image/png">
+                                    <img
                                         src="img/slides/book_desctop.png"
-                                        alt="Book Cover"
-                                        width="375"
-                                        height="380"
-                                        loading="lazy">
+                                        alt="Book Cover" loading="lazy">
+                                </picture>
                             </div>
                         </div>
 
