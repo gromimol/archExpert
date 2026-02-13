@@ -1079,6 +1079,57 @@
             opacity: 1;
         }
     }
+    .blog-inner-page {
+        padding-top: 6rem;
+        & .page-title {
+            font-size: 5.2rem;
+        }
+    } 
+    .blog-content__img {
+        max-height: 500px;
+        margin: 4rem 0;
+
+        & img {
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 40px;
+        }
+    }
+    .blog-inner-page {
+        padding-top: 8rem;
+
+        & .date-badge {
+            font-size: 2rem;
+        }
+    }
+    .blog-content {
+        padding-bottom: 6rem;
+        & h1 {
+            font-size: 4.4rem;
+        }
+        & h2 {
+            font-size: 3.4rem;
+        }
+        & h3 {
+            font-size: 2.8rem;
+        }
+        & h4 {
+            font-size: 2rem;
+        }
+        & p {
+            font-size: 22px;
+        }
+        & ul, & ol {
+            font-size: 22px;
+        }
+    }
+    .blog-inner-page {
+        padding-bottom: 8rem;
+    }
+    .blog-grid-wrapper {
+        padding-top: 5rem;
+        margin-top: 4rem;
+    }
     /* end blog */
 }
 /*1200*/

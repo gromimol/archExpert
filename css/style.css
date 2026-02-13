@@ -1626,6 +1626,7 @@ section {
     text-overflow: ellipsis;
 }
 .date-badge {
+    display: inline-block;
     font-size: 1.4rem;
     line-height: 1;
     padding: 0.5em 1em;
@@ -1634,6 +1635,102 @@ section {
     background: var(--primary-green-light);
     font-weight: 400;
 }
+.blog-inner-page {
+    padding-top: 4rem;
+    & .page-title {
+        font-size: 2.8rem;
+        text-align: left;
+        border-bottom: none;
+        margin-bottom: 1rem;
+        padding-bottom: 0;
+    }
+
+    & .date-badge {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+}
+.blog-content__img {
+    max-height: 300px;
+    margin: 2.5rem 0;
+    display: table;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: 28px;
+    }
+}
+.blog-content {
+    & h1 {
+        font-size: 2.8rem;
+    }
+    & h2 {
+        font-size: 2.4rem;
+    }
+    & h3 {
+        font-size: 2.2rem;
+    }
+    & h4 {
+        font-size: 2rem;
+    }
+    & h1, & h2, & h3, & h4 {
+        line-height: 1.2;
+        margin-bottom: 2rem;
+    }
+    & p {
+        font-size: 18px;
+        line-height: 1.3;
+        margin-bottom: 1em;
+        & a {
+            color: var(--accent-mint-green);
+            text-decoration: underline;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.8;
+                text-decoration: none;
+            }
+        }
+    }
+    & ul, & ol {
+        margin-left: 2rem;
+        margin-bottom: 1em;
+        font-size: 18px;
+        & li {
+            margin-bottom: 0.25em;
+            line-height: 1.3;
+            list-style: inherit;
+
+            & a {
+                color: var(--accent-mint-green);
+                text-decoration: underline;
+                transition: opacity 0.3s ease;
+
+                &:hover {
+                    opacity: 0.8;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    & ul {
+        list-style: disc;
+    }
+    & ol {
+        list-style: decimal;
+    }
+}
+.blog-grid-wrapper {
+    border-top: 1px solid #B2B2B3;
+    padding-top: 2.5rem;
+    margin-top: 4rem;
+}
+.blog-inner-page {
+        padding-bottom: 4rem;
+    }
 /* end blog */
 
 /* !!!!!!!!! */
@@ -1643,4 +1740,5 @@ section {
     visibility: hidden !important;
     width: 0 !important;
     height: 0 !important;
+    position: absolute !important;
 }
