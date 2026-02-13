@@ -100,6 +100,10 @@ body {
     color: var(--white-02);
     min-height: 100vh;
 }
+.wrapper {
+    overflow-x: hidden;
+    width: 100vw;
+}
 .container {
     width: 100%;
     max-width: 1400px;
@@ -1535,6 +1539,102 @@ section {
 }
 /* end podcast */
 
+/* Blog */
+.body--white {
+    background: #fcfcfc;
+    color: var(--primary-dark);
+
+    & .header {
+        border-bottom: 1px solid #B2B2B3;
+    }
+}
+.blog-page {
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+    & .h1 {
+        font-size: 24px;
+    }
+}
+.page-title {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--primary-dark);
+}
+
+/* Gradient text for page titles */
+.page-title {
+    background: var(--gradient-dark);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: block;
+}
+.blog-grid {
+    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+.blog-grid__item__img {
+    height: 28rem;
+    display: block;
+    margin-bottom: 1.2rem;
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 2rem;
+    }
+}
+.blog-grid__item__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .7rem;
+}
+.blog-grid__item__title {
+    background: var(--gradient-dark);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+    font-family: var(--font-family-second);
+    font-weight: 800;
+    line-height: 1.2;
+    font-size: 2rem;
+    text-transform: uppercase;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-grid__item__description {
+    font-size: 1.6rem;
+    line-height: 1.2;
+     display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.date-badge {
+    font-size: 1.4rem;
+    line-height: 1;
+    padding: 0.5em 1em;
+    border-radius: 30px;
+    color: var(--white-01);
+    background: var(--primary-green-light);
+    font-weight: 400;
+}
+/* end blog */
 
 /* !!!!!!!!! */
 .temporarily-hidden {
