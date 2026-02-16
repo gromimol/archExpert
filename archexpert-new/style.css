@@ -1,0 +1,17 @@
+/*
+Theme Name: Arch Expert
+Theme URI: https://arch-expert.com
+Description: WordPress theme for Arch Expert - cybersecurity audit and IT architecture services. Includes landing pages, blog posts, and custom forms with Mailchimp integration.
+Version: 1.0.0
+Author: Arch Expert Team
+Author URI: https://arch-expert.com
+Text Domain: arch-expert
+Tags: landing-page, business, security, custom-post-types
+Requires at least: 5.8
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This theme requires Advanced Custom Fields (ACF) plugin for content editing.
+*/
