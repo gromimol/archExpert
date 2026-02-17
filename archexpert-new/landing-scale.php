@@ -10,17 +10,17 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scale | <?php bloginfo('name'); ?></title>
-    
+
     <!-- Scale Landing CSS -->
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/landing-scale.css">
-    
+
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
     <div class="wrapper">
         <div class="header">
             <div class="container">
-                <a href="#" class="logo">
+                <a href="/" class="logo">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/landing-scale/logo.svg" alt="Arch Expert">
                 </a>
                 <div class="header__right">
@@ -98,7 +98,7 @@
                                             <a href="#" class="first-screen__link js--cta-checklist">Get the Scaling<br /> Checklist</a>
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -263,7 +263,7 @@
                             </div>
                             <p>The system grows, multiple approaches and tools appear, and agreements rely on personal communication. Any change becomes risky, and responsibility becomes blurred.</p>
                         </div>
-                        
+
                         <div class="benefits__card">
                             <div class="benefits__card-dots">
                                 <span></span>
@@ -419,7 +419,7 @@
                             <div class="h5 risks__card-title"> Improves resilience under load</div>
                             <p>Prepares architecture and infrastructure for the growth of data, users, and integrations without degradation or loss of performance.</p>
                         </div>
-                        
+
                         <div class="risks__card">
                             <div class="risks__icon">
                                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/landing-scale/shield.webp" alt="">

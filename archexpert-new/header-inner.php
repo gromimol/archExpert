@@ -57,7 +57,7 @@
                                 <a href="#">services</a>
                                 <ul>
                                     <li><a href="<?php echo esc_url( home_url( '/scale/' ) ); ?>">Technology Consulting for Secure Scaling</a></li>
-                                    <li><a href="<?php echo esc_url( home_url( '//landing/security/' ) ); ?>">Cybersecurity Audit</a></li>
+                                    <li><a href="<?php echo esc_url( home_url( '/security/' ) ); ?>">Cybersecurity Audit</a></li>
                                 </ul>
                             </li>
                             <li>

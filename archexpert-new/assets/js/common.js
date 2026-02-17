@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Store original title texts
     const titles = {
         meeting: 'Fill out the form to book<br /> <span class="text-green-dark">a free 30-minute meeting</span>',
-        checklist: 'Fill out the form to <span class="text-green-dark">access materials that support your company's</span> growth and scalability'
+        checklist: 'Fill out the form to <span class="text-green-dark">access materials that support your company\'s</span> growth and scalability'
     };
 
     // Store button text variants
@@ -218,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '/success/';
         }
     });
-});
 });
 
 // ===== СКРЫТИЕ/ПОКАЗ ШАПКИ ПРИ СКРОЛЛЕ НА МОБИЛЬНЫХ =====

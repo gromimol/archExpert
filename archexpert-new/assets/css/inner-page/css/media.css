@@ -821,7 +821,7 @@
 
     /* Book */
     .inner-page {
-        background: #040608 url('../img/shape.svg') right  bottom no-repeat ;
+        background: #040608 url('../../../images/shape.svg') right  bottom no-repeat ;
         background-size: contain;
         padding-top: 16rem;
     }
@@ -884,7 +884,7 @@
         border-radius: 24px;;
     }
     .book-features {
-        background: var(--primary-dark) url('../img/book/book_features_bg.jpg') center no-repeat;
+        background: var(--primary-dark) url('../../../images/book/book_features_bg.jpg') center no-repeat;
         background-size: cover;
         border-bottom: 1px solid #363839;
 
@@ -936,7 +936,7 @@
         border-radius: 24px;;
     }
     .book-features {
-        background: var(--primary-dark) url('../img/book/book_features_bg.jpg') center no-repeat;
+        background: var(--primary-dark) url('../../../images/book/book_features_bg.jpg') center no-repeat;
         background-size: cover;
         border-bottom: 1px solid #363839;
 
@@ -1071,7 +1071,7 @@
             right: 0;
             width: 4rem;
             height: 4rem;
-            background: url('../img/link_arrow.svg') center center no-repeat;
+            background: url('../../../images/link_arrow.svg') center center no-repeat;
             border-radius: 50%;
             transition: opacity .3s;
             opacity: 0;

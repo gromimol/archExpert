@@ -1,4 +1,20 @@
 <?php
+// Force HTTPS for all URLs
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    $_SERVER['HTTPS'] = 'on';
+}
+
+// Force HTTPS in all WordPress URLs
+add_filter('stylesheet_directory_uri', 'arch_force_https_url');
+add_filter('template_directory_uri', 'arch_force_https_url');
+add_filter('home_url', 'arch_force_https_url');
+add_filter('site_url', 'arch_force_https_url');
+add_filter('wp_get_attachment_url', 'arch_force_https_url');
+
+function arch_force_https_url($url) {
+    return str_replace('http://', 'https://', $url);
+}
+
 // Отключить emoji скрипты
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
@@ -27,11 +43,12 @@ function arch_expert_setup() {
 add_action('after_setup_theme', 'arch_expert_setup');
 
 function arch_expert_styles() {
-    // Проверяем, не используется ли шаблон внутренних страниц (book, podcast, blog)
+    // Проверяем, не используется ли шаблон внутренних страниц (book, podcast, blog, front-page)
     $is_inner_page = is_page_template('book.php')
                   || is_page_template('podcast.php')
                   || is_page_template('template-blogs.php')
-                  || ( is_single() && get_post_type() === 'post' );
+                  || ( is_single() && get_post_type() === 'post' )
+                  || is_front_page();
 
     // Проверяем, не это ли scale-landing
     $is_scale_landing = is_page_template('landing-scale.php');

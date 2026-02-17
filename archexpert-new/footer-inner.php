@@ -23,14 +23,14 @@
                 <div class="footer__middle">
                     <nav class="footer__nav">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/scale/' ) ); ?>">Technology Consulting for Secure Scaling</a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/security/' ) ); ?>">Cybersecurity Audit</a></li>
                         </ul>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Resources</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/book/' ) ); ?>">Book</a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/podcast/' ) ); ?>">Podcast</a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">Blog</a></li>
                         </ul>
                     </nav>
 
@@ -172,10 +172,24 @@
 
     <!-- GSAP библиотеки для анимаций -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js" defer></script>
 
-    <!-- Основной JS файл -->
-    <script src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/js/inner-page/js/common.js' ); ?>" defer></script>
+    <?php if ( is_front_page() ) : ?>
+        <!-- Three.js для WebGL анимации фона на главной (загружается для десктопа) -->
+        <script>
+            if (window.innerWidth > 1200) {
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+                document.head.appendChild(script);
+            }
+        </script>
+        <!-- Основной JS файл для главной -->
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/js/common.js?v=' . filemtime( get_stylesheet_directory() . '/assets/js/common.js' ) ); ?>" defer></script>
+    <?php else : ?>
+        <!-- Основной JS файл для внутренних страниц -->
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/js/inner-page/js/common.js' ); ?>" defer></script>
+    <?php endif; ?>
 
     <?php wp_footer(); ?>
 </body>

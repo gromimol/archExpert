@@ -4,7 +4,7 @@
     font-family: 'Geologica';
     font-style: normal;
     font-weight: 400;
-    src: url('../font/geologica-v5-latin/geologica-v5-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('../../../fonts/geologica-v5-latin/geologica-v5-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geologica-500 - latin */
 @font-face {
@@ -12,7 +12,7 @@
     font-family: 'Geologica';
     font-style: normal;
     font-weight: 500;
-    src: url('../font/geologica-v5-latin/geologica-v5-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('../../../fonts/geologica-v5-latin/geologica-v5-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geologica-600 - latin */
 @font-face {
@@ -20,7 +20,7 @@
     font-family: 'Geologica';
     font-style: normal;
     font-weight: 600;
-    src: url('../font/geologica-v5-latin/geologica-v5-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('../../../fonts/geologica-v5-latin/geologica-v5-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geologica-700 - latin */
 @font-face {
@@ -28,7 +28,7 @@
     font-family: 'Geologica';
     font-style: normal;
     font-weight: 700;
-    src: url('../font/geologica-v5-latin/geologica-v5-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('../../../fonts/geologica-v5-latin/geologica-v5-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geologica-800 - latin */
 @font-face {
@@ -36,7 +36,7 @@
     font-family: 'Geologica';
     font-style: normal;
     font-weight: 800;
-    src: url('../font/geologica-v5-latin/geologica-v5-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('../../../fonts/geologica-v5-latin/geologica-v5-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geologica-900 - latin */
 @font-face {
@@ -44,7 +44,7 @@
     font-family: 'Geologica';
     font-style: normal;
     font-weight: 900;
-    src: url('../font/geologica-v5-latin/geologica-v5-latin-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('../../../fonts/geologica-v5-latin/geologica-v5-latin-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 :root {
@@ -229,7 +229,7 @@ h4, .h4 {
         content: '';
         width: 100%;
         height: 100%;
-        background: url('../img/header_menu_gradient_decor.png') no-repeat center center;
+        background: url('../../../images/header_menu_gradient_decor.png') no-repeat center center;
         background-size: cover;
         position: absolute;
         bottom: 0;
@@ -414,7 +414,7 @@ body.menu-open {
     content: '';
     width: 2.25em;
     height: 2.25em;
-    background: url('../img/check_icon.png') no-repeat center center;
+    background: url('../../../images/check_icon.png') no-repeat center center;
     background-size: contain;
     position: absolute;
     left: 0;
@@ -532,7 +532,7 @@ section {
             content: '';
             width: 40px;
             height: 40px;
-            background: url('../img/lightning.png') 0 0 no-repeat;
+            background: url('../../../images/lighting.png') 0 0 no-repeat;
             background-size: contain;
             margin-right: 1rem;
             flex: none;;
@@ -942,7 +942,7 @@ section {
         content: '';
         width: 100%;
         height: 100%;
-        background: url('../img/slides/gradient_for_book.webp') no-repeat 100% 100%;
+        background: url('../../../images/slides/gradient_for_book.webp') no-repeat 100% 100%;
         background-size: cover;
         position: absolute;
         top: 0;
@@ -1242,7 +1242,7 @@ section {
 
 /*end footer*/
 .inner-page {
-    background: #040608 url('../img/shape.svg') 20% bottom no-repeat;
+    background: #040608 url('../../../images/shape.svg') 20% bottom no-repeat;
     background-size: cover;
     padding-top: 9rem;
 }
@@ -1269,7 +1269,7 @@ section {
             position: absolute;
             top: 2px;
             left: 0;
-            background: url('../img/book/dot.png') no-repeat center center;
+            background: url('../../../images/book/dot.png') no-repeat center center;
             background-size: contain;
         }
     }
@@ -1323,7 +1323,7 @@ section {
     border-radius: 24px;;
 }
 .book-features {
-    background: var(--primary-dark) url('../img/book/book_features_bg.jpg') center no-repeat;
+    background: var(--primary-dark) url('../../../images/book/book_features_bg.jpg') center no-repeat;
     background-size: cover;
     border-bottom: 1px solid #363839;
 
@@ -1434,7 +1434,7 @@ section {
         content: '';
         width: 32px;
         height: 32px;
-        background: url('../img/dot.png') no-repeat center center;
+        background: url('../../../images/dot.png') no-repeat center center;
         background-size: contain;
         flex-shrink: 0;
     }
