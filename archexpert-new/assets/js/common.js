@@ -1,24 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     const burger = document.querySelector('.burger');
     const closeBtn = document.querySelector('.close');
+    const headerNav = document.querySelector('.header__nav');
     const body = document.body;
-
-    function isMobile() {
-        return window.innerWidth <= 1200;
-    }
 
     // Открытие меню
     if (burger) {
         burger.addEventListener('click', function() {
-            if (isMobile()) {
-                body.classList.add('menu-open');
+            if (headerNav) {
+                headerNav.classList.add('nav-open');
             }
+            body.classList.add('menu-open');
         });
     }
 
     // Закрытие меню
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
+            if (headerNav) {
+                headerNav.classList.remove('nav-open');
+            }
             body.classList.remove('menu-open');
         });
     }
@@ -26,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Закрытие при ресайзе больше 1200px
     window.addEventListener('resize', function() {
         if (window.innerWidth > 1200) {
+            if (headerNav) {
+                headerNav.classList.remove('nav-open');
+            }
             body.classList.remove('menu-open');
         }
     });
@@ -360,8 +364,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             e.preventDefault();
-            
-            document.body.classList.remove('menu-open');
 
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
@@ -370,10 +372,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Закрываем мобильное меню если оно открыто
                 const nav = document.querySelector('.header__nav');
                 const body = document.body;
-                if (nav && nav.classList.contains('nav-open')) {
+                if (nav) {
                     nav.classList.remove('nav-open');
-                    body.classList.remove('menu-open');
                 }
+                body.classList.remove('menu-open');
 
                 // Плавная прокрутка с кинематографичной анимацией (как в Apple)
                 gsap.to(window, {
@@ -1101,5 +1103,543 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+    });
+});
+
+// ===== ACCORDION (from original common.js) =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Применяем фоны из data-bg при загрузке для всех аккордеонов
+    document.querySelectorAll('.accordion__item').forEach(function(item) {
+        const bgColor = item.dataset.bg;
+        if (bgColor) {
+            item.style.backgroundColor = bgColor;
+        }
+    });
+
+    // Анимация сдвига аккордеонов на десктопе
+    function animateAccordionDesktop(activeItem) {
+        const allItems = document.querySelectorAll('.accordion__item');
+        const activeIndex = Array.from(allItems).indexOf(activeItem);
+
+        // Анимация для всех элементов
+        allItems.forEach(function(item, index) {
+            const basePosition = (3 - index) * 10; // Базовая позиция
+
+            if (index < activeIndex) {
+                // Элементы слева от активного - сдвигаем влево
+                gsap.to(item, {
+                    duration: 0.6,
+                    ease: "power3.out",
+                    right: (basePosition + 57) + 'rem'
+                });
+            } else {
+                // Активный и правые элементы - остаются на базовых позициях
+                gsap.to(item, {
+                    duration: 0.6,
+                    ease: "power3.out",
+                    right: basePosition + 'rem'
+                });
+            }
+        });
+    }
+
+    // Сброс позиций аккордеонов к базовым значениям
+    function resetAccordionDesktop() {
+        const allItems = document.querySelectorAll('.accordion__item');
+
+        allItems.forEach(function(item, index) {
+            const basePosition = (3 - index) * 10;
+            gsap.to(item, {
+                duration: 0.6,
+                ease: "power3.out",
+                right: basePosition + 'rem'
+            });
+        });
+    }
+
+    // Функция переключения аккордеона
+    function toggleAccordion(item) {
+        const isActive = item.classList.contains('accordion__item--active');
+
+        // Закрываем все аккордеоны
+        document.querySelectorAll('.accordion__item').forEach(i => i.classList.remove('accordion__item--active'));
+
+        // Если кликнутый аккордеон не был активным, открываем его
+        if (!isActive) {
+            item.classList.add('accordion__item--active');
+
+            // Анимация сдвига для десктопа
+            if (window.innerWidth > 1200) {
+                animateAccordionDesktop(item);
+            }
+        } else {
+            // Если закрываем аккордеон, возвращаем все на место
+            if (window.innerWidth > 1200) {
+                resetAccordionDesktop();
+            }
+        }
+    }
+
+    // Обработчик клика по заголовку (для мобильной версии)
+    document.querySelectorAll('.accordion__header').forEach(function(header) {
+        header.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const item = this.closest('.accordion__item');
+            toggleAccordion(item);
+        });
+    });
+
+    // Обработчик клика по всей карточке (для десктопной версии)
+    document.querySelectorAll('.accordion__item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            // Проверяем ширину экрана
+            if (window.innerWidth > 1200) {
+                toggleAccordion(this);
+            }
+        });
+    });
+});
+
+// ===== GSAP АНИМАЦИЯ ПУТИ И ШАРИКА (DE-RISK) =====
+function initDeRiskAnimation() {
+    // Проверяем, что GSAP загружен
+    if (typeof gsap === 'undefined') {
+        console.warn('GSAP не загружен');
+        return;
+    }
+
+    // Проверяем ширину экрана (только для десктопа)
+    if (window.innerWidth < 1200) {
+        return;
+    }
+
+    const items = document.querySelectorAll('.de-risk__item');
+    const svg = document.querySelector('.de-risk__path-svg');
+    const path = document.getElementById('risk-path');
+    const ball = document.querySelector('.de-risk__ball');
+    const progressElements = document.querySelectorAll('.de-risk__progress');
+
+    if (items.length < 4 || !svg || !ball) {
+        return;
+    }
+
+    // Регистрируем MotionPath плагин
+    gsap.registerPlugin(MotionPathPlugin);
+
+    // Получаем размеры контейнера и заголовок секции
+    const container = document.querySelector('.de-risk .container');
+    const containerOffset = container.getBoundingClientRect();
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+
+    // Находим высоту заголовка H2, чтобы начать линию ниже него
+    const h2 = document.querySelector('.de-risk .h2');
+    const h2Bottom = h2 ? (h2.getBoundingClientRect().top + h2.offsetHeight - containerOffset.top + 40) : 0;
+
+    // Устанавливаем размеры SVG
+    svg.setAttribute('viewBox', `0 0 ${containerWidth} ${containerHeight}`);
+    svg.setAttribute('width', containerWidth);
+    svg.setAttribute('height', containerHeight);
+
+    // Получаем точки НАД блоками (огибая их)
+    const points = [];
+    const offsetAbove = 80; // Отступ над блоком
+
+    items.forEach(function(item, index) {
+        const offset = item.getBoundingClientRect();
+        const width = item.offsetWidth;
+
+        let x, y;
+        let itemY = offset.top - containerOffset.top - offsetAbove;
+
+        // Убеждаемся, что линия начинается НИЖЕ заголовка H2
+        if (itemY < h2Bottom) {
+            itemY = h2Bottom;
+        }
+
+        if (index === 0) {
+            // Первый блок - верхний ЛЕВЫЙ угол
+            x = offset.left - containerOffset.left;
+            y = itemY;
+        } else if (index === items.length - 1) {
+            // Последний блок - верхний ПРАВЫЙ угол
+            x = offset.left - containerOffset.left + width;
+            y = itemY;
+        } else {
+            // Промежуточные блоки - центр
+            x = offset.left - containerOffset.left + width / 2;
+            y = itemY;
+        }
+
+        points.push({ x, y, index });
+    });
+
+    // Строим SVG путь через кривые Безье
+    let pathD = `M ${points[0].x} ${points[0].y}`;
+
+    for (let i = 1; i < points.length; i++) {
+        const prev = points[i - 1];
+        const curr = points[i];
+
+        // Контрольные точки для плавной S-кривой
+        const dx = curr.x - prev.x;
+        const dy = curr.y - prev.y;
+
+        const cp1x = prev.x + dx * 0.5;
+        const cp1y = prev.y;
+
+        const cp2x = prev.x + dx * 0.5;
+        const cp2y = curr.y;
+
+        pathD += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${curr.x} ${curr.y}`;
+    }
+
+    // Применяем путь
+    path.setAttribute('d', pathD);
+
+    // Создаем GSAP анимацию
+    const tl = gsap.timeline({
+        repeat: -1, // Бесконечный повтор
+        repeatDelay: 2 // Задержка перед повтором
+    });
+
+    // Показываем шарик
+    tl.to(ball, {
+        opacity: 1,
+        duration: 0.3
+    });
+
+    // Анимация шарика по пути
+    tl.to(ball, {
+        motionPath: {
+            path: path,
+            align: path,
+            alignOrigin: [0.5, 0.5]
+        },
+        duration: 12,
+        ease: 'none'
+    }, 0);
+
+    // Анимация появления меток - ТОЛЬКО ОДНА за раз (3 плашки)
+    const progressCount = 3;
+    const segmentDuration = 12 / progressCount;
+
+    progressElements.forEach(function(element, index) {
+        if (index > 2) return; // Только 3 плашки
+
+        const startTime = index * segmentDuration;
+        const showDuration = 0.7;
+        const hideDuration = 0.5;
+        const visibleTime = segmentDuration - showDuration - hideDuration;
+
+        // Появление метки
+        tl.to(element, {
+            opacity: 1,
+            y: 0,
+            duration: showDuration,
+            ease: 'back.out(1.7)'
+        }, startTime);
+
+        // Скрытие метки перед следующей
+        if (index < progressCount - 1) {
+            tl.to(element, {
+                opacity: 0,
+                y: -20,
+                duration: hideDuration,
+                ease: 'power2.in'
+            }, startTime + showDuration + visibleTime);
+        }
+    });
+
+    // Скрываем последнюю (3-ю) метку и шарик в конце
+    if (progressElements[2]) {
+        tl.to(progressElements[2], {
+            opacity: 0,
+            y: -20,
+            duration: 0.5
+        }, 11.5);
+    }
+
+    tl.to(ball, {
+        opacity: 0,
+        duration: 0.3
+    }, 11.7);
+}
+
+// Инициализация при загрузке
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDeRiskAnimation);
+} else {
+    initDeRiskAnimation();
+}
+
+// Пересоздаем анимацию при изменении размера окна (с debounce)
+let deRiskResizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(deRiskResizeTimer);
+    deRiskResizeTimer = setTimeout(function() {
+        // Останавливаем все анимации GSAP на элементах
+        if (typeof gsap !== 'undefined') {
+            gsap.killTweensOf('.de-risk__ball, .de-risk__progress');
+        }
+        initDeRiskAnimation();
+    }, 250);
+});
+
+// ===== 3D WAVE CIRCLES =====
+function create3DWaveCircles() {
+    const container = document.querySelector('.wave-circles');
+    if (!container) return;
+
+    container.innerHTML = '';
+    container.style.cssText = `
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform:
+               rotateX(70deg)
+               rotateY(25deg)
+               rotateZ(35deg) !important;
+        transform-style: preserve-3d !important;
+        width: 800px !important;
+        height: 800px !important;
+        perspective: 400px !important;
+        z-index: 10000 !important;
+    `;
+
+    // Создаем 10 кругов
+    for (let i = 0; i < 10; i++) {
+        const circle = document.createElement('div');
+        const radius = 60 + (i * 30);
+        const dotsCount = 35 + (i * 15);
+
+        circle.style.cssText = `
+            width: ${radius * 2}px !important;
+            height: ${radius * 2}px !important;
+            border-radius: 50% !important;
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            transform-style: preserve-3d !important;
+        `;
+
+        // Создаем точки
+        for (let j = 0; j < dotsCount; j++) {
+            const dot = document.createElement('div');
+            const angle = (j / dotsCount) * 2 * Math.PI;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            dot.style.cssText = `
+                width: 2px !important;
+                height: 2px !important;
+                background: #75D7B5 !important;
+                border-radius: 50% !important;
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate3d(${x}px, ${y}px, 0px) !important;
+                opacity: 0.8 !important;
+                transform-style: preserve-3d !important;
+                z-index: 10001 !important;
+            `;
+
+            dot.classList.add('wave-dot');
+            dot._baseX = x;
+            dot._baseY = y;
+            dot._angle = angle;
+            dot._radius = radius;
+            dot._circleIndex = i;
+
+            circle.appendChild(dot);
+        }
+
+        container.appendChild(circle);
+    }
+
+    startAdvanced3DWave();
+}
+
+function startAdvanced3DWave() {
+    const dots = document.querySelectorAll('.wave-dot');
+
+    function advancedWave3D() {
+        const time = Date.now() * 0.0006;
+
+        dots.forEach(dot => {
+            const angle = dot._angle;
+            const circleIndex = dot._circleIndex;
+
+            const mainWave = Math.sin(time * 1.2 + angle * 3) * (8 + circleIndex * 2);
+            const secondaryWave = Math.cos(time * 1.5 + angle * 4 + circleIndex) * (4 + circleIndex);
+            const slowWave = Math.sin(time * 0.5 + angle * 1.5) * (3 + circleIndex);
+
+            const z = mainWave + secondaryWave * 0.3 + slowWave * 0.1;
+
+            const xWobble = Math.cos(time * 0.8 + angle * 2) * 0.5;
+            const yWobble = Math.sin(time * 0.6 + angle * 2) * 0.5;
+
+            const finalX = dot._baseX + xWobble;
+            const finalY = dot._baseY + yWobble;
+
+            dot.style.transform = `translate3d(${finalX}px, ${finalY}px, ${z}px)`;
+
+            const depth = (z + 12) / 24;
+            dot.style.opacity = 0.5 + depth * 0.4;
+            dot.style.width = (3 + depth) + 'px';
+            dot.style.height = (3 + depth) + 'px';
+        });
+
+        requestAnimationFrame(advancedWave3D);
+    }
+
+    advancedWave3D();
+
+    // Вращение кругов
+    if (typeof gsap !== 'undefined') {
+        const circles = document.querySelectorAll('.wave-circles > div');
+        circles.forEach((circle, index) => {
+            gsap.to(circle, {
+                rotationZ: index % 2 === 0 ? 360 : -360,
+                duration: 60 + (index * 20),
+                repeat: -1,
+                ease: "none"
+            });
+        });
+
+        // Покачивание всей сцены
+        gsap.to('.wave-circles', {
+            rotationX: '+=2',
+            rotationY: '+=1',
+            duration: 12,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+}
+
+// Запускаем
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', create3DWaveCircles);
+} else {
+    create3DWaveCircles();
+}
+
+// ===== FINAL CTA ANIMATED LIGHT BEAM =====
+document.addEventListener('DOMContentLoaded', function() {
+    const lightBeam = document.querySelector('.final-cta__light');
+
+    if (!lightBeam || typeof gsap === 'undefined') return;
+
+    // Цвета для анимации градиента
+    const gradients = [
+        'radial-gradient(circle at center, rgba(7, 188, 138, 0.8) 0%, rgba(151, 246, 157, 0.6) 25%, rgba(12, 83, 80, 0.4) 50%, rgba(151, 246, 157, 0.2) 70%, transparent 85%)',
+        'radial-gradient(circle at center, rgba(151, 246, 157, 0.8) 0%, rgba(12, 83, 80, 0.6) 25%, rgba(7, 188, 138, 0.4) 50%, rgba(12, 83, 80, 0.2) 70%, transparent 85%)',
+        'radial-gradient(circle at center, rgba(12, 83, 80, 0.8) 0%, rgba(7, 188, 138, 0.6) 25%, rgba(151, 246, 157, 0.4) 50%, rgba(7, 188, 138, 0.2) 70%, transparent 85%)',
+        'radial-gradient(circle at center, rgba(151, 246, 157, 0.9) 0%, rgba(7, 188, 138, 0.6) 25%, rgba(12, 83, 80, 0.35) 50%, rgba(151, 246, 157, 0.15) 70%, transparent 85%)'
+    ];
+
+    // Устанавливаем начальное состояние
+    gsap.set(lightBeam, {
+        opacity: 0,
+        x: 0,
+        y: 0,
+        scale: 1
+    });
+
+    // Функция создания рандомной анимации
+    function createLightAnimation() {
+        const tl = gsap.timeline();
+
+        tl.to(lightBeam, {
+            x: gsap.utils.random(-300, 300),
+            y: gsap.utils.random(-200, 200),
+            scale: gsap.utils.random(0.9, 1.3),
+            opacity: gsap.utils.random(0.6, 0.8),
+            background: gradients[0],
+            duration: 3,
+            ease: "sine.inOut"
+        })
+        .to(lightBeam, {
+            x: gsap.utils.random(-450, 450),
+            y: gsap.utils.random(-250, 250),
+            scale: gsap.utils.random(1.0, 1.6),
+            opacity: gsap.utils.random(0.7, 0.9),
+            background: gradients[1],
+            duration: 3.5,
+            ease: "sine.inOut"
+        })
+        .to(lightBeam, {
+            x: gsap.utils.random(-400, 400),
+            y: gsap.utils.random(-280, 280),
+            scale: gsap.utils.random(0.85, 1.4),
+            opacity: gsap.utils.random(0.65, 0.85),
+            background: gradients[2],
+            duration: 4,
+            ease: "sine.inOut"
+        })
+        .to(lightBeam, {
+            x: gsap.utils.random(-420, 420),
+            y: gsap.utils.random(-260, 260),
+            scale: gsap.utils.random(0.95, 1.4),
+            opacity: gsap.utils.random(0.6, 0.8),
+            background: gradients[3],
+            duration: 3.5,
+            ease: "sine.inOut"
+        })
+        .to(lightBeam, {
+            x: gsap.utils.random(-150, 150),
+            y: gsap.utils.random(-100, 100),
+            scale: gsap.utils.random(0.9, 1.1),
+            opacity: gsap.utils.random(0.4, 0.6),
+            background: gradients[0],
+            duration: 2.5,
+            ease: "sine.inOut"
+        })
+        .to(lightBeam, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            opacity: 0,
+            background: gradients[0],
+            duration: 2,
+            ease: "sine.inOut",
+            onComplete: () => {
+                createLightAnimation();
+            }
+        });
+
+        return tl;
+    }
+
+    // Запускаем первую анимацию
+    createLightAnimation();
+});
+
+// ===== SCROLL TO TOP =====
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollTopButtons = document.querySelectorAll('.footer__scroll-top');
+
+    scrollTopButtons.forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            if (typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
+                // Используем GSAP для плавной прокрутки
+                gsap.to(window, {
+                    duration: 0.8,
+                    scrollTo: { y: 0 },
+                    ease: "power2.inOut"
+                });
+            } else {
+                // Fallback на обычную прокрутку
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 });
