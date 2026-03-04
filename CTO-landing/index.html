@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="container">
+                <a href="#" class="logo">
+                    <img src="img/logo.svg" alt="Arch Expert">
+                </a>
+                <div class="header__right">
+                    <nav class="header__nav">
+                        <div class="header__nav__top">
+                            <a href="#" class="menu-logo">
+                                <img src="img/logo.svg" alt="Arch Expert">
+                            </a>
+                            <div class="close">
+                                <svg class="close-icon" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="1.71582" y1="28.728" x2="28.5859" y2="1.85794" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="2.13003" y1="1.85791" x2="29.0001" y2="28.728" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><a href="#overview">OVERVIEW</a></li>
+                            <li><a href="#objectives">Goals</a></li>
+                            <li><a href="#benefits">BENEFITS</a></li>
+                            <li><a href="#risks">Impact</a></li>
+                            <li><a href="#process">PROCESS</a></li>
+                            <li><a href="#advantages">Outcomes</a></li>
+                            <li><a href="#why-us">WHY US</a></li>
+                            <li><a href="#cases">CASES</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </nav>
+                    <div class="burger">
+                        <svg class="burger-icon" width="44" height="26" viewBox="0 0 44 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="1" y1="1" x2="43" y2="1" stroke="#F6F6F6" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="1" y1="13" x2="43" y2="13" stroke="#F6F6F6" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="1" y1="25" x2="43" y2="25" stroke="#F6F6F6" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <main class="main">
+            <section class="first-screen">
+                <div class="container">
+                    <div class="first-screen__content">
+                        <div class="h1 first-screen__title"><span class="text-green-light">CTO Advisory</span> for Competitive, Scalable, and Resilient Technology</div>
+
+                        <div class="h4 first-screen__subtitle">
+                            Strategic technology consulting <span class="scroll-color-reveal">that works directly with your CTO TO align architecture, delivery, and risk with business goals, protect revenue, and strengthen long-term competitive position.</span>
+                        </div>
+
+                        <div class="selected">
+                            <div class="h5 first-screen__text">
+                                We help CTOs and business leaders see where technological systems and integrations can stop growth or cause incidents.
+                            </div>
+                            <div class="first-screen__cta">
+                                <div class="first-screen__buttons">
+                                    <div class="first-screen__buttons__item">
+                                        <div class="cta">
+                                            <a href="#" class="btn js--cta">Book a call</a>
+                                            <div class="cta__notice">30 minutes | Free of charge</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="first-screen__bottom">
+                        <div class="first-screen__bg">
+                            <img src="img/first-screen-decor.webp" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="overview" id="overview">
+                <div class="container">
+                    <div class="section-label">
+                        <span>OVERVIEW</span>
+                    </div>
+
+                    <div class="h2 overview__title">What is CTO advisory</div>
+
+                    <div class="overview__grid">
+                        <div class="overview__item">
+                            <img src="img/dot.png" alt="" class="overview__icon">
+                            <div class="overview__item__content">
+                                <div class="overview__item-text">CTO advisory is a working format where we help CTOs make concrete technology decisions based on how their systems actually work today.</div>
+                            </div>
+                        </div>
+
+                        <div class="overview__item">
+                            <img src="img/dot.png" alt="" class="overview__icon">
+                            <div class="overview__item__content">
+                                <div class="overview__item-text">We look at architecture, integrations, teams, and delivery limits to understand where decisions create risk, slow growth, or increase cost. Instead of abstract advice, we focus on what can realistically be changed and in what order.</div>
+                            </div>
+                        </div>
+
+                        <div class="overview__item">
+                            <img src="img/dot.png" alt="" class="overview__icon">
+                            <div class="overview__item__content">
+                                <div class="overview__item-text">The goal is simple: clearer decisions, fewer surprises during growth, and technology that supports revenue instead of quietly working against it.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="objectives" id="objectives">
+                <!-- Animated stars background (canvas warp speed effect) -->
+                <canvas id="objectives-space"></canvas>
+                <div class="container">
+                    <div class="section-label section-label--white">
+                        <span>Goals</span>
+                    </div>
+
+                    <div class="h2 objectives__title">Goals of CTO advisory</div>
+
+                    <div class="objectives__grid">
+                        <div class="objectives__item">
+                            <div class="objectives__item__content">
+                                <div class="h4 objectives__item-title">CTO advisory focuses on restoring predictability and control in technology decisions.</div>
+                            </div>
+                        </div>
+
+                        <div class="objectives__item">
+                            <div class="objectives__item__content">
+                                <div class="h4 objectives__item-title">It clarifies where costs, risks, and delays actually come from, and helps teams choose actions that support growth instead of quietly increasing exposure.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="objectives__cta">
+                        <div class="cta">
+                            <a href="#" class="btn js--cta">Book a call</a>
+                            <div class="cta__notice">30 minutes | Free of charge</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="benefits" id="benefits">
+                <div class="container">
+                    <div class="section-label">
+                        <span>When needed</span>
+                    </div>
+
+                    <div class="h2 benefits__title">When CTO advisory <br />is needed</div>
+
+                    <div class="benefits__cards">
+                        <div class="benefits__card benefits__card--1">
+                            <div class="benefits__card-dots">
+                                <span></span>
+                            </div>
+                            <p>CTO advisory is needed when technology decisions start affecting revenue, but their consequences are unclear.</p>
+                        </div>
+
+                        <div class="benefits__card benefits__card--2">
+                            <div class="benefits__card-dots">
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>At this stage, systems grow, dependencies multiply, and choices made under pressure quietly lock the company into cost, risk, or delays. Problems are not visible until they become expensive.</p>
+                        </div>
+
+                        <div class="benefits__card benefits__card--3">
+                            <div class="benefits__card-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>CTO advisory helps surface these constraints early, while there are still options.</p>
+                        </div>
+                    </div>
+
+                    <div class="cta">
+                        <a href="#" class="btn btn--green js--cta">Book a call</a>
+                        <div class="cta__notice">30 minutes | Free of charge</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="risks-process-wrapper">
+                <!-- Animated starfield with ripples for both sections -->
+                <canvas id="risks-process-space"></canvas>
+
+                <section class="risks" id="risks">
+                    <div class="container">
+                    <div class="section-label section-label--white">
+                        <span>Impact</span>
+                    </div>
+
+                    <div class="h2 risks__title">Business problem solved</div>
+
+                    <div class="risks__grid">
+                        <div class="risks__card">
+                            <div class="risks__icon">
+                                <img src="img/shield.webp" alt="">
+                                <span>1</span>
+                            </div>
+                            <div class="h5 risks__card-title">CTO advisory addresses the loss of control over technology as the business scales.</div>
+                        </div>
+
+                        <div class="risks__card">
+                            <div class="risks__icon">
+                                <img src="img/shield.webp" alt="">
+                                <span>2</span>
+                            </div>
+                            <div class="h5 risks__card-title">Technology continues to evolve, but decisions become harder to connect to financial planning, risk exposure, and long-term direction. Over time, this leads to growing dependency, rising cost, and delayed surprises.</div>
+                        </div>
+
+                        <div class="risks__card">
+                            <div class="risks__icon">
+                                <img src="img/shield.webp" alt="">
+                                <span>3</span>
+                            </div>
+                            <div class="h5 risks__card-title">CTO advisory helps bring structure and visibility back into technology decisions.</div>
+                        </div>
+                    </div>
+
+                    <div class="risks__footer">
+                        <div class="risks__footer__cta">
+                            <div class="cta">
+                                <a href="#" class="btn btn--green js--cta">Book a call</a>
+                                <div class="cta__notice">30 minutes | Free of charge</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                <section class="process" id="process">
+                    <div class="container">
+                        <div class="section-label section-label--white">
+                            <span>PROCESS</span>
+                        </div>
+                        <div class="process__content">
+                            <div class="process__left">
+                                <div class="h2 process__title">How CTO advisory engagement works</div>
+                            </div>
+
+                            <div class="process__right">
+                                <div class="process__cards">
+                                    <div class="process__card">
+                                        <div class="process__card-icon">
+                                            <img src="img/preparation.webp" alt="">
+                                        </div>
+                                        <div class="h4 process__card-title">Context and alignment</div>
+                                        <p class="text-uppercase"><b>A focused discussion with the CTO (and, when needed, the CEO) to clarify:</b></p>
+                                        <ul>
+                                            <li>
+                                                business goals
+                                            </li>
+                                            <li>
+                                                current pressure points
+                                            </li>
+                                            <li>
+                                                decisions that already act as constraints
+                                            </li>
+                                        </ul>
+                                        <p class="process__card-text">
+                                            The goal is to understand where technology directly shapes strategy and risk.
+                                        </p>
+                                    </div>
+
+                                    <div class="process__card">
+                                        <div class="process__card-icon">
+                                            <img src="img/audit.webp" alt="">
+                                        </div>
+                                        <div class="h4 process__card-title">Identification of key risks</div>
+                                        <p class="text-uppercase"><b>A structured review of architecture, processes, and dependencies with attention to:</b></p>
+                                        <ul>
+                                            <li>
+                                                irreversible decisions
+                                            </li>
+                                            <li>
+                                                hidden constraints
+                                            </li>
+                                            <li>
+                                                early loss of predictability
+                                            </li>
+                                        </ul>
+                                        <p class="process__card-text">
+                                            The focus is on what will become expensive too late.
+                                        </p>
+                                    </div>
+
+                                    <div class="process__card">
+                                        <div class="process__card-icon">
+                                            <img src="img/support_1.webp" alt="">
+                                        </div>
+                                        <div class="h4 process__card-title">Independent calibration of decisions</div>
+                                        <p class="text-uppercase"><b>Review of upcoming and existing decisions to surface:</b></p>
+                                        <ul>
+                                            <li>
+                                                where risk is intentional
+                                            </li>
+                                            <li>
+                                                where it is implicit
+                                            </li>
+                                            <li>
+                                                where it can be reduced without slowing execution
+                                            </li>
+                                        </ul>
+                                        <p class="process__card-text">
+                                            This provides an external validation layer.
+                                        </p>
+                                    </div>
+
+                                    <div class="process__card">
+                                        <div class="process__card-icon">
+                                            <img src="img/check.webp" alt="">
+                                        </div>
+                                        <div class="h4 process__card-title">Decision frameworks</div>
+                                        <p class="text-uppercase"><b>Co-creation of:</b></p>
+                                        <ul>
+                                            <li>
+                                                decision hygiene
+                                            </li>
+                                            <li>
+                                                architectural guardrails
+                                            </li>
+                                            <li>
+                                                clear risk boundaries
+                                            </li>
+                                        </ul>
+                                        <p class="process__card-text">
+                                            So decisions can be made faster, without revisiting past trade-offs.
+                                        </p>
+                                    </div>
+
+                                    <div class="process__card">
+                                        <div class="process__card-icon">
+                                            <img src="img/target.webp" alt="">
+                                        </div>
+                                        <div class="h4 process__card-title">Targeted support at critical moments</div>
+                                        <p class="text-uppercase"><b>Point-in-time advisory during:</b></p>
+                                        <ul>
+                                            <li>
+                                                scaling phases
+                                            </li>
+                                            <li>
+                                                transformations
+                                            </li>
+                                            <li>
+                                                major technology or product shifts
+                                            </li>
+                                        </ul>
+                                        <p class="process__card-text">
+                                            Supports growth where the cost of mistakes is highest.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- градиентный эллипс -->
+                    <div class="gradient-ellipse" aria-hidden="true"></div>
+            </section>
+            </div>
+
+            <section class="advantages" id="advantages">
+                <!-- Three.js 3D particle sphere -->
+                <canvas id="advantages-particles"></canvas>
+                <div class="container">
+                    <div class="advantages__wrapper">
+                        <div class="advantages__header">
+                            <div class="section-label section-label--white">
+                                <span>Outcomes</span>
+                            </div>
+
+                            <div class="h2 advantages__title">What will you gain as&nbsp;a&nbsp;result?</div>
+
+                            <div class="h5 advantages__subtitle">
+                                CTO advisory leads to better decisions with predictable financial and operational outcomes.
+                            </div>
+                        </div>
+
+                        <div class="h4 advantages__description">
+                            Companies reduce unexpected costs,  <span class="scroll-color-reveal">incidents, and late-stage surprises by understanding how technology choices affect profit, risk, and long-term flexibility.</span>
+                        </div>
+                        <div class="h4 advantages__description">
+                           <span class="scroll-color-reveal">As a result, leadership gains confidence in decisions that shape growth and competitiveness.</span>
+                        </div>
+
+                        <div class="advantages__footer">
+                            <div class="cta">
+                                <a href="#" class="btn js--cta">Book a call</a>
+                                <div class="cta__notice">30 minutes | Free of charge</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cases" id="cases">
+                <div class="container">
+                    <div class="section-label">
+                        <span>CASES</span>
+                    </div>
+
+                    <div class="h2 cases__title">Case studies</div>
+
+                    <div class="h3 cases__subtitle">Security strategy development</div>
+
+                    <div class="cases__list">
+                        <div class="cases__card">
+                            <div class="cases__card-left">
+                                <div class="h3 cases__card-title">Security strategy development for a fintech platform</div>
+                                <div class="cases__card-tag">Security strategy development</div>
+                            </div>
+
+                            <div class="cases__card-right">
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/warn.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">Before</div>
+                                        <div class="cases__card-item-text">
+                                            Security was treated as an operational cost, managed reactively after incidents. This created compliance gaps and unpredictable downtime with rising recovery costs.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/lighting.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">After</div>
+                                        <div class="cases__card-item-text">
+                                            Conducted a full risk analysis procedure, built a 12-month prioritized security roadmap aligned with business goals.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/bril.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">Business value</div>
+                                        <div class="cases__card-item-text">
+                                            Critical risks were eliminated and updating of security strategy became an integrated part of business planning and growth.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cases__card">
+                            <div class="cases__card-left">
+                                <div class="h3 cases__card-title">SOC and monitoring setup</div>
+                                <div class="cases__card-tag">Audits & incident prevention</div>
+                            </div>
+
+                            <div class="cases__card-right">
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/warn.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">Before</div>
+                                        <div class="cases__card-item-text">
+                                            Security was treated as an operational cost, managed reactively after incidents. This created compliance gaps and unpredictable downtime with rising recovery costs.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/lighting.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">After</div>
+                                        <div class="cases__card-item-text">
+                                            Conducted a full risk analysis procedure, built a 12-month prioritized security roadmap aligned with business goals.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/bril.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">Business value</div>
+                                        <div class="cases__card-item-text">
+                                            Critical risks were eliminated and updating of security strategy became an integrated part of business planning and growth.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cases__card">
+                            <div class="cases__card-left">
+                                <div class="h3 cases__card-title">Personal data leak prevention for a financial app</div>
+                                <div class="cases__card-tag">Data protection & leak prevention</div>
+                            </div>
+
+                            <div class="cases__card-right">
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/warn.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">Before</div>
+                                        <div class="cases__card-item-text">
+                                            Security was treated as an operational cost, managed reactively after incidents. This created compliance gaps and unpredictable downtime with rising recovery costs.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/lighting.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">After</div>
+                                        <div class="cases__card-item-text">
+                                            Conducted a full risk analysis procedure, built a 12-month prioritized security roadmap aligned with business goals.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cases__card-item">
+                                    <div class="cases__card-icon">
+                                        <img src="img/bril.webp" alt="">
+                                    </div>
+                                    <div class="cases__card-item-content">
+                                        <div class="cases__card-item-label">Business value</div>
+                                        <div class="cases__card-item-text">
+                                            Critical risks were eliminated and updating of security strategy became an integrated part of business planning and growth.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="why-us" id="why-us">
+                <div class="container">
+                    <div class="why-us__wrapper">
+                        <div class="section-label">
+                            <span>WHY US</span>
+                        </div>
+                        <div class="h2 why-us__title">Why you can<br /> rely on us</div>
+                        <div class="why-us__content">
+                            <div class="why-us__item">
+                                <div class="why-us__item__header">
+                                    <div class="why-us__item-title h4">We work directly with CTOs on real decisions under real constraints.</div>
+                                </div>
+                                <div class="why-us__item__img">
+                                    <img src="img/why_us_1.webp" alt="" loading="lazy">
+                                </div>
+                            </div>
+                            <div class="why-us__item">
+                                <div class="why-us__item__header">
+                                    <div class="why-us__item-title h4">Our advisory focuses on making trade-offs explicit:</div>
+                                    <p>Speed vs risk, cost vs flexibility, short-term delivery vs long-term exposure. The result is decisions that hold up under growth, pressure, and scrutiny.</p>
+                                </div>
+                                <div class="why-us__item__img">
+                                    <img src="img/why_us_2.webp" alt="" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="why-us__footer">
+                            <div class="cta">
+                                <a href="#" class="btn btn--green js--cta">Book a call</a>
+                                <div class="cta__notice">30 minutes | Free of charge</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq" id="faq">
+                <div class="container">
+                    <div class="section-label">
+                        <span>FAQ</span>
+                    </div>
+
+                    <div class="h2 faq__title">Frequently asked questions</div>
+
+                    <div class="faq__list">
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">How long does the audit take?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Usually between 2 and 8 weeks, depending on the size and complexity of your infrastructure. We agree on the plan and timeline in advance.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">Will our team need to be involved?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Yes, minimal involvement is required: at the start to provide inputs and access, and at the end to discuss the report and recommendations.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">What do we get as a result?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Beyond minimizing reputational, financial, and operational risks, you will receive a full report on your current state, a vulnerability map, a corrective action plan, and strategic recommendations.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">Does this apply if everything is outsourced?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Yes. We assess both internal processes and external contractors to identify weak points and ways to fix them.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">How confidential is the process?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>All work is done strictly under NDA. Your security and our reputation are equally important: we follow the highest confidentiality standards.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq__item">
+                            <div class="faq__question">
+                                <div class="h4 faq__question-title">Do you provide specific recommendations?</div>
+                                <div class="faq__toggle"></div>
+                            </div>
+                            <div class="faq__answer">
+                                <div class="faq__answer-content">
+                                    <p>Yes. We explain what to do, why it matters, and in what order: tailored to your business context and available resources.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="final-cta">
+                <div class="container">
+                    <div class="h3">If technology decisions already affect cost, delivery, or risk, the next step is to make those constraints visible</div>
+                    <p>A short call helps clarify your current situation, surface the decisions that matter most, and determine whether CTO advisory is the right way forward. No preparation, no commitments.</p>
+                    <div class="cta">
+                        <a href="#" class="btn js--cta">Book a call</a>
+                        <a href="#" class="cta__notice">30 minutes | Free of charge</a>
+                    </div>
+                </div>
+                <!-- bg image -->
+                 <img src="img/cta_bg.webp" alt="Красивый фон" class="final-cta__bg" loading="lazy">
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="container">
+                <nav class="footer__nav">
+                    <a href="#overview">OVERVIEW</a>
+                    <a href="#objectives">ObGoalsjectives</a>
+                    <a href="#benefits">Benefits</a>
+                    <a href="#risks">Impact</a>
+                    <a href="#process">Process</a>
+                    <a href="#advantages">Outcomes</a>
+                    <a href="#why-us">Why Us</a>
+                    <a href="#cases">Cases</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+                <div class="footer__logo">
+                    <img src="img/logo.svg" alt="Arch Expert" loading="lazy">
+                </div>
+
+                <div class="footer__copyright">
+                    © 2025 Arch Expert Consulting. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+        <!-- Модалка -->
+         <div id="overlay"></div>
+         <div class="modal">
+            <div class="modal__content">
+                <div class="modal__close">
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.799 21.9079L11.3137 13.4226L2.82844 21.9079L0.719525 19.799C4.03323 16.4853 5.8911 14.6274 9.20481 11.3137L1.23978e-05 2.10894L2.10893 2.10578e-05L11.3137 9.20482L20.5185 2.10578e-05L22.6274 2.10894L13.4226 11.3137L21.9079 19.799L19.799 21.9079Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="modal__title">
+                    Fill out the form to book<br /> <span class="text-green-dark">a free 30-minute meeting</span>
+                </div>
+                <form action="success-page.html" method="get">
+                    <input type="hidden" id="formType" name="type" value="meeting">
+                    <div class="input-wrapper">
+                        <label for="name">name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="phone">phone</label>
+                        <input type="text" id="phone" name="phone" placeholder="Your phone" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="Email">Email</label>
+                        <input type="email" id="Email" name="email" placeholder="Your Email" required>
+                    </div>
+
+                    <div class="agree">
+                        <div class="checkbox">
+                            <input type="checkbox" id="agree" checked>
+                            <label for="agree">
+                                <span class="agree__text">
+                                    <span class="agree__action">By clicking Book a meeting you agree to</span> <a href="https://arch-expert.com/terms-of-use/" target="_blank">Terms of Use</a> and <a href="https://arch-expert.com/privacy-policy/" target="_blank">Privacy Policy</a>.
+                                    You consent to receive emails, phone calls and SMS messages from Arch Expert Consulting provide updates on your order and/or for marketing purposes.
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="btn-wrapper">
+                        <input type="submit" value="Book a Meeting" class="btn btn--green">
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+
+    <!-- GSAP библиотеки для анимаций -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+
+    <!-- Three.js для WebGL анимации фона (загружается синхронно для десктопа) -->
+    <script>
+        // Проверяем ширину экрана и загружаем Three.js синхронно
+        if (window.innerWidth > 1200) {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+            // Важно: НЕ используем async или defer, чтобы загрузка была синхронной
+            document.head.appendChild(script);
+        }
+    </script>
+
+    <!-- Water Ripple Effect -->
+    <script src="js/water-ripple.js" defer></script>
+    <script src="js/common.js" defer></script>
+</body>
+</html>
