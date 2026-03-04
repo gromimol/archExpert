@@ -167,11 +167,11 @@ archexpert-new/
 - **Checklist** (`js--cta-checklist`) → редирект на `/page-success-lm/` → тег "funnel"
 - **Book Waitlist** (`js--cta-book`) → модалка на странице book → тег "book"
 
-**Mailchimp credentials (functions.php:550-552):**
+**Mailchimp credentials** задаются через константы в `wp-config.php`:
 ```php
-$mailchimp_api_key = 'MAILCHIMP_API_KEY_REMOVED';
-$mailchimp_list_id = 'a5bc63ac6c';
-$mailchimp_server = 'us18';
+define('MAILCHIMP_API_KEY', 'ваш-api-ключ');
+define('MAILCHIMP_LIST_ID', 'ваш-list-id');
+define('MAILCHIMP_SERVER', 'us18');
 ```
 
 **Механизм работы:**

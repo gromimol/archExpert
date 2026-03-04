@@ -245,15 +245,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Показываем шапку, если мы в самом верху страницы
             if (currentScroll <= 100) {
-                header.classList.remove('header-hidden');
+                header.classList.remove('header--hidden');
             }
             // Скрываем при скролле вниз
             else if (currentScroll > lastScrollTop + scrollThreshold) {
-                header.classList.add('header-hidden');
+                header.classList.add('header--hidden');
             }
             // Показываем при скролле вверх
             else if (currentScroll < lastScrollTop - scrollThreshold) {
-                header.classList.remove('header-hidden');
+                header.classList.remove('header--hidden');
             }
 
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;

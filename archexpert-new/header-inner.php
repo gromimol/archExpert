@@ -24,7 +24,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="wrapper">
-        <header class="header">
+        <header class="header header--fixed">
             <div class="container">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
                     <?php
@@ -53,6 +53,7 @@
                         <!--  меню  -->
                         <ul>
                             <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/#cases' ) ); ?>">Case studies</a></li>
                             <li>
                                 <a href="#">services</a>
                                 <ul>
@@ -69,6 +70,7 @@
                                     <li><a href="#">Free Tools</a></li>
                                 </ul>
                             </li>
+                            <li><a href="#contacts">Contacts</a></li>
                         </ul>
                     </div>
                     <?php

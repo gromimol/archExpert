@@ -1,14 +1,7 @@
 <?php
-// Force HTTPS for all URLs
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-    $_SERVER['HTTPS'] = 'on';
-}
-
 // Force HTTPS in all WordPress URLs
 add_filter('stylesheet_directory_uri', 'arch_force_https_url');
 add_filter('template_directory_uri', 'arch_force_https_url');
-add_filter('home_url', 'arch_force_https_url');
-add_filter('site_url', 'arch_force_https_url');
 add_filter('wp_get_attachment_url', 'arch_force_https_url');
 
 function arch_force_https_url($url) {
@@ -566,10 +559,10 @@ function arch_mailchimp_subscribe_handler() {
         return;
     }
 
-    // Mailchimp API credentials
-    $mailchimp_api_key = 'MAILCHIMP_API_KEY_REMOVED';
-    $mailchimp_list_id = 'a5bc63ac6c';
-    $mailchimp_server = 'us18';
+    // Mailchimp API credentials (set via wp-config.php or environment variables)
+    $mailchimp_api_key = defined('MAILCHIMP_API_KEY') ? MAILCHIMP_API_KEY : '';
+    $mailchimp_list_id = defined('MAILCHIMP_LIST_ID') ? MAILCHIMP_LIST_ID : '';
+    $mailchimp_server = defined('MAILCHIMP_SERVER') ? MAILCHIMP_SERVER : '';
 
     // If credentials are not set yet, log the data and return success
     if (empty($mailchimp_api_key) || empty($mailchimp_list_id)) {
@@ -578,7 +571,7 @@ function arch_mailchimp_subscribe_handler() {
         error_log('Email: ' . $email);
         error_log('Name: ' . $name);
         error_log('Phone: ' . $phone);
-        
+
         wp_send_json_success(array(
             'message' => 'Form data received (Mailchimp integration pending)',
             'type' => $type

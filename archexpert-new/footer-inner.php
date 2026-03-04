@@ -1,4 +1,4 @@
-        <footer class="footer">
+        <footer class="footer" id="contacts">
             <div class="container">
                 <div class="footer__top">
                     <div class="footer__brand">
@@ -38,7 +38,7 @@
                         <div class="h4">Contact</div>
                         <div class="footer__contact-info">
                             <p>Email: <a href="mailto:hello@arch-expert.com">hello@arch-expert.com</a></p>
-                            <p>LinkedIn: <a href="#">Maxim Silaev</a> | <a href="#">Company Page</a></p>
+                            <p>LinkedIn: <a href="#">Company Page</a></p>
                         </div>
                     </div>
 
